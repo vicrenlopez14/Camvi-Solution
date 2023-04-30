@@ -38,10 +38,6 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
 import com.example.camvi.AdministradoresActivity
 import com.example.camvi.R
-import com.example.camvi.controller.administradores.AdministradoresMainScreen
-import com.example.camvi.controller.global.correo
-import com.example.camvi.controller.global.txtEmail
-import com.example.camvi.controller.global.txtPassword
 import com.example.camvi.model.globales.CamviFunctions
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -143,8 +139,7 @@ fun LoginScreen(navController: NavController) {
 
 fun Login(email: String, password: String, context: Context) {
     if (email.isEmpty() || password.isEmpty()) {
-        txtEmail.error = "Por favor ingrese su correo"
-        txtPassword.error = "Por favor ingrese su contraseña"
+
     } else {
 
         val tipoUsuario = CamviFunctions.fnIniciarSesion(email, password)
@@ -176,8 +171,7 @@ fun Login(email: String, password: String, context: Context) {
             }
 
             else -> {
-                txtEmail.error = "Correo o contraseña incorrectos"
-                txtPassword.error = "Correo o contraseña incorrectos"
+
             }
         }
     }

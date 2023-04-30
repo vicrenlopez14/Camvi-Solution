@@ -4,7 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,12 +41,12 @@ fun DrawerHeader() {
             Spacer(Modifier.width(16.dp))
             Column {
                 Spacer(modifier = Modifier.height(10.dp))
-                Text(text = "Hola", style = MaterialTheme.typography.caption)
+                Text(text = "Hola", style = MaterialTheme.typography.bodySmall)
                 Spacer(modifier = Modifier.height(2.dp))
 
                 Text(
                     text = "Carlos Figueroa",
-                    style = MaterialTheme.typography.h5,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
             }
         }

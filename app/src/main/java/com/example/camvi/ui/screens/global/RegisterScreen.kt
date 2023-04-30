@@ -44,7 +44,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.camvi.AdministradoresActivity
 import com.example.camvi.R
-import com.example.camvi.controller.global.LoginActivity
 import com.example.camvi.model.globales.CamviProcedures
 import com.example.camvi.ui.widgets.global.CamviScreen
 

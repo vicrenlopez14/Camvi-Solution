@@ -1,12 +1,7 @@
 package com.example.camvi.ui.widgets.global
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.BrowseGallery
-import androidx.compose.material.icons.filled.Camera
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Logout
-import androidx.compose.material.icons.filled.PhotoCamera
-import androidx.compose.material.icons.filled.PriorityHigh
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.graphics.vector.ImageVector
 
@@ -21,16 +16,16 @@ sealed class CamviScreen(
 
     // Screens for Inicio, Camarógrafos, Sesiones, Confirmaciones, Calificaciones, Galería de fotos and Cerrar Sesión
     object InicioAdministradores : CamviScreen("Inicio", "Inicio", Icons.Filled.Home)
-    object Camarografos : CamviScreen("Camarografos", "Camarografos", Icons.Filled.PhotoCamera)
-    object Sesiones : CamviScreen("Sesiones", "Sesiones", Icons.Filled.Camera)
+    object Camarografos : CamviScreen("Camarografos", "Camarografos", Icons.Filled.Done)
+    object Sesiones : CamviScreen("Sesiones", "Sesiones", Icons.Filled.Done)
     object Confirmaciones : CamviScreen("Confirmaciones", "Confirmaciones", Icons.Filled.Star)
     object Calificaciones :
-        CamviScreen("Calificaciones", "Calificaciones", Icons.Filled.PriorityHigh)
+        CamviScreen("Calificaciones", "Calificaciones", Icons.Filled.Done)
 
     object GaleriaDeFotos :
-        CamviScreen("GaleriaDeFotos", "GaleriaDeFotos", Icons.Filled.BrowseGallery)
+        CamviScreen("GaleriaDeFotos", "GaleriaDeFotos", Icons.Filled.Done)
 
-    object CerrarSesion : CamviScreen("CerrarSesion", "CerrarSesion", Icons.Filled.Logout)
+    object CerrarSesion : CamviScreen("CerrarSesion", "CerrarSesion", Icons.Filled.Done)
 
     object OlvideMiContrasena :
         CamviScreen("OlvideMiContrasena", null, null)
