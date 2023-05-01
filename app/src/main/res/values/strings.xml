@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Camvi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="indicacion1">Ingresa tu correo electrónico para recibir un código de verificación</string>
+    <string name="indicacion2">Ingresa el código de 4 digitos enviado a tu correo</string>
+    <string name="indicacion3">Asegúrate de usar una contraseña diferente a la anterior</string>
+    <string name="title_activity_administradores_main_screen">AdministradoresMainScreen</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_administradores">AdministradoresActivity</string>
+
 </resources>
