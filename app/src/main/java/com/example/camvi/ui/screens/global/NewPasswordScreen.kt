@@ -35,7 +35,7 @@ import com.example.camvi.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-//@Preview
+@Preview
 
 fun NewPasswordScreen()
 {
@@ -44,14 +44,15 @@ fun NewPasswordScreen()
                     horizontalArrangement = Arrangement.Start,
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth()
-
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.arrowl),
                         contentDescription = null,
                         modifier = Modifier
-                            .size(width = 70.dp, height = 20.dp)
-                            .padding(start = 16.dp)
+                            .size(width = 100.dp, height = 40.dp)
+                            .padding(top = 18.dp)
+                            .padding(end = 60.dp)
+
                     )
                 }
         Column(
@@ -60,7 +61,8 @@ fun NewPasswordScreen()
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-        Text(
+        Spacer(modifier = Modifier.height(40.dp))
+            Text(
             text = "Crea una nueva contraseña",
             color = Color.Black,
             fontSize = 24.sp,
