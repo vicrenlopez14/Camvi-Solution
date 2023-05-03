@@ -90,7 +90,7 @@ fun ForgotPasswordScreen() {
         )
         Button(
             onClick = { /*TODO*/ },
-                shape = RoundedCornerShape(15.dp),
+              shape = RoundedCornerShape(15.dp),
                         border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
                         colors = ButtonDefaults.outlinedButtonColors(
                             containerColor = Color.White

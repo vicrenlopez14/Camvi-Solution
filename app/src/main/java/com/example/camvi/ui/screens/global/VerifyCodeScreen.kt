@@ -93,10 +93,10 @@ fun VerifyCodeScreen() {
         )
         Button(
             onClick = { },
-             shape = RoundedCornerShape(15.dp),
-                        border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.White
+            shape = RoundedCornerShape(15.dp),
+            border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
+            colors = ButtonDefaults.outlinedButtonColors(
+                containerColor = Color.White
                         ),
             modifier = Modifier
                 .padding(top = 32.dp)
