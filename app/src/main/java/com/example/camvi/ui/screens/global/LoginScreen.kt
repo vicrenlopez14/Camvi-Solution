@@ -37,12 +37,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.AdministradoresActivity
 import com.example.camvi.R
 import com.example.camvi.model.globales.CamviFunctions
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
+
 fun LoginScreen(navController: NavController) {
     val emailState = remember {
         mutableStateOf("")

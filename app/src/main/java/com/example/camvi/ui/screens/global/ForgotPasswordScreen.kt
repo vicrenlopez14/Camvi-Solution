@@ -1,10 +1,14 @@
 package com.example.camvi.ui.screens.global
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,18 +26,29 @@ import com.example.camvi.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
+@Preview
 fun ForgotPasswordScreen() {
+   Surface() {
+        Row(
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.arrowl),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(width = 100.dp, height = 40.dp)
+                            .padding(top = 18.dp)
+                            .padding(end = 60.dp)
+
+                    )
+                }
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.arrowl),
-            contentDescription = null,
-            modifier = Modifier
-                .padding(top = 16.dp, start = 16.dp)
-        )
+        Spacer(modifier = Modifier.height(40.dp))
         Text(
             text = "Olvidaste tu contraseña",
             color = Color.Black,
@@ -71,14 +86,19 @@ fun ForgotPasswordScreen() {
             },
             modifier = Modifier
                 .padding(top = 32.dp)
-                .fillMaxWidth()
+                .fillMaxWidth(0.85f)
         )
         Button(
             onClick = { /*TODO*/ },
+                shape = RoundedCornerShape(15.dp),
+                        border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.White
+                        ),
             modifier = Modifier
                 .padding(top = 32.dp)
-                .fillMaxWidth()
-                .height(52.dp)
+                .fillMaxWidth(0.7f)
+                .height(61.dp)
         ) {
             Text(
                 text = "Enviar",
@@ -88,4 +108,5 @@ fun ForgotPasswordScreen() {
             )
         }
     }
+   }
 }
