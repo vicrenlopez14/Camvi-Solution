@@ -47,8 +47,11 @@ import com.example.camvi.model.globales.CamviFunctions
 @Composable
 @Preview
 fun previewLogin(){
-    val navController= rememberNavController()
+    Surface() {
+            val navController= rememberNavController()
     LoginScreen(navController = navController)
+    }
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,6 +68,21 @@ fun LoginScreen(navController: NavController) {
     val context = LocalContext.current
 
     Surface() {
+              Row(
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.arrowl),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(width = 100.dp, height = 40.dp)
+                            .padding(top = 18.dp)
+                            .padding(end = 60.dp)
+
+                    )
+                }
         LazyColumn {
         item {
             Column(
@@ -78,20 +96,6 @@ fun LoginScreen(navController: NavController) {
                     fontSize = 24.sp,
                     modifier = Modifier.paddingFromBaseline(top = 80.dp)
                 )
-
-                Row(
-                    horizontalArrangement = Arrangement.Start,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.arrowl),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(width = 18.dp, height = 20.dp)
-                            .padding(start = 16.dp)
-                    )
-                }
 
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
