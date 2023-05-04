@@ -20,6 +20,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -32,14 +33,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.AdministradoresActivity
 import com.example.camvi.CamarografosActivity
 import com.example.camvi.ClientesActivity
 import com.example.camvi.R
 import com.example.camvi.model.globales.CamviFunctions
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+@Preview
+fun previewLogin(){
+    val navController= rememberNavController()
+    LoginScreen(navController = navController)
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,7 +65,8 @@ fun LoginScreen(navController: NavController) {
 
     val context = LocalContext.current
 
-    LazyColumn {
+    Surface() {
+        LazyColumn {
         item {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -134,6 +146,8 @@ fun LoginScreen(navController: NavController) {
                 }
             }
         }
+    }
+        
     }
 }
 
