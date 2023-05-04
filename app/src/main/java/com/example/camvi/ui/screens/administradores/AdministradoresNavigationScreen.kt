@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.camvi.ui.widgets.administradores.DrawerContenido
 import com.example.camvi.ui.widgets.global.AdministradoresNavGraph
+import com.example.camvi.ui.widgets.global.CamviScreen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,13 +30,24 @@ fun AdministradoresNavigationScreen() {
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val coroutineScope = rememberCoroutineScope()
-    val navControllerAdministradores = rememberNavController()
+    val navController = rememberNavController()
 
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
-                DrawerContenido(navControllerAdministradores, drawerState)
+                DrawerContenido(
+                    navController,
+                    drawerState,
+                    listOf(
+                        CamviScreen.InicioAdministradores,
+                        CamviScreen.Camarografos,
+                        CamviScreen.Sesiones,
+                        CamviScreen.Confirmaciones,
+                        CamviScreen.Calificaciones,
+                        CamviScreen.GaleriaDeFotos,
+                    )
+                )
             }
         },
     ) {
@@ -64,7 +76,7 @@ fun AdministradoresNavigationScreen() {
                     .padding(it)
                     .fillMaxSize()
             ) {
-                AdministradoresNavGraph(navController = navControllerAdministradores)
+                AdministradoresNavGraph(navController = navController)
             }
         }
     }

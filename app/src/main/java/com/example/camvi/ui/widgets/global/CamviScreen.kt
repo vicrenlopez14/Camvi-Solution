@@ -1,7 +1,8 @@
 package com.example.camvi.ui.widgets.global
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.graphics.vector.ImageVector
 
@@ -16,8 +17,11 @@ sealed class CamviScreen(
 
     // Screens for Inicio, Camarógrafos, Sesiones, Confirmaciones, Calificaciones, Galería de fotos and Cerrar Sesión
     object InicioAdministradores : CamviScreen("Inicio", "Inicio", Icons.Filled.Home)
+    object InicioClientes : CamviScreen("Clientes", "Inicio", Icons.Filled.Home)
+    object InicioCamarografos : CamviScreen("Camarógrafos", "Inicio", Icons.Filled.Home)
     object Camarografos : CamviScreen("Camarografos", "Camarografos", Icons.Filled.Done)
     object Sesiones : CamviScreen("Sesiones", "Sesiones", Icons.Filled.Done)
+
     object Confirmaciones : CamviScreen("Confirmaciones", "Confirmaciones", Icons.Filled.Star)
     object Calificaciones :
         CamviScreen("Calificaciones", "Calificaciones", Icons.Filled.Done)
@@ -92,3 +96,91 @@ sealed class CamviScreen(
 
 
 }
+
+sealed class AdministradoresScreen(
+    route: String,
+    title: String?,
+    icon: ImageVector?
+) :
+    CamviScreen(route, title, icon) {
+    object InicioAdministradores :
+        AdministradoresScreen(
+            "AdministradoresScreen",
+            "Inicio",
+            Icons.Filled.Home
+        )
+
+    object CamarografosAdministradores :
+        AdministradoresScreen(
+            "CamarografosAdministradores",
+            "Camarografos",
+            Icons.Filled.Done
+        )
+
+    object SesionesAdministradores :
+        AdministradoresScreen(
+            "SesionesAdministradores",
+            "Sesiones",
+            Icons.Filled.Done
+        )
+
+    object ConfirmacionesAdministradores : AdministradoresScreen(
+        "ConfirmacionesAdministradores",
+        "Confirmaciones",
+        Icons.Filled.Done
+    )
+
+    object CalificacionesAdministradores : AdministradoresScreen(
+        "CalificacionesAdministradores",
+        "Calificaciones",
+        Icons.Filled.Done
+    )
+
+    object GaleriaDeFotosAdministradores : AdministradoresScreen(
+        "GaleriaDeFotosAdministradores",
+        "Galeria de fotos",
+        Icons.Filled.Done
+    )
+}
+
+sealed class CamarografosScreen(
+    route: String, title: String?, icon: ImageVector?
+) :
+    CamviScreen(route, title, icon) {
+    object InicioCamarografos : CamarografosScreen(
+        "Inicio",
+        "Inicio",
+        Icons.Filled.Home
+    )
+
+    object SesionesCamarografos : CamarografosScreen(
+        "Sesiones",
+        "Sesiones",
+        Icons.Filled.Done
+    )
+
+    object NotificacionesCamarografos :
+        CamarografosScreen(
+            "Notificaciones",
+            "Notificaciones",
+            Icons.Filled.Done
+        )
+}
+
+sealed class ClientesScreen(
+    route: String,
+    title: String?,
+    icon: ImageVector?
+) :
+    CamviScreen(route, title, icon) {
+    object InicioClientes : ClientesScreen("InicioClientes", "Inicio", Icons.Filled.Home)
+
+    object SesionesClientes : ClientesScreen("SesionesClientes", "Sesiones", Icons.Filled.Done)
+
+    object NotificacionesClientes :
+        ClientesScreen("NotificacionesClientes", "Notificaciones", Icons.Filled.Done)
+
+    object CalificanosClientes :
+        ClientesScreen("CalificanosClientes", "Calificanos", Icons.Filled.Done)
+}
+
