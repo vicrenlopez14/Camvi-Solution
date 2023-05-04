@@ -1,10 +1,6 @@
 package com.example.camvi.model.globales
 
-import android.widget.ArrayAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.sql.SQLException
-import java.sql.Types
 
 class CamviFunctions {
     companion object {

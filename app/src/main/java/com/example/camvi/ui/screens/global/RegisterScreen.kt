@@ -3,8 +3,6 @@ package com.example.camvi.ui.screens.global
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import androidx.compose.runtime.Composable
-
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -17,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
@@ -28,6 +25,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -38,7 +36,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,16 +44,15 @@ import androidx.navigation.compose.rememberNavController
 import com.example.camvi.AdministradoresActivity
 import com.example.camvi.R
 import com.example.camvi.model.globales.CamviProcedures
-import com.example.camvi.ui.widgets.global.CamviScreen
-
 
 
 @Composable
 @Preview
-fun previewRegister(){
+fun previewRegister() {
     val navController = rememberNavController()
     RegisterScreen(navController = navController)
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(navController: NavController) {
@@ -82,38 +78,38 @@ fun RegisterScreen(navController: NavController) {
 
     val context = LocalContext.current
 
-Surface() {
+    Surface() {
         Row(
-                    horizontalArrangement = Arrangement.Start,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.arrowl),
-            contentDescription = null,
-            modifier = Modifier
-                .size(width = 100.dp, height = 40.dp)
-                .padding(top = 18.dp)
-                .padding(end = 60.dp)
-
-        )
-    }
-    LazyColumn {
-        item {
-            Column(
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.arrowl),
+                contentDescription = null,
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 20.dp, vertical = 30.dp),
+                    .size(width = 100.dp, height = 40.dp)
+                    .padding(top = 18.dp)
+                    .padding(end = 60.dp)
+
+            )
+        }
+        LazyColumn {
+            item {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 20.dp, vertical = 30.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "Crea tu perfil",
-                    fontFamily = FontFamily(Font(R.font.inter_boldd)),
-                    fontSize = 24.sp,
-                    color = Color.Black,
-                    modifier = Modifier.padding(bottom = 20.dp)
-                )
-                Image(
+                ) {
+                    Text(
+                        text = "Crea tu perfil",
+                        fontFamily = FontFamily(Font(R.font.inter_boldd)),
+                        fontSize = 24.sp,
+                        color = Color.Black,
+                        modifier = Modifier.padding(bottom = 20.dp)
+                    )
+                    Image(
                         painter = painterResource(id = R.drawable.persona),
                         contentDescription = "",
                         modifier = Modifier
@@ -131,6 +127,17 @@ Surface() {
                             .padding(vertical = 30.dp)
                             .clickable(onClick = { /* TODO */ })
                     )
+
+                    Text(
+                        text = "Agregar",
+                        fontFamily = FontFamily(Font(R.font.inter_semibold)),
+                        fontSize = 16.sp,
+                        color = Color(0xFFD29405),
+                        modifier = Modifier
+                            .padding(vertical = 30.dp)
+                            .clickable(onClick = { /* TODO */ })
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(10.dp))
 
@@ -187,8 +194,6 @@ Surface() {
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                Spacer(modifier = Modifier.height(40.dp))
-
                 Button(
                     onClick = {
                         Registrar(
@@ -201,27 +206,26 @@ Surface() {
                         )
                     },
                     shape = RoundedCornerShape(15.dp),
-                        border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.White
-                        ),
+                    border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        containerColor = Color.White
+                    ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp)
                 ) {
                     Text(
-                text = "Crear usuario",
-                color = Color.Black,
-                fontSize = 16.sp,
-                fontFamily = FontFamily(Font(R.font.inter_semibold))
-            )
+                        text = "Crear usuario",
+                        color = Color.Black,
+                        fontSize = 16.sp,
+                        fontFamily = FontFamily(Font(R.font.inter_semibold))
+                    )
                 }
             }
         }
     }
 }
 
-}
 
 fun Registrar(
     nombre: String,

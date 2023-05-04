@@ -23,21 +23,17 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NavigationDrawerItems(navController: NavHostController, drawerState: DrawerState) {
+fun NavigationDrawerItems(
+    navController: NavHostController,
+    drawerState: DrawerState,
+    items: List<CamviScreen> = listOf(CamviScreen.Bienvenida)
+) {
     val currentBackStackEntryAsState by navController.currentBackStackEntryAsState()
 
     val destination = currentBackStackEntryAsState?.destination
 
-    val screens = listOf(
-        CamviScreen.InicioAdministradores,
-        CamviScreen.Camarografos,
-        CamviScreen.Sesiones,
-        CamviScreen.Confirmaciones,
-        CamviScreen.Calificaciones,
-        CamviScreen.GaleriaDeFotos,
-    )
 
-    screens.forEach { screen ->
+    items.forEach { screen ->
         AddItem(
             screen = screen,
             currentDestination = destination,
