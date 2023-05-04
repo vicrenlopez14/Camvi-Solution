@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
 fun NavigationDrawerItems(
     navController: NavHostController,
     drawerState: DrawerState,
-    items: List<CamviScreen> = listOf(CamviScreen.InicioAdministradores)
+    items: List<CamviScreen> = listOf(CamviScreen.Bienvenida)
 ) {
     val currentBackStackEntryAsState by navController.currentBackStackEntryAsState()
 

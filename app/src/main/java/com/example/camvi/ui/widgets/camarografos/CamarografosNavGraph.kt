@@ -8,7 +8,7 @@ import com.example.camvi.ui.widgets.camarografos.CamarografosDashboard
 
 @Composable
 fun CamarografosNavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = CamviScreen.Bienvenida.route) {
+    NavHost(navController = navController, startDestination = CamarografosScreen.InicioCamarografos.route) {
         composable(CamarografosScreen.InicioCamarografos.route) {
             CamarografosDashboard()
         }

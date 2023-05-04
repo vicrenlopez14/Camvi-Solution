@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.camvi.ui.widgets.administradores.DrawerContenido
 import com.example.camvi.ui.widgets.global.AdministradoresNavGraph
-import com.example.camvi.ui.widgets.global.CamviScreen
+import com.example.camvi.ui.widgets.global.AdministradoresScreen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,12 +40,12 @@ fun AdministradoresNavigationScreen() {
                     navController,
                     drawerState,
                     listOf(
-                        CamviScreen.InicioAdministradores,
-                        CamviScreen.Camarografos,
-                        CamviScreen.Sesiones,
-                        CamviScreen.Confirmaciones,
-                        CamviScreen.Calificaciones,
-                        CamviScreen.GaleriaDeFotos,
+                        AdministradoresScreen.InicioAdministradores,
+                        AdministradoresScreen.CamarografosAdministradores,
+                        AdministradoresScreen.SesionesAdministradores,
+                        AdministradoresScreen.ConfirmacionesAdministradores,
+                        AdministradoresScreen.CalificacionesAdministradores,
+                        AdministradoresScreen.GaleriaDeFotosAdministradores,
                     )
                 )
             }

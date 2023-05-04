@@ -8,7 +8,7 @@ import com.example.camvi.ui.screens.clientes.ClientesDashboard
 
 @Composable
 fun ClientesNavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = CamviScreen.Bienvenida.route) {
+    NavHost(navController = navController, startDestination = ClientesScreen.InicioClientes.route) {
         composable(route = ClientesScreen.InicioClientes.route) {
             ClientesDashboard()
         }

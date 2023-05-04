@@ -18,7 +18,7 @@ fun DrawerContenido(
     navController: NavHostController,
     drawerState: DrawerState,
     items: List<CamviScreen> = listOf(
-        CamviScreen.InicioAdministradores
+        CamviScreen.Bienvenida
     )
 ) {
     Box(
