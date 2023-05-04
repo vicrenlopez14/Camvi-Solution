@@ -26,6 +26,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,11 +43,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.AdministradoresActivity
 import com.example.camvi.R
 import com.example.camvi.model.globales.CamviProcedures
 import com.example.camvi.ui.widgets.global.CamviScreen
 
+
+
+@Composable
+@Preview
+fun previewRegister(){
+    val navController = rememberNavController()
+    RegisterScreen(navController = navController)
+}
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(navController: NavController) {
@@ -72,12 +82,29 @@ fun RegisterScreen(navController: NavController) {
 
     val context = LocalContext.current
 
+Surface() {
+        Row(
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.arrowl),
+            contentDescription = null,
+            modifier = Modifier
+                .size(width = 100.dp, height = 40.dp)
+                .padding(top = 18.dp)
+                .padding(end = 60.dp)
+
+        )
+    }
     LazyColumn {
         item {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 20.dp, vertical = 30.dp)
+                    .padding(horizontal = 20.dp, vertical = 30.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
                     text = "Crea tu perfil",
@@ -86,18 +113,7 @@ fun RegisterScreen(navController: NavController) {
                     color = Color.Black,
                     modifier = Modifier.padding(bottom = 20.dp)
                 )
-
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.arrowl),
-                        contentDescription = "",
-                        modifier = Modifier.size(width = 22.dp, height = 25.dp)
-                    )
-
-                    Image(
+                Image(
                         painter = painterResource(id = R.drawable.persona),
                         contentDescription = "",
                         modifier = Modifier
@@ -115,7 +131,6 @@ fun RegisterScreen(navController: NavController) {
                             .padding(vertical = 30.dp)
                             .clickable(onClick = { /* TODO */ })
                     )
-                }
 
                 Spacer(modifier = Modifier.height(10.dp))
 
@@ -185,15 +200,26 @@ fun RegisterScreen(navController: NavController) {
                             context
                         )
                     },
+                    shape = RoundedCornerShape(15.dp),
+                        border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.White
+                        ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp)
                 ) {
-                    Text(text = "Crear usuario")
+                    Text(
+                text = "Crear usuario",
+                color = Color.Black,
+                fontSize = 16.sp,
+                fontFamily = FontFamily(Font(R.font.inter_semibold))
+            )
                 }
             }
         }
     }
+}
 
 }
 

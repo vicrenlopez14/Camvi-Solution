@@ -4,20 +4,24 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
 
 @Composable
+@Preview
 fun VerSesionesAgendadasScreen() {
-    Image(
+    Surface() {
+        Image(
         painter = painterResource(id = R.drawable.menu),
-        contentDescription = null,
+            contentDescription = null,
         modifier = Modifier
             .size(50.dp, 47.dp)
             .padding(start = 16.dp, top = 16.dp, end = 345.dp, bottom = 668.dp)
@@ -77,6 +81,7 @@ fun VerSesionesAgendadasScreen() {
             .padding(start = 27.dp, top = 267.dp, end = 26.dp, bottom = 3.dp)
             .size(359.dp, 305.dp)
     )
+    }
 
 
 }

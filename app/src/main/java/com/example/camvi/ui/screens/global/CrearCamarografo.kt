@@ -11,6 +11,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,12 +23,15 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
 
 @Composable
+
 fun PersonalInfoScreen() {
+    Surface() {
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -37,7 +41,7 @@ fun PersonalInfoScreen() {
             painter = painterResource(id = R.drawable.flechaatras),
             contentDescription = null,
             modifier = Modifier
-                .padding(start = 16.dp, top = 23.dp)
+                .padding(start = 10.dp, top = 23.dp)
                 .width(32.dp)
                 .height(33.dp)
         )
@@ -94,4 +98,9 @@ fun PersonalInfoScreen() {
                 .padding(top = 451.dp)
         )
     }
+
+        
+    }
 }
+
+

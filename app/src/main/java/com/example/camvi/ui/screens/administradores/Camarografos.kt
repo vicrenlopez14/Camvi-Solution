@@ -43,6 +43,7 @@ import com.example.camvi.ui.widgets.administradores.ItemListaCamarografos
 @Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+@Preview
 fun CamarografosScreen() {
     val items = remember { mutableStateOf(emptyList<CamarografoItemData>()) }
 
