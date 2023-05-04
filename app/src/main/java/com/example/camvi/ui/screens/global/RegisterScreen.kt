@@ -52,7 +52,6 @@ import com.example.camvi.ui.widgets.global.CamviScreen
 
 
 @Composable
-@Preview
 fun previewRegister(){
     val navController = rememberNavController()
     RegisterScreen(navController = navController)

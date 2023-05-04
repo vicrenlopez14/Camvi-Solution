@@ -47,7 +47,9 @@ import com.example.camvi.model.globales.CamviFunctions
 @Composable
 @Preview
 fun previewLogin(){
-    Surface() {
+    Surface(
+        modifier = Modifier.fillMaxSize()
+    ) {
             val navController= rememberNavController()
     LoginScreen(navController = navController)
     }
@@ -68,7 +70,11 @@ fun LoginScreen(navController: NavController) {
     val context = LocalContext.current
 
     Surface() {
-              Row(
+
+        LazyColumn {
+
+        item {
+            Row(
                     horizontalArrangement = Arrangement.Start,
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth()
@@ -83,8 +89,6 @@ fun LoginScreen(navController: NavController) {
 
                     )
                 }
-        LazyColumn {
-        item {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -124,7 +128,7 @@ fun LoginScreen(navController: NavController) {
                         modifier = Modifier.fillMaxWidth(0.85f)
                     )
 
-                    Spacer(modifier = Modifier.height(32.dp))
+                    Spacer(modifier = Modifier.height(100.dp))
 
                     Button(
                         onClick = {
