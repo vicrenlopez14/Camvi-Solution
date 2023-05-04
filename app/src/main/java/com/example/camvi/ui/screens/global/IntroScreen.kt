@@ -1,5 +1,6 @@
 package com.example.camvi.ui.screens.global
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -89,12 +90,13 @@ fun IntroScreen(navController: NavController) {
                     },
                     modifier = Modifier
                         .width(167.dp)
-                        .height(60.dp)
+                        .height(100.dp)
                         .paddingFromBaseline(top = 145.dp),
-                    shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.White
-                    )
+                    shape = RoundedCornerShape(15.dp),
+                        border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.White
+                        )
 
                 ) {
                     Text(
@@ -112,10 +114,11 @@ fun IntroScreen(navController: NavController) {
                         .width(167.dp)
                         .height(60.dp)
                         .paddingFromBaseline(top = 15.dp),
-                    shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.White
-                    )
+                        shape = RoundedCornerShape(15.dp),
+                        border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.White
+                        )
                 ) {
                     Text(
                         text = "Iniciar sesión",
