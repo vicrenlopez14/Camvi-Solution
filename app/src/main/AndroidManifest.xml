@@ -30,6 +30,16 @@
             android:exported="false"
             android:label="Activity Administradores"
             android:theme="@style/Theme.Camvi" />
+        <activity
+            android:name=".CamarografosActivity"
+            android:exported="false"
+            android:label="Activity Camarografos"
+            android:theme="@style/Theme.Camvi" />
+        <activity
+            android:name=".ClientesActivity"
+            android:exported="false"
+            android:label="Activity Clientes"
+            android:theme="@style/Theme.Camvi" />
     </application>
 
 </manifest>

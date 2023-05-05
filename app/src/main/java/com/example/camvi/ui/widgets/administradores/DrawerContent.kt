@@ -8,14 +8,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.camvi.ui.widgets.global.CamviScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DrawerContenido(navController: NavHostController, drawerState: DrawerState) {
+fun DrawerContenido(
+    navController: NavHostController,
+    drawerState: DrawerState,
+    items: List<CamviScreen> = listOf(
+        CamviScreen.Bienvenida
+    )
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -31,7 +36,7 @@ fun DrawerContenido(navController: NavHostController, drawerState: DrawerState) 
 
             DrawerHeader()
             Spacer(modifier = Modifier.height(32.dp))
-            NavigationDrawerItems(navController, drawerState)
+            NavigationDrawerItems(navController, drawerState, items)
             Spacer(modifier = Modifier.weight(1f))
         }
     }

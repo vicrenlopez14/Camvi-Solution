@@ -36,10 +36,11 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.camvi.AdministradoresActivity
+import com.example.camvi.CamarografosActivity
+import com.example.camvi.ClientesActivity
 import com.example.camvi.R
 import com.example.camvi.model.globales.CamviFunctions
 
@@ -151,7 +152,6 @@ fun LoginScreen(navController: NavController) {
                         )
                     }
                 }
-
             }
         }
     }
@@ -160,9 +160,7 @@ fun LoginScreen(navController: NavController) {
 }
 
 fun Login(email: String, password: String, context: Context) {
-    if (email.isEmpty() || password.isEmpty()) {
-
-    } else {
+    if (email.isNotEmpty() && password.isNotEmpty()) {
 
         val tipoUsuario = CamviFunctions.fnIniciarSesion(email, password)
 
@@ -177,7 +175,7 @@ fun Login(email: String, password: String, context: Context) {
             }
 
             2 -> {
-                val intent = Intent(context, AdministradoresActivity::class.java)
+                val intent = Intent(context, CamarografosActivity::class.java)
                 intent.putExtra("email", email)
                 intent.putExtra("password", password)
                 intent.putExtra("tipoUsuario", tipoUsuario)
@@ -185,7 +183,7 @@ fun Login(email: String, password: String, context: Context) {
             }
 
             3 -> {
-                val intent = Intent(context, AdministradoresActivity::class.java)
+                val intent = Intent(context, ClientesActivity::class.java)
                 intent.putExtra("email", email)
                 intent.putExtra("password", password)
                 intent.putExtra("tipoUsuario", tipoUsuario)
