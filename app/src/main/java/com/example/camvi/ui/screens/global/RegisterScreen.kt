@@ -140,7 +140,7 @@ Surface() {
                         nombre.value = it
                     },
                     label = { Text("Nombre") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(0.95f)
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -151,7 +151,7 @@ Surface() {
                         contacto.value = it
                     },
                     label = { Text("Contacto") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(0.95f)
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -162,7 +162,7 @@ Surface() {
                         dui.value = it
                     },
                     label = { Text("DUI") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(0.95f)
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -173,7 +173,7 @@ Surface() {
                         correo.value = it
                     },
                     label = { Text("Correo") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(0.95f)
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -184,7 +184,7 @@ Surface() {
                         contrasena.value = it
                     },
                     label = { Text("Contraseña") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(0.95f)
                 )
 
                 Spacer(modifier = Modifier.height(40.dp))
