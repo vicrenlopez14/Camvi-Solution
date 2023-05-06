@@ -94,7 +94,9 @@ fun IntroScreen(navController: NavController) {
                         .paddingFromBaseline(top = 145.dp),
                     shape = RoundedCornerShape(15.dp),
                         border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF3DE8A)),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.White
+                        )
 
                 ) {
                     Text(

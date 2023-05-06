@@ -48,13 +48,8 @@ import com.example.camvi.model.globales.CamviFunctions
 @Composable
 @Preview
 fun previewLogin(){
-    Surface(
-        modifier = Modifier.fillMaxSize()
-    ) {
-            val navController= rememberNavController()
+    val navController= rememberNavController()
     LoginScreen(navController = navController)
-    }
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -71,25 +66,8 @@ fun LoginScreen(navController: NavController) {
     val context = LocalContext.current
 
     Surface() {
-
         LazyColumn {
-
         item {
-            Row(
-                    horizontalArrangement = Arrangement.Start,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.arrowl),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(width = 100.dp, height = 40.dp)
-                            .padding(top = 18.dp)
-                            .padding(end = 60.dp)
-
-                    )
-                }
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -101,6 +79,20 @@ fun LoginScreen(navController: NavController) {
                     fontSize = 24.sp,
                     modifier = Modifier.paddingFromBaseline(top = 80.dp)
                 )
+
+                Row(
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.arrowl),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(width = 18.dp, height = 20.dp)
+                            .padding(start = 16.dp)
+                    )
+                }
 
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -129,7 +121,7 @@ fun LoginScreen(navController: NavController) {
                         modifier = Modifier.fillMaxWidth(0.85f)
                     )
 
-                    Spacer(modifier = Modifier.height(100.dp))
+                    Spacer(modifier = Modifier.height(32.dp))
 
                     Button(
                         onClick = {
