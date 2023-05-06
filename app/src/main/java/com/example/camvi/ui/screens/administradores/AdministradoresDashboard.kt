@@ -331,9 +331,9 @@ fun StatisticsList() {
             .fillMaxHeight(0.6f)
             .fillMaxWidth()
     ) {
-        item { StatisticsWidget() }
-        item { StatisticsWidget() }
-        item { StatisticsWidget() }
+        item { SesionesCompletadasWidget() }
+        item { SesionesCompletadasWidget()}
+        item { SesionesCompletadasWidget() }
     }
 }
 
