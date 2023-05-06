@@ -65,7 +65,7 @@ fun LoginScreen(navController: NavController) {
 
     val context = LocalContext.current
 
-    Surface() {
+    Surface (Modifier.fillMaxSize()) {
         LazyColumn {
         item {
             Column(
@@ -75,7 +75,6 @@ fun LoginScreen(navController: NavController) {
                 Text(
                     text = "Inicio de sesión",
                     fontFamily = FontFamily(Font(R.font.inter_boldd)),
-                    color = Color.Black,
                     fontSize = 24.sp,
                     modifier = Modifier.paddingFromBaseline(top = 80.dp)
                 )

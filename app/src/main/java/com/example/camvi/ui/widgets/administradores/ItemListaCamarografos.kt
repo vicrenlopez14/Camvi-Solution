@@ -56,7 +56,6 @@ fun ItemListaCamarografos(camarografoItemData: CamarografoItemData) {
                 text = camarografoItemData.nombre ?: "Camarografo",
                 fontFamily = FontFamily(Font(R.font.inter)),
                 fontWeight = FontWeight.Bold,
-                color = Color.Black,
                 modifier = Modifier.padding(bottom = 5.dp)
             )
             Row(
