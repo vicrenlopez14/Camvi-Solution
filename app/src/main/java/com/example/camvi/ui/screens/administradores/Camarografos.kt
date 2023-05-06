@@ -24,10 +24,10 @@ import com.example.camvi.model.administradores.CamarografoItemData
 import com.example.camvi.model.globales.CamviViews
 import com.example.camvi.ui.widgets.administradores.ItemListaCamarografos
 
-@Preview
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-@Preview
+@Preview(showBackground = true)
 fun CamarografosListScreen() {
     val items = remember { mutableStateOf(emptyList<CamarografoItemData>()) }
 
@@ -67,7 +67,7 @@ fun CamarografosListScreen() {
                 .padding(start = 30.dp, top = 15.dp)
                 .width(170.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.White,
+                containerColor = Color(red = 233, green = 201, blue = 76),
                 contentColor = Color.Black
             )
         ) {
@@ -82,7 +82,7 @@ fun CamarografosListScreen() {
                 .fillMaxWidth()
         ) {
             items(items.value.size) { index ->
-                ItemListaCamarografos(items.value[index])
+               ItemListaCamarografos(items.value[index])
             }
         }
     }

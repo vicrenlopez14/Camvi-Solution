@@ -15,6 +15,11 @@
         android:theme="@style/Theme.Camvi"
         tools:targetApi="31">
         <activity
+            android:name=".ui.screens.administradores.SesionesSinCamarografos"
+            android:exported="false"
+            android:label="@string/title_activity_sesiones_sin_camarografos"
+            android:theme="@style/Theme.Camvi" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
