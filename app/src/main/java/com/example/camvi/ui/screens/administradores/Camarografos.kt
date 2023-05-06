@@ -49,7 +49,6 @@ fun CamarografosListScreen() {
             text = "Camarógrafos",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Black,
             modifier = Modifier
                 .padding(start = 30.dp, top = 20.dp)
         )
@@ -58,7 +57,6 @@ fun CamarografosListScreen() {
             text = "Lista de camarógrafos.",
             fontSize = 13.sp,
             fontWeight = FontWeight.Normal,
-            color = Color.Black,
             modifier = Modifier
                 .padding(start = 30.dp)
         )
@@ -75,7 +73,6 @@ fun CamarografosListScreen() {
         ) {
             Text(
                 text = "Crear camarógrafo",
-                color = Color.Black
             )
         }
 

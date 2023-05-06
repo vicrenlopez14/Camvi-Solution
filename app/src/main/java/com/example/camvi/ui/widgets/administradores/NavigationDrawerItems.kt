@@ -55,7 +55,12 @@ fun AddItem(
 
     NavigationDrawerItem(
         icon = { Icon(screen.icon ?: Icons.Filled.Home, screen.title) },
-        label = { Text(text = screen.title ?: "Pantalla") },
+        label = {
+            Text(
+                text = screen.title ?: "Pantalla",
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        },
         selected = currentDestination?.route == "SettingPage",
         onClick = {
             navController.navigate(screen.route, navOptions {

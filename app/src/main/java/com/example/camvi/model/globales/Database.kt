@@ -6,16 +6,13 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
 
-
 class ConnectSql {
     //Variables para la cadena de conexión
-    private val ip = "192.168.137.1:1433"
+    private val ip = "172.27.16.1:1433"
     private val db = "Camvi"
     private val username = "sa"
     private val password = "Rical2023*"
 
-
-    //Función de conexión
     fun dbConn(): Connection? {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
