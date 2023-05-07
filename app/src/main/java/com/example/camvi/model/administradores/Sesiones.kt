@@ -16,5 +16,6 @@ data class Sesiones(
     val confirmada: Boolean,
     val cancelada: Boolean,
     val idFotografo: Int,
-    val idCliente: Int
+    val idCliente: Int,
+    val sesionId: Int
 )
