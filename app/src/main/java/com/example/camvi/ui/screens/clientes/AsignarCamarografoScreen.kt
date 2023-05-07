@@ -1,4 +1,4 @@
-package com.example.camvi.ui.screens.global
+package com.example.camvi.ui.screens.clientes
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -14,11 +14,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
 
-
+@Preview(showBackground = true)
 @Composable
 fun CamarografoScreen() {
     Column(
@@ -61,9 +62,7 @@ fun CamarografoScreen() {
                 modifier = Modifier.padding(start = 30.dp),
                 contentPadding = PaddingValues(bottom = 16.dp)
             ) {
-//                items(camarografoList) { camarografo ->
-//                    CamarografoItem(camarografo = camarografo)
-//                }
+////
             }
         }
     }

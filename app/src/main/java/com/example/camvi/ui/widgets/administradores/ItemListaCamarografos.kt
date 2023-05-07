@@ -1,5 +1,6 @@
 package com.example.camvi.ui.widgets.administradores
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -19,11 +20,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.R
 import com.example.camvi.model.administradores.CamarografoItemData
 
@@ -64,14 +71,11 @@ fun ItemListaCamarografos(camarografoItemData: CamarografoItemData) {
                 Button(
                     onClick = { /*TODO*/ },
                     modifier = Modifier
-                        .padding(end = 10.dp)
-                        .height(40.dp)
-                        .border(1.dp, Color(0xFFD29405), shape = RoundedCornerShape(10.dp))
-                        .background(Color(0xFFF3DE8A)),
+                        .height(40.dp),
                     colors = ButtonDefaults.textButtonColors(
-                        contentColor = Color.Black
-                    ),
-                    shape = RoundedCornerShape(10.dp),
+                        contentColor = Color.Black,
+                        containerColor = colorResource(id = R.color.Yellow)),
+                    shape = RoundedCornerShape(16.dp),
                 ) {
                     Text(
                         text = "Ver sesiones"
@@ -80,13 +84,12 @@ fun ItemListaCamarografos(camarografoItemData: CamarografoItemData) {
                 Button(
                     onClick = { /*TODO*/ },
                     modifier = Modifier
-                        .height(40.dp)
-                        .border(1.dp, Color(0xFFD29405), shape = RoundedCornerShape(10.dp))
-                        .background(Color(0xFFE9C94C)),
+                        .height(40.dp),
+                    shape = RoundedCornerShape(16.dp),
                     colors = ButtonDefaults.textButtonColors(
-                        contentColor = Color.Black
-                    ),
-                    shape = RoundedCornerShape(10.dp)
+                        contentColor = Color.Black,
+                        containerColor = colorResource(id = R.color.DarkYellow)
+                    )
                 ) {
                     Text(
                         text = "Editar"

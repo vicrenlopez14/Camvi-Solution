@@ -23,3 +23,4 @@ val GraySecondary = Color(0xFFE0E0E0)
 val GrayDisabled = Color(0xFFB3B3B3)
 val GreenSuccess = Color(0xFF27AE60)
 val RedError = Color(0xFFEB5757)
+
