@@ -184,7 +184,7 @@ fun EventoCalificacion(){
             AndroidView(factory = {
                 RatingBar(it).apply {
                     numStars= 5
-                    stepSize = 1f
+                    stepSize = 0.2f
                     rating = 4f
                     scaleX = 0.5F
                     scaleY = 0.5F
@@ -207,7 +207,7 @@ fun EventoCalificacion(){
             AndroidView(factory = {
                 RatingBar(it).apply {
                     numStars= 5
-                    stepSize = 0.5f
+                    stepSize = 0.2f
                     rating = 4f
                     scaleX = 0.5F
                     scaleY = 0.5F
@@ -230,7 +230,7 @@ fun EventoCalificacion(){
             AndroidView(factory = {
                 RatingBar(it).apply {
                     numStars= 5
-                    stepSize = 1f
+                    stepSize = 0.2f
                     rating = 4f
                     scaleX = 0.5F
                     scaleY = 0.5F
@@ -253,7 +253,7 @@ fun EventoCalificacion(){
             AndroidView(factory = {
                 RatingBar(it).apply {
                     numStars= 5
-                    stepSize = 1f
+                    stepSize = 0.2f
                     rating = 4f
                     scaleX = 0.5F
                     scaleY = 0.5F
@@ -275,7 +275,7 @@ fun EventoCalificacion(){
             AndroidView(factory = {
                 RatingBar(it).apply {
                     numStars= 5
-                    stepSize = 1f
+                    stepSize = 0.2f
                     rating = 4f
                     scaleX = 0.5F
                     scaleY = 0.5F
@@ -317,7 +317,7 @@ fun OtrosCalficacion(){
             AndroidView(factory = {
                 RatingBar(it).apply {
                     numStars= 5
-                    stepSize = 1f
+                    stepSize = 0.2f
                     rating = 4f
                     scaleX = 0.5F
                     scaleY = 0.5F
@@ -338,7 +338,7 @@ fun OtrosCalficacion(){
             AndroidView(factory = {
                 RatingBar(it).apply {
                     numStars= 5
-                    stepSize = 1f
+                    stepSize = 0.2f
                     rating = 4f
                     scaleX = 0.5F
                     scaleY = 0.5F
@@ -361,7 +361,7 @@ fun OtrosCalficacion(){
             AndroidView(factory = {
                 RatingBar(it).apply {
                     numStars= 5
-                    stepSize = 1f
+                    stepSize = 0.2f
                     rating = 4f
                     scaleX = 0.5F
                     scaleY = 0.5F
