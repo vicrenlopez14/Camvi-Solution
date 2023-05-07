@@ -51,19 +51,19 @@ fun DetalleMisCitas(){
                   )
             }
          Column(
-             modifier = Modifier
-                 .fillMaxSize()
-                 .padding(horizontal = 20.dp, vertical = 30.dp)
+                    modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 20.dp, vertical = 30.dp)
          ) {
              Spacer(modifier = Modifier.height(15.dp))
-             Text(
-                text = "Sesión fotografica para cumpleaños", //aca va el titulo o sea variable
-                fontFamily = FontFamily(Font(R.font.inter_semibold)),
-                fontSize= 18.sp,
-                color = Color.Black,
-                modifier = Modifier
-                    .padding(bottom = 5.dp)
-                    .padding(end = 25.dp)
+                Text(
+                    text = "Sesión fotografica para cumpleaños", //aca va el titulo o sea variable
+                    fontFamily = FontFamily(Font(R.font.inter_semibold)),
+                    fontSize= 18.sp,
+                    color = Color.Black,
+                    modifier = Modifier
+                        .padding(bottom = 5.dp)
+                        .padding(end = 25.dp)
             )
              Spacer(modifier = Modifier.height(30.dp))
              InformacionEvento()
@@ -71,6 +71,8 @@ fun DetalleMisCitas(){
              InformacionCliente()
 
          }
+
+
      }
 }
 
