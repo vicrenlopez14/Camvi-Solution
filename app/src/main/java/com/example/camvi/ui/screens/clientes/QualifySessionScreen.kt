@@ -53,7 +53,7 @@ import com.example.camvi.ui.theme.Yellow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-//Preview
+@Preview
 fun CalificarSesion(){
     val puntualidadFotografo = remember {
         mutableStateOf("")
@@ -153,32 +153,30 @@ fun CalificarSesion(){
             AndroidView(factory = {
                 RatingBar(it).apply {
                     numStars= 5
-                    stepSize = 0.2f
-                    rating = 4f
+                    stepSize = 1f
+                    rating = 0f
                     scaleX = 0.5F
                     scaleY = 0.5F
                     Modifier.weight(1f)
                     backgroundTintList= ColorStateList.valueOf(0xFFF3DE8A.toInt())
 
+                    RatingBar.OnRatingBarChangeListener{ratingBar, rating, fromUser ->
+                        val num: Int= ratingBar.rating.toInt()
 
-                    RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser ->
-                       val num = ratingBar.rating.toString()
-                        Toast.makeText(context, "Has calificado "+num, Toast.LENGTH_LONG).show();
-                    }
-
-                   /*RatingBar.setOnRatingBarChangeListener{ratingBar, rating, fromUser ->
-                       when(ratingBar.rating.toInt())
+                         /*when(ratingBar.rating.toInt())
                        {
-                           1 -> puntualidadFotografo.value = 0.2.toString()
+                           1 -> Toast.makeText(context,"usted ha puntuado: 0.2", Toast.LENGTH_LONG).show()
+                                   .toString();
                            2 -> puntualidadFotografo.value = 0.4.toString()
                            3 -> puntualidadFotografo.value = 0.6.toString()
                            4 -> puntualidadFotografo.value = 0.8.toString()
                            else-> puntualidadFotografo.value = 1.toString()
 
-                       }
-                   }*/
+                       }*/
 
+                    }   
                 }
+
             })
         }
              Spacer(modifier = Modifier.height(6.dp))
@@ -432,7 +430,6 @@ fun CalificarSesion(){
             Button(
             onClick = {
 
-
                       /*InsertarCalificacion(
                           puntualidadFotografo.value.toInt(),
                           actitudFotografo.value.toInt(),
@@ -445,8 +442,6 @@ fun CalificarSesion(){
                           comentarios.value,
                           context
                       )*/
-
-
                       },
            shape = RoundedCornerShape(15.dp),
                         border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
