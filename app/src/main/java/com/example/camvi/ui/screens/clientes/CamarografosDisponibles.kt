@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
+import com.example.camvi.ui.widgets.clientes.ItemListaCamarografosDisponibles
 
 @Preview(showBackground = true)
 @Composable
@@ -55,17 +56,10 @@ fun CamarografosDisponibles() {
             modifier = Modifier.padding(top = 9.dp, bottom = 12.dp)
         )
 
-        Box(modifier = Modifier.fillMaxWidth()) {
-            LazyColumn(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(start = 30.dp, top = 6.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-//                items(camarografosList) { camarografo ->
-//                    CamarografoItem(camarografo = camarografo)
-//                }
-            }
+        LazyColumn(
+            Modifier.fillMaxWidth()
+        ) {
+            item { ItemListaCamarografosDisponibles() }
         }
     }
-
 }

@@ -8,7 +8,7 @@ import com.example.camvi.ui.screens.administradores.AdministradoresDashboard
 import com.example.camvi.ui.screens.administradores.CalificacionesScreen
 import com.example.camvi.ui.screens.administradores.CamarografosListScreen
 import com.example.camvi.ui.screens.administradores.ConfirmacionesScreen
-import com.example.camvi.ui.screens.administradores.GaleriaDeFotosScreen
+import com.example.camvi.ui.screens.administradores.GaleriaDeFotos
 import com.example.camvi.ui.screens.administradores.SesionesAgendadasScreen
 
 @Composable
@@ -38,7 +38,7 @@ fun AdministradoresNavGraph(navController: NavHostController) {
         }
 
         composable(AdministradoresScreen.GaleriaDeFotosAdministradores.route) {
-            GaleriaDeFotosScreen()
+            GaleriaDeFotos()
         }
     }
 }

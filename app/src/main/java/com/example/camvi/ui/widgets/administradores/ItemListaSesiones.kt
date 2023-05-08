@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.example.camvi.R
 import com.example.camvi.model.administradores.Sesiones
 
-
+@Preview
 @Composable
 fun ItemListaSesiones()
 {
