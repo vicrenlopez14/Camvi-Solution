@@ -1,4 +1,4 @@
-package com.example.camvi.model.globales
+    package com.example.camvi.model.globales
 
 import com.example.camvi.model.administradores.CamarografoItemData
 
