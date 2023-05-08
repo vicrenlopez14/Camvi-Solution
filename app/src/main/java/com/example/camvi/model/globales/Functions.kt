@@ -39,7 +39,7 @@ class CamviFunctions {
 
                 val statement =
                     connectSql.dbConn()?.prepareStatement("SELECT * FROM fnVerMasSesion(?)")
-                    //statement?.setInt(1, idSesion)
+                   // statement?.setInt(1, idSesion)
 
                     val resultSet = statement?.executeQuery()
 

@@ -15,6 +15,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -29,13 +30,15 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
 
 @Composable
 fun VerMisCitasScreen() {
-    // Text View "Mis sesiones"
+    Surface(){
+        // Text View "Mis sesiones"
     Text(
         text = "Mis sesiones",
         fontSize = 28.sp,
@@ -110,6 +113,7 @@ fun VerMisCitasScreen() {
             fontSize = 14.sp,
             color = Color.White
         )
+    }
     }
 }
 
