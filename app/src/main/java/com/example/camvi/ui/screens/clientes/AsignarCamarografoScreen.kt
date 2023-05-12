@@ -1,8 +1,11 @@
 package com.example.camvi.ui.screens.clientes
 
+import android.content.ClipData.Item
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -18,15 +21,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
+import com.example.camvi.ui.widgets.clientes.ItemCamarografos
 
 @Preview(showBackground = true)
 @Composable
 fun CamarografoScreen() {
+
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+                           .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.Start
-    ) {
+        horizontalAlignment = Alignment.Start) {
+
         Text(
             text = "Asigna un camarógrafo",
             fontFamily = FontFamily(Font(R.font.inter)),
@@ -35,8 +41,8 @@ fun CamarografoScreen() {
             color = Color.Black,
             modifier = Modifier
                 .padding(start = 30.dp, top = 20.dp)
-                .fillMaxWidth()
-        )
+                .fillMaxWidth())
+
         Text(
             text = "Camarógrafos disponibles.",
             fontFamily = FontFamily(Font(R.font.inter)),
@@ -44,77 +50,21 @@ fun CamarografoScreen() {
             color = Color.Black,
             modifier = Modifier
                 .padding(start = 30.dp)
-                .fillMaxWidth()
-        )
-        Box(
-            Modifier
-                .height(1.dp)
-                .fillMaxWidth()
-                .padding(top = 15.dp, bottom = 12.dp)
-                .background(Color(0xCFD1D3))
-        )
+                .fillMaxWidth())
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 6.dp)
-        ) {
+                .padding(top = 6.dp)) {
+
             LazyColumn(
-                modifier = Modifier.padding(start = 30.dp),
-                contentPadding = PaddingValues(bottom = 16.dp)
-            ) {
-////
+                modifier = Modifier.padding(start = 5.dp),
+                contentPadding = PaddingValues(bottom = 16.dp))
+            {
+                item { ItemCamarografos()}
             }
+
         }
     }
 }
 
-@Composable
-fun CamarografoItem(camarografo: Camarografo) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 8.dp, bottom = 8.dp)
-    ) {
-        Text(
-            text = camarografo.name,
-            fontFamily = FontFamily(Font(R.font.inter)),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Medium,
-            color = Color.Black,
-            modifier = Modifier.padding(bottom = 4.dp)
-        )
-        Text(
-            text = camarografo.description,
-            fontFamily = FontFamily(Font(R.font.inter)),
-            fontSize = 12.sp,
-            color = Color.Gray,
-            modifier = Modifier.padding(bottom = 4.dp)
-        )
-        Button(
-            onClick = { /* assign cameraman */ },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 4.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF9B51E0),
-                contentColor = Color.White
-            )
-        ) {
-            Text(
-                text = "Asignar",
-                fontFamily = FontFamily(Font(R.font.inter)),
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Medium,
-                modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-            )
-        }
-    }
-}
-
-val camarografoList = listOf(
-    Camarografo("Camarógrafo 1", "Cámara Sony Alpha 6400"),
-    Camarografo("Camarógrafo 2", "Cámara Canon EOS R"),
-    Camarografo("Camarógrafo 3", "Cámara Panasonic Lumix GH5")
-)
-
-data class Camarografo(val name: String, val description: String)

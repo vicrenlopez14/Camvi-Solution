@@ -41,8 +41,9 @@ fun ItemListaCamarografos(camarografoItemData: CamarografoItemData) {
             .padding(13.dp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start
-    ) {
+        horizontalArrangement = Arrangement.Start)
+    {
+
         Image(
             painter = painterResource(id = R.drawable.avatar),
             contentDescription = "",
@@ -56,18 +57,19 @@ fun ItemListaCamarografos(camarografoItemData: CamarografoItemData) {
         Column(
             modifier = Modifier
                 .weight(1f)
-                .padding(vertical = 5.dp)
-        ) {
+                .padding(vertical = 5.dp)) {
+
             Text(
                 text = camarografoItemData.nombre ?: "Camarografo",
                 fontFamily = FontFamily(Font(R.font.inter)),
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 5.dp)
-            )
+                modifier = Modifier.padding(bottom = 5.dp))
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
+                horizontalArrangement = Arrangement.SpaceBetween)
+            {
+
                 Button(
                     onClick = { /*TODO*/ },
                     modifier = Modifier
@@ -75,12 +77,13 @@ fun ItemListaCamarografos(camarografoItemData: CamarografoItemData) {
                     colors = ButtonDefaults.textButtonColors(
                         contentColor = Color.Black,
                         containerColor = colorResource(id = R.color.Yellow)),
-                    shape = RoundedCornerShape(16.dp),
-                ) {
+                    shape = RoundedCornerShape(16.dp)) {
+
                     Text(
                         text = "Ver sesiones"
                     )
                 }
+
                 Button(
                     onClick = { /*TODO*/ },
                     modifier = Modifier
@@ -88,9 +91,8 @@ fun ItemListaCamarografos(camarografoItemData: CamarografoItemData) {
                     shape = RoundedCornerShape(16.dp),
                     colors = ButtonDefaults.textButtonColors(
                         contentColor = Color.Black,
-                        containerColor = colorResource(id = R.color.DarkYellow)
-                    )
-                ) {
+                        containerColor = colorResource(id = R.color.DarkYellow))) {
+
                     Text(
                         text = "Editar"
                     )

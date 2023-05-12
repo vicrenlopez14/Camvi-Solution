@@ -78,7 +78,7 @@ fun BarraNotificaciones(){
 fun ImagenCamarografo(){
     Card(
        colors = CardDefaults.cardColors(
-       containerColor = colorResource(id = R.color.Yellow)),
+       containerColor = colorResource(id = R.color.YellowLight)),
        modifier = Modifier
            .width(380.dp)
            .padding(10.dp),
@@ -98,11 +98,12 @@ fun ImagenCamarografo(){
 
             OutlinedButton(
                 onClick = { /*TODO*/ },
-                border = BorderStroke(width = 1.dp, color = colorResource(id = R.color.DarkYellow)),
+                border = BorderStroke(width = 1.5.dp, color = colorResource(id = R.color.DarkYellow)),
                 colors = ButtonDefaults.outlinedButtonColors (contentColor = colorResource(id = R.color.DarkYellow)),
                 modifier = Modifier
                     .align(alignment = Alignment.CenterHorizontally)) {
                 Text(
+                    fontWeight = FontWeight.Bold,
                     text = "Solicitar",
                     color= colorResource(id = R.color.DarkYellow))
             }

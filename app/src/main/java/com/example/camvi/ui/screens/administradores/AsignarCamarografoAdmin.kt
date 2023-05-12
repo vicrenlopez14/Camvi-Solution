@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -20,52 +21,52 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
+import com.example.camvi.ui.widgets.administradores.ItemListaCamarografosParaAsignar
+import com.example.camvi.ui.widgets.clientes.ItemListaCamarografosDisponibles
 
+@Preview(showBackground = true)
 @Composable
 fun AsignarCamarografoAdmin() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text(
+            text = "Asigna un camarógrafo",
             modifier = Modifier
-                .padding(30.dp)
-                .verticalScroll(rememberScrollState())
+                .padding(start = 30.dp, top = 20.dp),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily(Font(R.font.inter))
+        )
+
+        Text(
+            text = "Camarógrafos disponibles",
+            modifier = Modifier
+                .padding(start = 30.dp),
+            fontSize = 13.sp,
+            fontFamily = FontFamily(Font(R.font.inter))
+        )
+
+        Divider(
+            color = Color.LightGray,
+            thickness = 1.dp,
+            modifier = Modifier
+                .padding(top = 9.dp, bottom = 10.dp)
+        )
+
+        LazyColumn(
+            Modifier
+                .fillMaxWidth()
         ) {
-
-            Text(
-                text = "Asigna un camarógrafo",
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                color = Color.Black,
-                modifier = Modifier.padding(top = 20.dp)
-            )
-
-            Text(
-                text = "Camarógrafos disponibles.",
-                fontSize = 13.sp,
-                color = Color.Black,
-                modifier = Modifier.padding(top = 20.dp)
-            )
-
-            Spacer(
-                modifier = Modifier
-                    .height(1.dp)
-                    .padding(top = 15.dp, bottom = 12.dp)
-                    .fillMaxWidth()
-                    .background(color = Color(0xCFD1D3))
-            )
-
-            Column(modifier = Modifier.padding(top = 6.dp)) {
-                LazyColumn(modifier = Modifier.fillMaxWidth()) {
-                    items(10) { index ->
-                        // Replace with your custom item layout
-                        // item_asigna_camarografos_admin
-                        Text(text = "Item $index")
-                    }
-                }
-            }
+            item { ItemListaCamarografosParaAsignar()}
         }
     }
-
 }

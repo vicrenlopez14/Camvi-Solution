@@ -72,7 +72,7 @@ fun PhotoUploadScreen() {
                 IconButton(onClick = { /* do something */ }) {
                     Icon(
                         imageVector = Icons.Default.Add,
-                        contentDescription = "Favorite",
+                        contentDescription = null,
                         Modifier
                             .background(color = Color(red = 233, green = 201, blue = 76), shape = CircleShape)
                             .size(400.dp),
