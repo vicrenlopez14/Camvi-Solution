@@ -343,7 +343,27 @@ fun SesionesCompletadasWidget() {
     StatisticsWidget(
         number = 5,
         label = "Sesiones completadas",
-        description = "Adriana y Sosa están libres",
+        description = "Todos los camarógrafos están ocupados",
+        color = colorResource(id = R.color.Yellow)
+    )
+}
+
+@Composable
+fun SesionesEnCursoWidget() {
+    StatisticsWidget(
+        number = 2,
+        label = "Sesiones en curso",
+        description = "David y Camila están libres",
+        color = colorResource(id = R.color.Yellow)
+    )
+}
+
+@Composable
+fun SesionesPendientesWidget() {
+    StatisticsWidget(
+        number = 1,
+        label = "Sesiones pendientes ",
+        description = "",
         color = colorResource(id = R.color.Yellow)
     )
 }
