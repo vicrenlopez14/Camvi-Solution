@@ -40,6 +40,7 @@ class CamviProcedures {
             return exitoso
         }
 
+
         fun spCrearCamarografo(
             nombre: String,
             correo: String,
@@ -106,6 +107,55 @@ class CamviProcedures {
 
             return exitoso
         }
+
+        fun spInsertarCalificacion(
+            puntualidadFotografo: Int,
+            actitudFotografo:Int,
+            desempenoFotografo: Int,
+            profesionalismoFotografo: Int,
+            presentacionPersonalFotografo: Int,
+            servicioDeAtencion: Int,
+            esperaDeRespuestas: Int,
+            calidadDelProductoFinal: Int,
+            comentarios: String,
+            //clienteId: Int,
+            //sesionId: Int
+        ): Int{
+            var exitoso: Int = 0
+
+            try {
+                val statement =
+                    connectSql.dbConn()?.prepareCall("{call spInsertarCalificacion ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?}")
+                    //statement?.setInt(1,puntualidadFotografo)
+                    statement?.setInt(2, actitudFotografo)
+                    statement?.setInt(3,desempenoFotografo)
+                    statement?.setInt(4,profesionalismoFotografo)
+                    statement?.setInt(5,presentacionPersonalFotografo)
+                    statement?.setInt(6,servicioDeAtencion)
+                    statement?.setInt(7, esperaDeRespuestas)
+                    statement?.setInt(8,calidadDelProductoFinal)
+                    statement?.setString(9,comentarios)
+                    //statement?.setInt(10, clienteId)
+                    //statement?.setInt(11,sesionId)
+
+                val resultSet = statement?.executeQuery();
+                while (resultSet?.next() == true)
+                {
+                    exitoso = resultSet.getInt("Result")
+                }
+
+            }
+            catch (ex: SQLException) {
+                exitoso = 0
+            } catch (ex: Exception) {
+                print(ex.message)
+            }
+            return exitoso
+        }
+
+
+
+
 
     }
 

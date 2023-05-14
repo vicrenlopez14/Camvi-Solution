@@ -46,7 +46,6 @@ fun VerifyCodeScreen() {
                     .padding(end = 60.dp)
 
         )
-
     }
     Column(
         modifier = Modifier.fillMaxSize(),
