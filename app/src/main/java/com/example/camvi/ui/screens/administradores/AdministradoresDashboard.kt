@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -30,8 +31,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,7 +44,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.camvi.R
+import com.example.camvi.model.globales.Periodo
+import com.example.camvi.ui.viewmodel.administradores.AdminsDashboardViewModel
+import com.example.camvi.ui.viewmodel.administradores.AdminsNavigatorViewModel
+import com.example.camvi.ui.widgets.global.AdministradoresScreen
 import kotlinx.coroutines.delay
 
 @Preview
@@ -103,7 +109,12 @@ fun Header() {
 
 @ExperimentalFoundationApi
 @Composable
-fun SatisfactionCarrousel() {
+fun SatisfactionCarrousel(
+    adminsDashboardViewModel: AdminsDashboardViewModel = viewModel(),
+    navigationViewModel: AdminsNavigatorViewModel = viewModel()
+) {
+    val adminsDashboardUiState by adminsDashboardViewModel.uiState.collectAsState()
+
     val pagerState = rememberPagerState()
 
     LaunchedEffect(Unit) {
@@ -113,16 +124,28 @@ fun SatisfactionCarrousel() {
         }
     }
 
-    HorizontalPager(pageCount = 10, state = pagerState) { page ->
+    HorizontalPager(pageCount = 2, state = pagerState) { page ->
         LargeIconTextChip(
-            text = "Hay 80% de satisfacción entre los usuarios el día de hoy.",
+            text = "Hay ${adminsDashboardUiState.clientSatisfactionPercentage}% de satisfacción entre los usuarios el día de hoy.",
             color = colorResource(id = R.color.GreenSuccess)
+        )
+        LargeIconTextChip(
+            text = "Se agendaron ${adminsDashboardUiState.newSesions} sesiones más.",
+            color = colorResource(id = R.color.GreenSuccess),
+            modifier = Modifier.clickable {
+                navigationViewModel.navigate(AdministradoresScreen.SesionesAgendadasAdministradores)
+            }
         )
     }
 }
 
 @Composable
-fun WarningSesiones() {
+fun WarningSesiones(
+    adminsDashboardViewModel: AdminsDashboardViewModel = viewModel(),
+    navigationViewModel: AdminsNavigatorViewModel = viewModel()
+) {
+    val adminsDashboardUiState by adminsDashboardViewModel.uiState.collectAsState()
+
     val pagerState = rememberPagerState()
 
     LaunchedEffect(Unit) {
@@ -133,7 +156,7 @@ fun WarningSesiones() {
     }
 
 // Display 10 items
-    HorizontalPager(pageCount = 10, state = pagerState) { page ->
+    HorizontalPager(pageCount = 2, state = pagerState) { page ->
         // Our page content
         Surface(
             modifier = Modifier
@@ -170,9 +193,13 @@ fun WarningSesiones() {
                 }
 
                 Text(
-                    "Hay 3 sesiones sin camarógrafo asignado. Toca aquí.",
+                    "Hay ${adminsDashboardUiState.sesionsWithoutCamarographer} sesiones sin camarógrafo asignado. Toca aquí.",
                     style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.align(Alignment.CenterVertically)
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .clickable {
+                            navigationViewModel.navigate(AdministradoresScreen.SesionesSinCamarografosAdministradores)
+                        }
                 )
             }
         }
@@ -183,10 +210,11 @@ fun WarningSesiones() {
 fun LargeIconTextChip(
     painter: Painter = painterResource(id = R.drawable.warning),
     text: String = "",
-    color: Color = colorResource(R.color.Yellow)
+    color: Color = colorResource(R.color.Yellow),
+    modifier: Modifier = Modifier
 ) {
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .clip(RoundedCornerShape(32.dp))
             .fillMaxWidth(),
         color = color,
@@ -232,16 +260,9 @@ fun LargeIconTextChip(
     }
 }
 
-sealed class Periodo(val Name: String) {
-    object Hoy : Periodo("Hoy")
-    object Semana : Periodo("Semana")
-    object Mes : Periodo("Mes")
-}
 
 @Composable
 fun EstadoActual() {
-    val periodo = remember { mutableStateOf(Periodo.Hoy) }
-
     Column {
         Text(
             "Estado actual",
@@ -255,14 +276,8 @@ fun EstadoActual() {
 }
 
 @Composable
-fun PeriodOfTimeButtonRow(active: Periodo = Periodo.Hoy) {
-    val selectedIndex = remember {
-        mutableStateOf(active)
-    }
-
-    fun switch(per: Periodo) {
-        selectedIndex.value = per
-    }
+fun PeriodOfTimeButtonRow(dashboardViewModel: AdminsDashboardViewModel = viewModel()) {
+    val selectedPeriod by dashboardViewModel.uiState.collectAsState()
 
     Column(Modifier.background(color = Color.Black, shape = RoundedCornerShape(16.dp))) {
         Row(
@@ -274,22 +289,21 @@ fun PeriodOfTimeButtonRow(active: Periodo = Periodo.Hoy) {
             PeriodOfTime(
                 periodo = Periodo.Hoy,
                 modifier = Modifier.weight(1f, true),
-                selected = selectedIndex.value == Periodo.Hoy,
-                onClick = { switch(Periodo.Hoy) }
+                selected = selectedPeriod.periodOfTime == Periodo.Hoy,
+                onClick = { dashboardViewModel.ChangePeriodOfTime(Periodo.Hoy) }
             )
             PeriodOfTime(
                 periodo = Periodo.Semana,
                 modifier = Modifier.weight(1f, true),
-                selected = selectedIndex.value == Periodo.Semana,
-                onClick = { switch(Periodo.Semana) }
+                selected = selectedPeriod.periodOfTime == Periodo.Semana,
+                onClick = { dashboardViewModel.ChangePeriodOfTime(Periodo.Semana) }
             )
             PeriodOfTime(
                 periodo = Periodo.Mes,
                 modifier = Modifier.weight(1f, true),
-                selected = selectedIndex.value == Periodo.Mes,
-                onClick = { switch(Periodo.Mes) }
+                selected = selectedPeriod.periodOfTime == Periodo.Mes,
+                onClick = { dashboardViewModel.ChangePeriodOfTime(Periodo.Mes) }
             )
-
         }
     }
 }
@@ -332,37 +346,47 @@ fun StatisticsList() {
             .fillMaxHeight(0.6f)
             .fillMaxWidth()
     ) {
-        item { SesionesCompletadasWidget() }
-        item { SesionesCompletadasWidget()}
-        item { SesionesCompletadasWidget() }
+        item { SesionesEnCursoWidget() }
+        item { SesionesPendientesWidget(3, "David y Camila están libres") }
+        item { SesionesCompletadasWidget(2, "Felicidades") }
     }
 }
 
 @Composable
-fun SesionesCompletadasWidget() {
+fun SesionesCompletadasWidget(
+    num: Int = 0,
+    description: String = "Estado desconocido"
+) {
     StatisticsWidget(
         number = 5,
         label = "Sesiones completadas",
-        description = "Todos los camarógrafos están ocupados",
-        color = colorResource(id = R.color.Yellow)
+        description = description,
+        color = colorResource(id = R.color.GreenSuccess)
     )
 }
 
 @Composable
-fun SesionesEnCursoWidget() {
+fun SesionesEnCursoWidget(
+    adminsDashboardViewModel: AdminsDashboardViewModel = viewModel()
+) {
+    val adminsDashboardUiState by adminsDashboardViewModel.uiState.collectAsState()
+
     StatisticsWidget(
-        number = 2,
+        number = adminsDashboardUiState.sesionesEnCurso.num,
         label = "Sesiones en curso",
-        description = "David y Camila están libres",
-        color = colorResource(id = R.color.Yellow)
+        description = adminsDashboardUiState.sesionesEnCurso.description,
+        color = colorResource(id = R.color.RedError)
     )
 }
 
 @Composable
-fun SesionesPendientesWidget() {
+fun SesionesPendientesWidget(
+    num: Int = 0,
+    description: String = "Estado desconocido"
+) {
     StatisticsWidget(
         number = 1,
-        label = "Sesiones pendientes ",
+        label = description,
         description = "",
         color = colorResource(id = R.color.Yellow)
     )
@@ -373,6 +397,7 @@ fun StatisticsWidget(number: Int, label: String, description: String, color: Col
     Surface(
         color = color,
         modifier = Modifier
+            .width(200.dp)
             .padding(end = 16.dp)
             .clip(
                 RoundedCornerShape(16.dp)

@@ -8,8 +8,9 @@ import com.example.camvi.ui.screens.administradores.AdministradoresDashboard
 import com.example.camvi.ui.screens.administradores.CalificacionesScreen
 import com.example.camvi.ui.screens.administradores.CamarografosListScreen
 import com.example.camvi.ui.screens.administradores.ConfirmacionesScreen
-import com.example.camvi.ui.screens.administradores.GaleriaDeFotos
 import com.example.camvi.ui.screens.administradores.SesionesAgendadasScreen
+import com.example.camvi.ui.screens.administradores.SesionesSinCamarografos
+import com.example.camvi.ui.screens.global.AsignarCamarografoAdmin
 
 @Composable
 fun AdministradoresNavGraph(navController: NavHostController) {
@@ -37,8 +38,16 @@ fun AdministradoresNavGraph(navController: NavHostController) {
             CalificacionesScreen()
         }
 
-        composable(AdministradoresScreen.GaleriaDeFotosAdministradores.route) {
-            GaleriaDeFotos()
+        composable(AdministradoresScreen.SesionesSinCamarografosAdministradores.route) {
+            SesionesSinCamarografos()
+        }
+
+        composable(AdministradoresScreen.AsignarCamarografoAdministradores.route) {
+            AsignarCamarografoAdmin()
+        }
+
+        composable(AdministradoresScreen.SesionesAgendadasAdministradores.route) {
+            SesionesAgendadasScreen()
         }
     }
 }

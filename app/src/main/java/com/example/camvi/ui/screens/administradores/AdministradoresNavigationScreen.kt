@@ -18,7 +18,9 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import com.example.camvi.ui.viewmodel.administradores.AdminsNavigatorViewModel
 import com.example.camvi.ui.widgets.administradores.DrawerContenido
 import com.example.camvi.ui.widgets.global.AdministradoresNavGraph
 import com.example.camvi.ui.widgets.global.AdministradoresScreen
@@ -26,11 +28,13 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AdministradoresNavigationScreen() {
+fun AdministradoresNavigationScreen(adminsNavigatorViewModel: AdminsNavigatorViewModel = viewModel()) {
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val coroutineScope = rememberCoroutineScope()
     val navController = rememberNavController()
+
+    adminsNavigatorViewModel.setNavController(navController)
 
     ModalNavigationDrawer(
         drawerState = drawerState,

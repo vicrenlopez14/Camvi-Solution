@@ -32,41 +32,92 @@ class CamviFunctions {
             return tipoUsuario
         }
 
-        fun fnVerSesionDetalle(idSesion: Int): ArrayList<Sesiones>{
+        fun fnVerSesionDetalle(idSesion: Int): ArrayList<Sesiones> {
 
             val listaSesiones = ArrayList<Sesiones>()
             try {
 
                 val statement =
                     connectSql.dbConn()?.prepareStatement("SELECT * FROM fnVerMasSesion(?)")
-                   // statement?.setInt(1, idSesion)
+                // statement?.setInt(1, idSesion)
 
-                    val resultSet = statement?.executeQuery()
+                val resultSet = statement?.executeQuery()
 
-                    while (resultSet?.next()== true){
-                        listaSesiones.add(
-                            Sesiones(
-                                resultSet.getString("s.titulo"),
-                                resultSet.getString("s.detalles"),
-                                resultSet.getString("s.lugar"),
-                                resultSet.getDate("s.fechaEvento"),
-                                resultSet.getTime("s.horaInicio"),
-                                resultSet.getTime("s.horaFinalizacion"),
-                                resultSet.getString(" u.nombre"),
-                                resultSet.getString("u.contacto"),
-                                resultSet.getString("u.dui")
+                while (resultSet?.next() == true) {
+                    listaSesiones.add(
+                        Sesiones(
+                            resultSet.getString("s.titulo"),
+                            resultSet.getString("s.detalles"),
+                            resultSet.getString("s.lugar"),
+                            resultSet.getDate("s.fechaEvento"),
+                            resultSet.getTime("s.horaInicio"),
+                            resultSet.getTime("s.horaFinalizacion"),
+                            resultSet.getString(" u.nombre"),
+                            resultSet.getString("u.contacto"),
+                            resultSet.getString("u.dui")
 
-                            )
                         )
-                    }
-            }catch (e: SQLException){
+                    )
+                }
+            } catch (e: SQLException) {
 
             }
             return listaSesiones
         }
 
+        fun getClientSatisfactionPercentage(periodo: String): Int {
+            val connection = connectSql.dbConn()
+            val statement =
+                connection?.prepareStatement("SELECT dbo.GetClientSatisfactionPercentage(?)")
+            statement?.setString(1, periodo)
 
+            val resultSet = statement?.executeQuery()
 
+            if (resultSet?.next() == true) {
+                return resultSet.getInt(1)
+            }
+
+            return 0
+        }
+
+        fun getSessionCountByPeriod(periodo: String): Int {
+            var sessionCount = 0
+
+            try {
+                val statement =
+                    connectSql.dbConn()?.prepareStatement("SELECT dbo.GetInsertedSessionsCount(?)")
+                statement?.setString(1, periodo)
+
+                val resultSet = statement?.executeQuery()
+
+                if (resultSet?.next() == true) {
+                    sessionCount = resultSet.getInt(1)
+                }
+            } catch (e: SQLException) {
+                // Handle any exceptions
+            }
+
+            return sessionCount
+        }
+
+        fun getUnassignedSessionCount(): Int {
+            var unassignedSessionCount = 0
+
+            try {
+                val statement =
+                    connectSql.dbConn()?.prepareStatement("SELECT dbo.GetUnassignedSessionCount()")
+
+                val resultSet = statement?.executeQuery()
+
+                if (resultSet?.next() == true) {
+                    unassignedSessionCount = resultSet.getInt(1)
+                }
+            } catch (e: SQLException) {
+                // Handle any exceptions
+            }
+
+            return unassignedSessionCount
+        }
 
 
     }

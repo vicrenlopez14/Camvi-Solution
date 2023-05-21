@@ -59,6 +59,24 @@ sealed class AdministradoresScreen(
         "Galeria de fotos",
         Icons.Filled.Done
     )
+
+    object SesionesSinCamarografosAdministradores : AdministradoresScreen(
+        "SesionesSinCamarografosAdministradores",
+        "Sesiones sin camarografos",
+        null
+    )
+
+    object AsignarCamarografoAdministradores : AdministradoresScreen(
+        "AsignarCamarografoAdministradores",
+        "Asignar camarografo",
+        null
+    )
+
+    object SesionesAgendadasAdministradores : AdministradoresScreen(
+        "SesionesAgendadasAdministradores",
+        "Sesiones agendadas",
+        null
+    )
 }
 
 sealed class CamarografosScreen(
