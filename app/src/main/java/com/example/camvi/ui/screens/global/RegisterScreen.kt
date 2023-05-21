@@ -2,6 +2,7 @@ package com.example.camvi.ui.screens.global
 
 import android.content.Context
 import android.content.Intent
+import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 
@@ -224,6 +225,9 @@ Surface() {
 
 }
 
+//validacion de correo electronico
+fun ValidarCorreo(correo : String): Boolean = Patterns.EMAIL_ADDRESS.matcher(correo).matches()
+
 fun Registrar(
     nombre: String,
     contacto: String,
@@ -232,10 +236,10 @@ fun Registrar(
     contrasena: String,
     context: Context
 ) {
-    if (nombre.isEmpty() || contacto.isEmpty() || dui.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
+    if (nombre.isEmpty() || contacto.isEmpty() || dui.isEmpty() || ValidarCorreo(correo)== false || contrasena.isEmpty()) {
         Toast.makeText(
             context,
-            "Por favor, rellene todos los campos",
+            "Por favor, rellene todos los campos o ingrese una dirección de correo válida",
             Toast.LENGTH_SHORT
         )
             .show()

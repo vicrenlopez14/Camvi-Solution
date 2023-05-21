@@ -1,6 +1,7 @@
 package com.example.camvi.ui.screens.administradores
 
 import android.content.Context
+import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -200,6 +201,9 @@ fun CrearCamarografo(){
 
 }
 
+//validacion de correo electronico
+fun ValidarCorreo(correo : String): Boolean = Patterns.EMAIL_ADDRESS.matcher(correo).matches()
+
 fun CrearCamarografos(
     nombre: String,
     contacto: String,
@@ -208,10 +212,11 @@ fun CrearCamarografos(
     contrasena:String,
     context: Context
 ){
-    if (nombre.isEmpty() || contacto.isEmpty() || dui.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
+
+    if (nombre.isEmpty() || contacto.isEmpty() || dui.isEmpty() || ValidarCorreo(correo)==false || contrasena.isEmpty()) {
         Toast.makeText(
             context,
-            "Por favor, rellene todos los campos",
+            "Por favor, rellene todos los campos o ingrese una dirección de correo válida",
             Toast.LENGTH_SHORT
         ).show()
     }
