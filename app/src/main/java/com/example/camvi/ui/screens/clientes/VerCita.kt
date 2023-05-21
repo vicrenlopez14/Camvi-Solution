@@ -3,9 +3,13 @@ package com.example.camvi.ui.screens.clientes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
@@ -14,14 +18,29 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
+import com.example.camvi.model.clientes.CitasClienteData
+import com.example.camvi.model.globales.CamviViews
+import com.example.camvi.ui.widgets.clientes.ItemCitasCliente
 
-@Preview
+//@Preview
 @Composable
 fun VerCitasCliente(){
+        val items = remember { mutableStateOf(emptyList<CitasClienteData>())}
+
+        LaunchedEffect(true) {
+        try {
+            val result = CamviViews.vwListaCitasClientes()
+            items.value = result
+        } catch (e: Exception) {
+            println(e)
+        }
+    }
    Surface() {
         Column (
         modifier = Modifier
                 .fillMaxWidth()
+            .padding(start = 10.dp, top = 20.dp)
+
             ){
             Text(
                 text = "Tus sesiones", // aca va la variable,
@@ -32,6 +51,16 @@ fun VerCitasCliente(){
                         .padding(bottom = 5.dp)
                         .padding(end = 56.dp)
             )
+            LazyColumn(
+                modifier = Modifier
+                    .padding(top = 20.dp, start = 10.dp)
+                    .fillMaxWidth()
+            ){
+                items(items.value.size){ index ->
+                    ItemCitasCliente(items.value[index])
+                }
+
+            }
         }
    }
 

@@ -63,22 +63,23 @@ fun RegisterScreen(navController: NavController) {
     val nombre = remember {
         mutableStateOf("")
     }
-
-    val contacto = remember {
+      val contacto = remember {
         mutableStateOf("")
     }
 
     val dui = remember {
         mutableStateOf("")
     }
-
-    val correo = remember {
+       val correo = remember {
         mutableStateOf("")
     }
 
     val contrasena = remember {
         mutableStateOf("")
     }
+
+
+
 
     val context = LocalContext.current
 
@@ -242,10 +243,10 @@ fun Registrar(
 
         val result = CamviProcedures.spRegistrarCliente(
             nombre,
+            contacto,
+            dui,
             correo,
             contrasena,
-            contacto,
-            dui
         )
 
         if (result == 1) {
