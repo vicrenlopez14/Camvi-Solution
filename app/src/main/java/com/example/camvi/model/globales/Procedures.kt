@@ -109,6 +109,7 @@ class CamviProcedures {
         }
 
 
+        //este esta conectado a la pantalla
         fun spRegistrarCamarografo(
             nombre: String,
             contacto: String,
@@ -157,8 +158,7 @@ class CamviProcedures {
             var exitoso: Int = 0
 
             try {
-                val statement =
-                    connectSql.dbConn()?.prepareCall("{call spInsertarCalificacion ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?}")
+                val statement = connectSql.dbConn()?.prepareCall("{call spInsertarCalificacion ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?}")
                     //statement?.setInt(1,puntualidadFotografo)
                     //statement?.setInt(2, actitudFotografo)
                     statement?.setInt(3,desempenoFotografo)

@@ -14,22 +14,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
 import com.example.camvi.model.clientes.CitasClienteData
-import com.example.camvi.model.globales.CamviViews
+import com.example.camvi.model.globales.CamviFunctions
+import com.example.camvi.model.globales.Usuario
 import com.example.camvi.ui.widgets.clientes.ItemCitasCliente
 
 //@Preview
+
 @Composable
-fun VerCitasCliente(){
+fun VerCitasCliente(idUsuario: Int) {
         val items = remember { mutableStateOf(emptyList<CitasClienteData>())}
 
         LaunchedEffect(true) {
         try {
-            val result = CamviViews.vwListaCitasClientes()
+            val result = CamviFunctions.fnListaCitasClientes(idUsuario)
             items.value = result
         } catch (e: Exception) {
             println(e)
@@ -38,7 +39,7 @@ fun VerCitasCliente(){
    Surface() {
         Column (
         modifier = Modifier
-                .fillMaxWidth()
+            .fillMaxWidth()
             .padding(start = 10.dp, top = 20.dp)
 
             ){
