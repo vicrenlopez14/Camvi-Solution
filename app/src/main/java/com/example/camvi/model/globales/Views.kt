@@ -1,6 +1,7 @@
     package com.example.camvi.model.globales
 
 import com.example.camvi.model.administradores.CamarografoItemData
+import com.example.camvi.model.clientes.CamarografoDisponibleData
 import com.example.camvi.model.clientes.CitasClienteData
 import java.sql.SQLException
 
@@ -53,8 +54,22 @@ import java.sql.SQLException
             return resultado
         }
 
+        fun vwNombresCamarografosDesocupados(): ArrayList<CamarografoDisponibleData>{
+            val ListaCamarografosDisponibles = ArrayList<CamarografoDisponibleData>()
 
+            try {
+                val statement = connectSql.dbConn()
+                    ?.prepareStatement("SELECT * FROM vwNombresCamarografosDesocupados")
 
+                val resultSet = statement?.executeQuery()
 
+                while (resultSet?.next() == true){
+                    ListaCamarografosDisponibles.add(CamarografoDisponibleData(resultSet.getString("Nombre")))
+                }
+            }catch (ex:Exception){
+                print(ex.message)
+            }
+            return ListaCamarografosDisponibles
+        }
     }
 }

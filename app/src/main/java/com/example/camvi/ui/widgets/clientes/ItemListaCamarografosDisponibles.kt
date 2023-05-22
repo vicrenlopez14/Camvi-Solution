@@ -27,11 +27,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.camvi.R
+import com.example.camvi.model.clientes.CamarografoDisponibleData
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun ItemListaCamarografosDisponibles(){
+fun ItemListaCamarografosDisponibles(camarografosDisponiblesData: CamarografoDisponibleData){
     Card(
         colors = CardDefaults.cardColors
             (containerColor = colorResource(id = R.color.YellowLight)),
@@ -53,7 +54,7 @@ fun ItemListaCamarografosDisponibles(){
                     .padding(bottom = 10.dp))
 
             Text(
-                text = "Carlos Daniel Figueroa Campos")
+                text = camarografosDisponiblesData.nombre)
 
             Row(
                 horizontalArrangement = Arrangement.Center,
@@ -63,7 +64,7 @@ fun ItemListaCamarografosDisponibles(){
             ) {
 
                 OutlinedButton(
-                    onClick = { /*TODO*/ },
+                    onClick = { /*TODO*/ }, // Cambiaria a la pantalla VerMas Camarografos
                     colors = ButtonDefaults.textButtonColors(
                         contentColor = colorResource(id = R.color.black)),
                     border = BorderStroke(width = 1.5.dp, color = colorResource(id = R.color.black)),
@@ -77,7 +78,7 @@ fun ItemListaCamarografosDisponibles(){
                 }
 
                 OutlinedButton(
-                    onClick = { /*TODO*/ },
+                    onClick = { /*TODO*/ }, // Cambiaria a la pantalla AgendarCita
                     colors = ButtonDefaults.textButtonColors(
                         contentColor = colorResource(id = R.color.DarkYellow)),
                     border = BorderStroke(width = 1.5.dp, color = colorResource(id = R.color.DarkYellow)),

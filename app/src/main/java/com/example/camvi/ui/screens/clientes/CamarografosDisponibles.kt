@@ -12,6 +12,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,11 +28,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
+import com.example.camvi.model.clientes.CamarografoDisponibleData
+import com.example.camvi.model.globales.CamviViews
 import com.example.camvi.ui.widgets.clientes.ItemListaCamarografosDisponibles
 
 @Preview(showBackground = true)
 @Composable
 fun CamarografosDisponibles() {
+
+    val items = remember { mutableStateOf(emptyList<CamarografoDisponibleData>())}
+
+    LaunchedEffect(true){
+        try {
+            val result = CamviViews.vwNombresCamarografosDesocupados()
+            items.value = result
+        }catch (e:Exception){
+            println(e)
+        }
+    }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Top,
@@ -59,7 +76,9 @@ fun CamarografosDisponibles() {
         LazyColumn(
             Modifier.fillMaxWidth()
         ) {
-            item { ItemListaCamarografosDisponibles() }
+            items (items.value.size){ index ->
+                ItemListaCamarografosDisponibles(items.value[index])
+            }
         }
     }
 }

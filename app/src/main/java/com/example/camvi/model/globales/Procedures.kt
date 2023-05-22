@@ -118,7 +118,7 @@ class CamviProcedures {
             pass: String,
 
         ): Int {
-            var resultado : Int = 0;
+            var resultado : Int = 0
             try {
                 val statement = connectSql.dbConn()?.prepareStatement("EXEC spRegistrarCamarografo ?,?,?,?,?")
                 statement?.setString(1, nombre)
@@ -171,7 +171,7 @@ class CamviProcedures {
                     //statement?.setInt(10, clienteId)
                     //statement?.setInt(11,sesionId)
 
-                val resultSet = statement?.executeQuery();
+                val resultSet = statement?.executeQuery()
                 while (resultSet?.next() == true)
                 {
                     exitoso = resultSet.getInt("Result")
@@ -185,12 +185,49 @@ class CamviProcedures {
             }
             return exitoso
         }
+        fun spAgendarCita(
+            titulo: String,
+            detalles: String,
+            idFotoGaleria: Int,
+            direccion: Int,
+            fechaEvento: String,
+            horaInicio: String,
+            horaFin: String,
+            lugar: String,
+            confirmada: Boolean,
+            cancela: Boolean,
+            idFotografo: Int,
+            idCliente: Int
+        ): Int {
+            var exitoso: Int = 0
 
+            try{
+                val statement =
+                    connectSql.dbConn()?.prepareCall("{call spAgendarCita ?,?,?,?,?,?,?,?,?,?,?,?}")
+                statement?.setString(1, titulo)
+                statement?.setString(2, detalles)
+                statement?.setInt(3, idFotoGaleria)
+                statement?.setInt(4, direccion)
+                statement?.setString(5, fechaEvento)
+                statement?.setString(6, horaInicio)
+                statement?.setString(7, horaFin)
+                statement?.setString(8,lugar)
+                statement?.setBoolean(9, confirmada)
+                statement?.setBoolean(10, cancela)
+                statement?.setInt(11, idFotografo)
+                statement?.setInt(12, idCliente)
 
-
-
-
+                val resultSet = statement?.executeQuery()
+                while(resultSet?.next() == true)
+                {
+                    exitoso = resultSet.getInt("Result")
+                }
+            } catch (ex: SQLException){
+        exitoso = 0
+    } catch (ex: Exception){
+        print(ex.message)
     }
-
-
+    return exitoso
+    }
+    }
 }
