@@ -225,8 +225,9 @@ Surface() {
 
 }
 
-//validacion de correo electronico
-fun ValidarCorreo(correo : String): Boolean = Patterns.EMAIL_ADDRESS.matcher(correo).matches()
+//validacion de correo electronico y contraseña
+fun ValidarCorreo(correo : String): Boolean = Patterns.EMAIL_ADDRESS.matcher(correo).matches();
+fun ValidarContrasenia(contrasena: String) : Boolean = contrasena.length >= 6;
 
 fun Registrar(
     nombre: String,
@@ -236,14 +237,19 @@ fun Registrar(
     contrasena: String,
     context: Context
 ) {
-    if (nombre.isEmpty() || contacto.isEmpty() || dui.isEmpty() || ValidarCorreo(correo)== false || contrasena.isEmpty()) {
+    if (nombre.isEmpty() || contacto.isEmpty() || dui.isEmpty()|| correo.isEmpty() || contrasena.isEmpty()) {
         Toast.makeText(
             context,
-            "Por favor, rellene todos los campos o ingrese una dirección de correo válida",
+            "Por favor, rellene todos los campos",
             Toast.LENGTH_SHORT
         )
             .show()
-    } else {
+    }
+    else if(ValidarCorreo(correo)== false || ValidarContrasenia(contrasena) == false)
+    {
+        Toast.makeText(context,"Revise la dirección de correo o escriba una contraseña más de al menos 6 digitos", Toast.LENGTH_LONG).show();
+    }
+    else {
 
         val result = CamviProcedures.spRegistrarCliente(
             nombre,

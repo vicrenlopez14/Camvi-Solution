@@ -202,7 +202,8 @@ fun CrearCamarografo(){
 }
 
 //validacion de correo electronico
-fun ValidarCorreo(correo : String): Boolean = Patterns.EMAIL_ADDRESS.matcher(correo).matches()
+fun ValidarCorreo(correo : String): Boolean = Patterns.EMAIL_ADDRESS.matcher(correo).matches();
+fun ValidarContrasenia(contrasena: String) : Boolean = contrasena.length >= 6;
 
 fun CrearCamarografos(
     nombre: String,
@@ -213,10 +214,18 @@ fun CrearCamarografos(
     context: Context
 ){
 
-    if (nombre.isEmpty() || contacto.isEmpty() || dui.isEmpty() || ValidarCorreo(correo)==false || contrasena.isEmpty()) {
+    if (nombre.isEmpty() || contacto.isEmpty() || dui.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
         Toast.makeText(
             context,
             "Por favor, rellene todos los campos o ingrese una dirección de correo válida",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+    else if(ValidarCorreo(correo) == false && ValidarContrasenia(contrasena)== false)
+    {
+        Toast.makeText(
+            context,
+            "Por favor, verifique la dirección de correo o escoja una contraseña de al menos 6 digitos",
             Toast.LENGTH_SHORT
         ).show()
     }
