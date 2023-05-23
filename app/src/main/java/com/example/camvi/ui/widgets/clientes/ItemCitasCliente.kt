@@ -69,7 +69,8 @@ fun ItemCitasCliente(citasClienteData: CitasClienteData){
 
                         ){
                             Button(
-                                onClick = {///falta cambiar de sesion
+                                onClick = {
+                                          //aca vamos pantalla con parametro
                                 },
                                     modifier = Modifier.padding(start = 140.dp)
                                         .height(30.dp),

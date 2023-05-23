@@ -3,6 +3,7 @@ package com.example.camvi.model.globales
 import com.example.camvi.model.administradores.Sesiones
 import com.example.camvi.model.clientes.CitasClienteData
 import com.example.camvi.model.clientes.CitasClienteDetalleData
+import com.example.camvi.ui.state.administradores.clientes.ClientesVerMasCitaState
 import java.sql.SQLException
 
 class CamviFunctions {
@@ -149,8 +150,8 @@ class CamviFunctions {
         }
 
 
-        fun fnCitasClienteDetalle(idSesion: Int): ArrayList <CitasClienteDetalleData>{
-            val listasCitaDetalle = ArrayList<CitasClienteDetalleData>()
+        fun fnCitasClienteDetalle(idSesion: Int): ArrayList <ClientesVerMasCitaState>{
+            val listasCitaDetalle = ArrayList<ClientesVerMasCitaState>()
             try{
                 val statement = connectSql.dbConn()?.prepareStatement("SELECT * FROM fnSesionesClientesDetalle(?)")
                 statement?.setInt(1,idSesion)
@@ -159,7 +160,7 @@ class CamviFunctions {
 
                 while (resultSet?.next() == true){
                     listasCitaDetalle.add(
-                        CitasClienteDetalleData(
+                        ClientesVerMasCitaState(
                             resultSet.getString("titulo"),
                             resultSet.getString("detalle"),
                             resultSet.getString("lugar"),

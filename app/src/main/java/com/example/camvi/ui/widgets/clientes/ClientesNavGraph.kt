@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.camvi.ui.screens.clientes.ClientesDashboard
+import com.example.camvi.ui.screens.clientes.VerMasCitaCliente
 
 @Composable
 fun ClientesNavGraph(navController: NavHostController) {
@@ -20,6 +21,10 @@ fun ClientesNavGraph(navController: NavHostController) {
         }
         composable(route = ClientesScreen.CalificanosClientes.route) {
 
+        }
+
+        composable(route= ClientesScreen.VerMasCitaCliente.route){
+        VerMasCitaCliente()
         }
     }
 }
