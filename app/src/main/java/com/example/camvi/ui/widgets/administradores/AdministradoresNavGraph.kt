@@ -13,7 +13,6 @@ import com.example.camvi.ui.screens.administradores.ConfirmacionesScreen
 import com.example.camvi.ui.screens.administradores.SesionesAgendadasScreen
 import com.example.camvi.ui.screens.administradores.SesionesSinCamarografos
 import com.example.camvi.ui.screens.global.AsignarCamarografoAdmin
-import com.example.camvi.ui.screens.global.PantallaQueRecibeParametros
 import com.example.camvi.ui.screens.global.PhotoUploadScreen
 
 @Composable
@@ -63,11 +62,6 @@ fun AdministradoresNavGraph(navController: NavHostController) {
             PhotoUploadScreen()
         }
 
-        composable(
-            "${AdministradoresScreen.PantallaQueRecibeParametros.route}/{texto}",
-            arguments = listOf(navArgument("texto") { type = NavType.StringType })
-        ) { backStackEntry ->
-            PantallaQueRecibeParametros(backStackEntry.arguments?.getString("texto") ?: "")
-        }
+
     }
 }

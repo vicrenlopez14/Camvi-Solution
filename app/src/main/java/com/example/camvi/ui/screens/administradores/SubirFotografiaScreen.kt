@@ -24,10 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
 
-@Composable
-fun PantallaQueRecibeParametros(texto: String) {
-    Text("Yo recibo parámetros ${texto}")
-}
+
 
 @Preview(showBackground = true)
 @OptIn(ExperimentalMaterial3Api::class)
