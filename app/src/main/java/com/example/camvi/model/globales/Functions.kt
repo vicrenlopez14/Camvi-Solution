@@ -2,6 +2,7 @@ package com.example.camvi.model.globales
 
 import com.example.camvi.model.administradores.Sesiones
 import com.example.camvi.model.clientes.CitasClienteData
+import com.example.camvi.model.clientes.CitasClienteDetalleData
 import java.sql.SQLException
 
 class CamviFunctions {
@@ -145,6 +146,37 @@ class CamviFunctions {
                 println(ex.message)
             }
             return listaCitas
+        }
+
+
+        fun fnCitasClienteDetalle(idSesion: Int): ArrayList <CitasClienteDetalleData>{
+            val listasCitaDetalle = ArrayList<CitasClienteDetalleData>()
+            try{
+                val statement = connectSql.dbConn()?.prepareStatement("SELECT * FROM fnSesionesClientesDetalle(?)")
+                statement?.setInt(1,idSesion)
+
+                val resultSet = statement?.executeQuery()
+
+                while (resultSet?.next() == true){
+                    listasCitaDetalle.add(
+                        CitasClienteDetalleData(
+                            resultSet.getString("titulo"),
+                            resultSet.getString("detalle"),
+                            resultSet.getString("lugar"),
+                            resultSet.getString("fechaEvento"),
+                            resultSet.getString("horaInicio"),
+                            resultSet.getString("horaFinalizacion"),
+                            resultSet.getString("nombre"),
+                            resultSet.getString("contacto"),
+                            resultSet.getString("dui"),
+                            resultSet.getString("Nombre del fotografo")
+                        )
+                    )
+                }
+            }catch (ex : Exception){
+                println(ex.message)
+            }
+            return listasCitaDetalle
         }
 
 
