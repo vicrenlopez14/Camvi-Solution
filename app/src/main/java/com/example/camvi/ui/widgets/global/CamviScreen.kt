@@ -84,11 +84,7 @@ sealed class AdministradoresScreen(
         null
     )
 
-    object PantallaQueRecibeParametros : AdministradoresScreen(
-        "PantallaQueRecibeParametros",
-        "Pantalla que recibe parámetros",
-        null
-    )
+
 }
 
 sealed class CamarografosScreen(

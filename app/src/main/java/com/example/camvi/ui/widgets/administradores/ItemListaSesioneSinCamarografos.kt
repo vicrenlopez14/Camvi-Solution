@@ -9,7 +9,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -53,7 +52,7 @@ fun ItemListaSesionesSinCamarografos(){
             Button(
                 onClick = { /*TODO*/ },
                 colors = ButtonDefaults.buttonColors
-                    (containerColor = colorResource(id = R.color.white)),
+                    (containerColor = colorResource(id = R.color.White)),
                 modifier = Modifier.padding(start = 15.dp, bottom = 10.dp, top = 6.dp)) {
 
                 Text(

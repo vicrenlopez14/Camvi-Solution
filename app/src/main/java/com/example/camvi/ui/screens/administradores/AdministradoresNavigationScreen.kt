@@ -20,10 +20,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
-import com.example.camvi.viewmodel.administradores.AdminsNavigatorViewModel
+import com.example.camvi.ui.widgets.administradores.AdministradoresNavGraph
 import com.example.camvi.ui.widgets.administradores.DrawerContenido
-import com.example.camvi.ui.widgets.global.AdministradoresNavGraph
 import com.example.camvi.ui.widgets.global.AdministradoresScreen
+import com.example.camvi.viewmodel.administradores.AdminsNavigatorViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)

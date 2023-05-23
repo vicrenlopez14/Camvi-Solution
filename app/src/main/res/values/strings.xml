@@ -18,5 +18,6 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_administradores">AdministradoresActivity</string>
     <string name="title_activity_sesiones_sin_camarografos">SesionesSinCamarografos</string>
+    <string name="npc">Carlos Figueroa</string>
 
 </resources>
