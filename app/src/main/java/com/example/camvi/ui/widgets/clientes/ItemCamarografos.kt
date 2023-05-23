@@ -23,10 +23,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.camvi.R
+import com.example.camvi.model.administradores.CamarografoItemData
+import com.example.camvi.model.clientes.CamarografoDisponibleData
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun ItemCamarografos(){
+fun ItemCamarografos(camarografoDisponibleData: CamarografoDisponibleData){
     Card(
         Modifier.padding(30.dp),
         colors = CardDefaults.cardColors
@@ -51,12 +53,12 @@ fun ItemCamarografos(){
                 Modifier
                     .fillMaxWidth()) {
                 Text(
-                    text = "Camila Sofia Ramos Handal",
+                    text = camarografoDisponibleData.nombre,
                     Modifier
                         .padding(bottom = 5.dp))
 
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { /*TODO*/ }, //Llevaria a la pantalla AgendarCita
                     colors = ButtonDefaults.textButtonColors(
                         contentColor = colorResource(id = R.color.DarkYellow)),
                     border = BorderStroke(width = 1.5.dp, color = colorResource(id = R.color.DarkYellow)),

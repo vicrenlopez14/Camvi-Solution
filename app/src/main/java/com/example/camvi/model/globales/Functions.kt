@@ -1,6 +1,7 @@
 package com.example.camvi.model.globales
 
 import com.example.camvi.model.administradores.Sesiones
+import com.example.camvi.model.clientes.CitasClienteData
 import java.sql.SQLException
 
 class CamviFunctions {
@@ -117,6 +118,33 @@ class CamviFunctions {
             }
 
             return unassignedSessionCount
+        }
+
+        fun fnListaCitasClientes(idUsuario: Int): ArrayList<CitasClienteData>{
+            val listaCitas = ArrayList<CitasClienteData>()
+
+            try{
+                val statement = connectSql.dbConn()?.
+                prepareStatement("SELECT * FROM fnCitasCliente(?)")
+                statement?.setInt(1,idUsuario)
+
+                val resultSet= statement?.executeQuery()
+
+                while (resultSet?.next() == true){
+                    listaCitas.add(
+                        CitasClienteData(
+                            resultSet.getInt("idSesion"),
+                            resultSet.getString("titulo"),
+                            resultSet.getString("nombre"),
+                            resultSet.getString("fechaEvento")
+                        )
+                    )
+                }
+
+            }catch (ex: Exception){
+                println(ex.message)
+            }
+            return listaCitas
         }
 
 

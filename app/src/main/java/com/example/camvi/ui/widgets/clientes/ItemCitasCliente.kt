@@ -29,17 +29,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
+import com.example.camvi.model.clientes.CitasClienteData
 
-@Preview
+//@Preview
 @Composable
-fun ItemCitasCliente(){
+fun ItemCitasCliente(citasClienteData: CitasClienteData){
+
+
     Surface() {
             Column(
                     modifier = Modifier
                         .fillMaxWidth()
             ) {
                 Text(
-                    text = "Sesion fotgrafica en boda", //variable de titulo
+                    text = citasClienteData.titulo, //variable de titulo
                     fontFamily = FontFamily(Font(R.font.inter_semibold)),
                         fontSize= 18.sp,
                         color = Color.Black,
@@ -56,7 +59,7 @@ fun ItemCitasCliente(){
                     )
                     Spacer(modifier = Modifier.width(15.dp))
                     Text(
-                         text = "Jose Miranda", //variable de nombre del fotografo
+                         text = citasClienteData.nombre, //variable de nombre del fotografo
                          fontFamily= FontFamily(Font(R.font.inter)),
                          fontSize = 13.sp,
                          color = Color.Black,
@@ -66,7 +69,8 @@ fun ItemCitasCliente(){
 
                         ){
                             Button(
-                                onClick = { /*TODO*/ },
+                                onClick = {///falta cambiar de sesion
+                                },
                                     modifier = Modifier.padding(start = 140.dp)
                                         .height(30.dp),
                                     shape = RoundedCornerShape(16.dp),
@@ -93,7 +97,7 @@ fun ItemCitasCliente(){
                     )
                     Spacer(modifier = Modifier.width(15.dp))
                     Text(
-                         text = "Vence en esta fecha", //variable de fecha de la sesion
+                         text = citasClienteData.fecha, //variable de fecha de la sesion
                          fontFamily= FontFamily(Font(R.font.inter)),
                          fontSize = 13.sp,
                          color = Color.Black,

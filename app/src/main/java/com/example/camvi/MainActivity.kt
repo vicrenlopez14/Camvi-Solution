@@ -7,6 +7,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.example.camvi.ui.screens.clientes.VerCitasCliente
 import com.example.camvi.ui.theme.CustomCamviTheme
 import com.example.camvi.ui.widgets.global.GlobalNavGraph
 

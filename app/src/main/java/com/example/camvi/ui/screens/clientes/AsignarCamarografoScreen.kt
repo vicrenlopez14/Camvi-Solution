@@ -11,6 +11,9 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,15 +24,29 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.camvi.R
+import com.example.camvi.model.clientes.CamarografoDisponibleData
+import com.example.camvi.model.globales.CamviViews
 import com.example.camvi.ui.widgets.clientes.ItemCamarografos
 
 @Preview(showBackground = true)
 @Composable
 fun CamarografoScreen() {
 
+    val items = remember{ mutableStateOf(emptyList<CamarografoDisponibleData>()) }
+
+    LaunchedEffect(true){
+        try {
+            val result = CamviViews.vwNombresCamarografosDesocupados()
+            items.value = result
+        }catch (e:Exception){
+            println(e)
+        }
+    }
+
     Column(
-        modifier = Modifier.fillMaxSize()
-                           .verticalScroll(rememberScrollState()),
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start) {
 
@@ -61,9 +78,10 @@ fun CamarografoScreen() {
                 modifier = Modifier.padding(start = 5.dp),
                 contentPadding = PaddingValues(bottom = 16.dp))
             {
-                item { ItemCamarografos()}
+                items(items.value.size){ index ->
+                    ItemCamarografos(items.value[index])
+                }
             }
-
         }
     }
 }

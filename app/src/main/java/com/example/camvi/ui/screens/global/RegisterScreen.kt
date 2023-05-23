@@ -2,6 +2,7 @@ package com.example.camvi.ui.screens.global
 
 import android.content.Context
 import android.content.Intent
+import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 
@@ -63,22 +64,23 @@ fun RegisterScreen(navController: NavController) {
     val nombre = remember {
         mutableStateOf("")
     }
-
-    val contacto = remember {
+      val contacto = remember {
         mutableStateOf("")
     }
 
     val dui = remember {
         mutableStateOf("")
     }
-
-    val correo = remember {
+       val correo = remember {
         mutableStateOf("")
     }
 
     val contrasena = remember {
         mutableStateOf("")
     }
+
+
+
 
     val context = LocalContext.current
 
@@ -223,6 +225,10 @@ Surface() {
 
 }
 
+//validacion de correo electronico y contraseña
+fun ValidarCorreo(correo : String): Boolean = Patterns.EMAIL_ADDRESS.matcher(correo).matches();
+fun ValidarContrasenia(contrasena: String) : Boolean = contrasena.length >= 6;
+
 fun Registrar(
     nombre: String,
     contacto: String,
@@ -231,21 +237,26 @@ fun Registrar(
     contrasena: String,
     context: Context
 ) {
-    if (nombre.isEmpty() || contacto.isEmpty() || dui.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
+    if (nombre.isEmpty() || contacto.isEmpty() || dui.isEmpty()|| correo.isEmpty() || contrasena.isEmpty()) {
         Toast.makeText(
             context,
             "Por favor, rellene todos los campos",
             Toast.LENGTH_SHORT
         )
             .show()
-    } else {
+    }
+    else if(ValidarCorreo(correo)== false || ValidarContrasenia(contrasena) == false)
+    {
+        Toast.makeText(context,"Revise la dirección de correo o escriba una contraseña más de al menos 6 digitos", Toast.LENGTH_LONG).show();
+    }
+    else {
 
         val result = CamviProcedures.spRegistrarCliente(
             nombre,
+            contacto,
+            dui,
             correo,
             contrasena,
-            contacto,
-            dui
         )
 
         if (result == 1) {
