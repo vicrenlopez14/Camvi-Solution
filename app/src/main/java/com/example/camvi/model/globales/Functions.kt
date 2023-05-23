@@ -169,7 +169,7 @@ class CamviFunctions {
                             resultSet.getString("nombre"),
                             resultSet.getString("contacto"),
                             resultSet.getString("dui"),
-                            resultSet.getString("Nombre del fotografo")
+                            resultSet.getString("Nombre del fotografo") ///aca me quede antes de pasar a fase 3
                         )
                     )
                 }
