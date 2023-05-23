@@ -47,9 +47,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.camvi.R
 import com.example.camvi.model.globales.Periodo
-import com.example.camvi.ui.viewmodel.administradores.AdminsDashboardViewModel
-import com.example.camvi.ui.viewmodel.administradores.AdminsNavigatorViewModel
 import com.example.camvi.ui.widgets.global.AdministradoresScreen
+import com.example.camvi.viewmodel.administradores.AdminsDashboardViewModel
+import com.example.camvi.viewmodel.administradores.AdminsNavigatorViewModel
 import kotlinx.coroutines.delay
 
 @Preview
@@ -142,7 +142,7 @@ fun SatisfactionCarrousel(
 @Composable
 fun WarningSesiones(
     adminsDashboardViewModel: AdminsDashboardViewModel = viewModel(),
-    navigationViewModel: AdminsNavigatorViewModel = viewModel()
+    navigationViewModel: AdminsNavigatorViewModel = viewModel(),
 ) {
     val adminsDashboardUiState by adminsDashboardViewModel.uiState.collectAsState()
 
@@ -193,8 +193,9 @@ fun WarningSesiones(
                 }
 
                 Text(
-                    "Hay ${adminsDashboardUiState.sesionsWithoutCamarographer} sesiones sin camarógrafo asignado. Toca aquí.",
+                    "Hay ${adminsDashboardUiState.sessionsWithoutCamarographer} sesiones sin camarógrafo asignado. Toca aquí.",
                     style = MaterialTheme.typography.bodyMedium,
+
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .clickable {

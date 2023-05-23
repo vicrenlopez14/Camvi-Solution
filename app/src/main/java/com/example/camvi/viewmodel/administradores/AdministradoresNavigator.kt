@@ -1,4 +1,4 @@
-package com.example.camvi.ui.viewmodel.administradores
+package com.example.camvi.viewmodel.administradores
 
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController

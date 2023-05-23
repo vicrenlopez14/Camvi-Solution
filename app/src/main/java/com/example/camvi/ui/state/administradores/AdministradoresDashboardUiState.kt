@@ -45,5 +45,5 @@ data class AdministradoresDashboardUiState(
 
     val newSesions: Int = 0,
 
-    val sesionsWithoutCamarographer: Int = 0,
+    val sessionsWithoutCamarographer: Int = 0,
 )

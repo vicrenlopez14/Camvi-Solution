@@ -1,9 +1,6 @@
 package com.example.camvi.ui.widgets.administradores
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,12 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.camvi.R
 import com.example.camvi.model.administradores.CamarografoItemData
 
@@ -41,7 +33,8 @@ fun ItemListaCamarografos(camarografoItemData: CamarografoItemData) {
             .padding(13.dp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start)
+        horizontalArrangement = Arrangement.Start
+    )
     {
 
         Image(
@@ -57,17 +50,20 @@ fun ItemListaCamarografos(camarografoItemData: CamarografoItemData) {
         Column(
             modifier = Modifier
                 .weight(1f)
-                .padding(vertical = 5.dp)) {
+                .padding(vertical = 5.dp)
+        ) {
 
             Text(
                 text = camarografoItemData.nombre ?: "Camarografo",
                 fontFamily = FontFamily(Font(R.font.inter)),
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 5.dp))
+                modifier = Modifier.padding(bottom = 5.dp)
+            )
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween)
+                horizontalArrangement = Arrangement.SpaceBetween
+            )
             {
 
                 Button(
@@ -76,8 +72,10 @@ fun ItemListaCamarografos(camarografoItemData: CamarografoItemData) {
                         .height(40.dp),
                     colors = ButtonDefaults.textButtonColors(
                         contentColor = Color.Black,
-                        containerColor = colorResource(id = R.color.Yellow)),
-                    shape = RoundedCornerShape(16.dp)) {
+                        containerColor = colorResource(id = R.color.Yellow)
+                    ),
+                    shape = RoundedCornerShape(16.dp)
+                ) {
 
                     Text(
                         text = "Ver sesiones"
@@ -85,13 +83,15 @@ fun ItemListaCamarografos(camarografoItemData: CamarografoItemData) {
                 }
 
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {},
                     modifier = Modifier
                         .height(40.dp),
                     shape = RoundedCornerShape(16.dp),
                     colors = ButtonDefaults.textButtonColors(
                         contentColor = Color.Black,
-                        containerColor = colorResource(id = R.color.DarkYellow))) {
+                        containerColor = colorResource(id = R.color.DarkYellow)
+                    )
+                ) {
 
                     Text(
                         text = "Editar"

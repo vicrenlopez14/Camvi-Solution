@@ -1,4 +1,4 @@
-package com.example.camvi.ui.viewmodel.administradores
+package com.example.camvi.viewmodel.administradores
 
 import androidx.lifecycle.ViewModel
 import com.example.camvi.model.globales.CamviFunctions
@@ -51,7 +51,7 @@ class AdminsDashboardViewModel : ViewModel() {
         _uiState.value = _uiState.value.copy(
             clientSatisfactionPercentage = clientSatisfactionPercentage,
             newSesions = periodNewSessions,
-            sesionsWithoutCamarographer = sesionsWithoutCamarographer
+            sessionsWithoutCamarographer = sesionsWithoutCamarographer
         )
     }
 
@@ -64,6 +64,5 @@ class AdminsDashboardViewModel : ViewModel() {
             )
         }
     }
-
 
 }
