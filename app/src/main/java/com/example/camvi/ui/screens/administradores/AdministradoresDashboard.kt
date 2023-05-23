@@ -133,7 +133,8 @@ fun SatisfactionCarrousel(
             text = "Se agendaron ${adminsDashboardUiState.newSesions} sesiones más.",
             color = colorResource(id = R.color.GreenSuccess),
             modifier = Modifier.clickable {
-                navigationViewModel.navigate(AdministradoresScreen.SesionesAgendadasAdministradores)
+                val navController = navigationViewModel.getNavController()
+                navController.navigate("${AdministradoresScreen.SesionesSinCamarografosAdministradores}/{id}")
             }
         )
     }
@@ -199,7 +200,9 @@ fun WarningSesiones(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .clickable {
-                            navigationViewModel.navigate(AdministradoresScreen.SesionesSinCamarografosAdministradores)
+                            val navController = navigationViewModel.getNavController()
+
+                            navController.navigate(AdministradoresScreen.SesionesSinCamarografosAdministradores.route)
                         }
                 )
             }

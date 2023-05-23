@@ -2,8 +2,10 @@ package com.example.camvi.ui.widgets.global
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.camvi.ui.screens.administradores.AdministradoresDashboard
 import com.example.camvi.ui.screens.administradores.CalificacionesScreen
 import com.example.camvi.ui.screens.administradores.CamarografosListScreen
@@ -11,6 +13,8 @@ import com.example.camvi.ui.screens.administradores.ConfirmacionesScreen
 import com.example.camvi.ui.screens.administradores.SesionesAgendadasScreen
 import com.example.camvi.ui.screens.administradores.SesionesSinCamarografos
 import com.example.camvi.ui.screens.global.AsignarCamarografoAdmin
+import com.example.camvi.ui.screens.global.PantallaQueRecibeParametros
+import com.example.camvi.ui.screens.global.PhotoUploadScreen
 
 @Composable
 fun AdministradoresNavGraph(navController: NavHostController) {
@@ -42,12 +46,28 @@ fun AdministradoresNavGraph(navController: NavHostController) {
             SesionesSinCamarografos()
         }
 
-        composable(AdministradoresScreen.AsignarCamarografoAdministradores.route) {
-            AsignarCamarografoAdmin()
+        composable(
+            "${AdministradoresScreen.AsignarCamarografoAdministradores.route}/{sessionId}",
+            arguments = listOf(navArgument("sessionId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            AsignarCamarografoAdmin(backStackEntry.arguments?.getString("sessionId") ?: "")
         }
+
+
 
         composable(AdministradoresScreen.SesionesAgendadasAdministradores.route) {
             SesionesAgendadasScreen()
+        }
+
+        composable(AdministradoresScreen.SubirFotografiasAdministradores.route) {
+            PhotoUploadScreen()
+        }
+
+        composable(
+            "${AdministradoresScreen.PantallaQueRecibeParametros.route}/{texto}",
+            arguments = listOf(navArgument("texto") { type = NavType.StringType })
+        ) { backStackEntry ->
+            PantallaQueRecibeParametros(backStackEntry.arguments?.getString("texto") ?: "")
         }
     }
 }

@@ -77,6 +77,18 @@ sealed class AdministradoresScreen(
         "Sesiones agendadas",
         null
     )
+
+    object SubirFotografiasAdministradores : AdministradoresScreen(
+        "SubirFotografiasAdministradores",
+        "Subir fotografías ",
+        null
+    )
+
+    object PantallaQueRecibeParametros : AdministradoresScreen(
+        "PantallaQueRecibeParametros",
+        "Pantalla que recibe parámetros",
+        null
+    )
 }
 
 sealed class CamarografosScreen(

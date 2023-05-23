@@ -2,7 +2,6 @@ package com.example.camvi.viewmodel.administradores
 
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
-import com.example.camvi.ui.widgets.global.AdministradoresScreen
 
 class AdminsNavigatorViewModel : ViewModel() {
     private lateinit var navController: NavController
@@ -11,7 +10,7 @@ class AdminsNavigatorViewModel : ViewModel() {
         this.navController = navController
     }
 
-    fun navigate(route: AdministradoresScreen, args: Any? = null) {
-        navController.navigate(route.route)
+    fun getNavController(): NavController {
+        return navController
     }
 }
