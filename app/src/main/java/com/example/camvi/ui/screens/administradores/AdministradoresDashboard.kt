@@ -324,8 +324,8 @@ fun PeriodOfTime(
             .padding(horizontal = 8.dp)
             .clip(RoundedCornerShape(16.dp))
             .clickable { onClick() },
-        color = colorResource(id = if (selected) R.color.white else R.color.black),
-        contentColor = colorResource(id = if (selected) R.color.black else R.color.white)
+        color = colorResource(id = if (selected) R.color.White else R.color.black),
+        contentColor = colorResource(id = if (selected) R.color.black else R.color.White)
 
     ) {
         Column(

@@ -22,13 +22,13 @@ fun CamviButtonPreview() {
 }
 
 @Composable
-fun CamviButton(text: String = "Button", onClick: () -> Unit = {}) {
-    Box {
+fun CamviButton(text: String = "Button", onClick: () -> Unit = {}, modifier: Modifier = Modifier) {
+    Box() {
         OutlinedButton(
             onClick = { onClick() },
             border = BorderStroke(width = 1.5.dp, color = colorResource(id = R.color.DarkYellow)),
             colors = ButtonDefaults.outlinedButtonColors(contentColor = colorResource(id = R.color.DarkYellow)),
-            modifier = Modifier.align(Alignment.Center)
+            modifier = modifier.align(Alignment.Center)
         ) {
             Text(
                 fontWeight = FontWeight.Bold,

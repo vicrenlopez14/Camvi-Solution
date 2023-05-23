@@ -1,4 +1,4 @@
-package com.example.camvi.ui.widgets.global
+package com.example.camvi.ui.widgets.administradores
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -14,6 +14,7 @@ import com.example.camvi.ui.screens.administradores.SesionesAgendadasScreen
 import com.example.camvi.ui.screens.administradores.SesionesSinCamarografos
 import com.example.camvi.ui.screens.global.AsignarCamarografoAdmin
 import com.example.camvi.ui.screens.global.PhotoUploadScreen
+import com.example.camvi.ui.widgets.global.AdministradoresScreen
 
 @Composable
 fun AdministradoresNavGraph(navController: NavHostController) {
@@ -52,8 +53,6 @@ fun AdministradoresNavGraph(navController: NavHostController) {
             AsignarCamarografoAdmin(backStackEntry.arguments?.getString("sessionId") ?: "")
         }
 
-
-
         composable(AdministradoresScreen.SesionesAgendadasAdministradores.route) {
             SesionesAgendadasScreen()
         }
@@ -61,7 +60,5 @@ fun AdministradoresNavGraph(navController: NavHostController) {
         composable(AdministradoresScreen.SubirFotografiasAdministradores.route) {
             PhotoUploadScreen()
         }
-
-
     }
 }
