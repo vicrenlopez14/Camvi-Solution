@@ -19,10 +19,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.camvi.R
+import com.example.camvi.model.administradores.SesionesSinCamarografosData
 
 @Composable
-@Preview(showBackground = true)
-fun ItemListaSesionesSinCamarografos(){
+//@Preview(showBackground = true)
+fun ItemListaSesionesSinCamarografos(sesionesSinCamarografosData: SesionesSinCamarografosData){
 
     Card(colors = CardDefaults.cardColors
         (containerColor = colorResource(id = R.color.YellowLight)),
@@ -39,18 +40,18 @@ fun ItemListaSesionesSinCamarografos(){
             Text(
                 modifier = Modifier
                     .padding(start = 15.dp, top = 10.dp),
-                text = "Sesión fotográfica familiar",
+                text = sesionesSinCamarografosData.titulo,
                 fontFamily = FontFamily(Font(R.font.inter_boldd))
             )
 
             Text(
                 modifier = Modifier
                     .padding(start = 15.dp),
-                text = "Agendada para 23/04/2023",
+                text = "Agendada para ${sesionesSinCamarografosData.fechaEvento}",
             )
 
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {  }, //Pasaria a la pantalla AsignarCamarografoAdmin
                 colors = ButtonDefaults.buttonColors
                     (containerColor = colorResource(id = R.color.White)),
                 modifier = Modifier.padding(start = 15.dp, bottom = 10.dp, top = 6.dp)) {

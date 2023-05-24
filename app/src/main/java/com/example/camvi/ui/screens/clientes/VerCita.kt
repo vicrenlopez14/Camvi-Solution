@@ -64,11 +64,5 @@ fun VerCitasCliente(idUsuario: Int) {
             }
         }
    }
-
-
-
-
-
-
 }
 

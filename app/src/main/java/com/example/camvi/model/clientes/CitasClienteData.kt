@@ -7,4 +7,6 @@ data class CitasClienteData(
     val titulo: String,
     val nombre: String,
     val fecha: String
-)
+) {
+    companion object
+}

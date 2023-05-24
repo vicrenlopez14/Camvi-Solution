@@ -130,5 +130,8 @@ sealed class ClientesScreen(
 
     object CalificanosClientes :
         ClientesScreen("CalificanosClientes", "Calificanos", Icons.Filled.Done)
+
+    object VerMasCitaCliente:
+            ClientesScreen("VerMasCitaCliente", "VerMasCita",null)
 }
 
