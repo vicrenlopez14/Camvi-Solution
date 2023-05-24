@@ -32,15 +32,15 @@ import com.example.camvi.model.clientes.CamarografoDisponibleData
 import com.example.camvi.model.globales.CamviViews
 import com.example.camvi.ui.widgets.clientes.ItemListaCamarografosDisponibles
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun CamarografosDisponibles() {
+fun CamarografosDisponibles(idUsuario:Int) {
 
     val items = remember { mutableStateOf(emptyList<CamarografoDisponibleData>())}
 
     LaunchedEffect(true){
         try {
-            val result = CamviViews.vwNombresCamarografosDesocupados()
+            val result = CamviViews.vwNombresCamarografosDesocupados(idUsuario)
             items.value = result
         }catch (e:Exception){
             println(e)

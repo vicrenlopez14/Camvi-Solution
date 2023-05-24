@@ -55,12 +55,12 @@ import java.sql.SQLException
             return resultado
         }
 
-        fun vwNombresCamarografosDesocupados(): ArrayList<CamarografoDisponibleData>{
+        fun vwNombresCamarografosDesocupados(idUsuario:Int): ArrayList<CamarografoDisponibleData>{
             val ListaCamarografosDisponibles = ArrayList<CamarografoDisponibleData>()
 
             try {
-                val statement = connectSql.dbConn()
-                    ?.prepareStatement("SELECT * FROM vwNombresCamarografosDesocupados")
+                val statement = connectSql.dbConn()?.prepareStatement("SELECT * FROM vwNombresCamarografosDesocupados")
+                    statement?.setInt(1,idUsuario)
 
                 val resultSet = statement?.executeQuery()
 
@@ -76,8 +76,7 @@ import java.sql.SQLException
             val ListaSesionesSinCamarografos = ArrayList<SesionesSinCamarografosData>()
 
             try {
-                val statement = connectSql.dbConn()
-                    ?.prepareStatement("SELECT * FROM  vwSesionesSinFotografo")
+                val statement = connectSql.dbConn()?.prepareStatement("SELECT * FROM  vwSesionesSinFotografo")
 
                 val resultSet = statement?.executeQuery()
 

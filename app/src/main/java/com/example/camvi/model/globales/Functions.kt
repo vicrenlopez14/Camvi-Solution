@@ -2,7 +2,7 @@ package com.example.camvi.model.globales
 
 import com.example.camvi.model.administradores.Sesiones
 import com.example.camvi.model.clientes.CitasClienteData
-import com.example.camvi.model.clientes.CitasClienteDetalleData
+import com.example.camvi.ui.state.administradores.clientes.VerMasCamarografoState
 import com.example.camvi.ui.state.administradores.clientes.ClientesVerMasCitaState
 import java.sql.SQLException
 
@@ -180,6 +180,31 @@ class CamviFunctions {
             return listasCitaDetalle
         }
 
+        fun fnVerMasCamarografo(idCamarografo:Int): ArrayList<VerMasCamarografoState>{
+            val VerMasCamarografo = ArrayList<VerMasCamarografoState>()
+            try {
+                val statement = connectSql.dbConn()?.prepareStatement("SELECT * from fnVerMasCamarografo(?)")
+                statement?.setInt(1,idCamarografo)
+
+                val resultSet = statement?.executeQuery()
+
+                while (resultSet?.next() == true){
+                    VerMasCamarografo.add(
+                        VerMasCamarografoState(
+                            resultSet.getString("nombre"),
+                            resultSet.getString("correo"),
+                            resultSet.getString("acercaDe"),
+                            resultSet.getString("descripcionCorta"),
+                            resultSet.getString("tituloFormacion"),
+                            resultSet.getString("imagen")
+                        )
+                    )
+                }
+            }catch (ex: Exception){
+                println(ex.message)
+            }
+            return VerMasCamarografo
+        }
 
     }
 }
