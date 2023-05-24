@@ -19,6 +19,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.camvi.R
+import com.example.camvi.model.administradores.SesionesSinCamarografosData
 import com.example.camvi.model.globales.CamviFunctions
 import com.example.camvi.model.globales.Session
 import com.example.camvi.model.globales.SessionStatus
@@ -50,12 +52,13 @@ fun SesionesAgendadasScreen(
     status: SessionStatus,
     adminsNavigationViewModel: AdminsNavigatorViewModel = viewModel()
 ) {
-    var sessions: List<Session> = remember {
-        listOf()
-    }
+
+
+    val sessions = remember { mutableStateOf(emptyList<Session>()) }
+
 
     LaunchedEffect(key1 = sessions) {
-        sessions = CamviFunctions.getSessionsByStatus(status)
+        sessions.value = CamviFunctions.getSessionsByStatus(status)
     }
 
     Surface(
