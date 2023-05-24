@@ -17,6 +17,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,12 +27,26 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.camvi.model.administradores.SesionesSinCamarografosData
+import com.example.camvi.model.globales.CamviViews
 import com.example.camvi.ui.screens.ui.theme.CamviTheme
 import com.example.camvi.ui.widgets.administradores.ItemListaSesionesSinCamarografos
 
 @Preview(showBackground = true)
 @Composable
 fun SesionesSinCamarografos(){
+
+    val items = remember { mutableStateOf(emptyList<SesionesSinCamarografosData>()) }
+
+    LaunchedEffect(true){
+        try {
+            var result = CamviViews.vwSesionesSinFotografos()
+            items.value = result
+        }catch (e:Exception){
+            println(e)
+        }
+    }
+
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
@@ -56,7 +73,9 @@ fun SesionesSinCamarografos(){
 
         LazyColumn(
             Modifier.fillMaxWidth()){
-            item { ItemListaSesionesSinCamarografos() }
+            items(items.value.size){index ->
+                ItemListaSesionesSinCamarografos(items.value[index])
+            }
         }
     }
 }

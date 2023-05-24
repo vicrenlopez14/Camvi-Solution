@@ -1,6 +1,7 @@
     package com.example.camvi.model.globales
 
 import com.example.camvi.model.administradores.CamarografoItemData
+import com.example.camvi.model.administradores.SesionesSinCamarografosData
 import com.example.camvi.model.clientes.CamarografoDisponibleData
 import com.example.camvi.model.clientes.CitasClienteData
 import java.sql.SQLException
@@ -71,5 +72,33 @@ import java.sql.SQLException
             }
             return ListaCamarografosDisponibles
         }
+        fun vwSesionesSinFotografos(): ArrayList<SesionesSinCamarografosData>{
+            val ListaSesionesSinCamarografos = ArrayList<SesionesSinCamarografosData>()
+
+            try {
+                val statement = connectSql.dbConn()
+                    ?.prepareStatement("SELECT * FROM  vwSesionesSinFotografo")
+
+                val resultSet = statement?.executeQuery()
+
+                while (resultSet?.next() == true){
+                    val titulo = resultSet.getString("titulo")
+                    val direccionEvento = resultSet.getString("direccionEvento")
+                    val fechaEvento = resultSet.getString("fechaEvento")
+                    val horaInicio = resultSet.getString("horaInicio")
+                    val horaFinalizacion = resultSet.getString("horaFinalizacion")
+                    val lugar = resultSet.getString("lugar")
+                    val confirmada = resultSet.getString("confirmada")
+
+                    val sesion = SesionesSinCamarografosData(titulo, direccionEvento, fechaEvento, horaInicio, horaFinalizacion, lugar, confirmada)
+
+                    ListaSesionesSinCamarografos.add(sesion)
+                }
+            }catch (ex:Exception){
+                print(ex.message)
+            }
+            return ListaSesionesSinCamarografos
+        }
+
     }
 }
