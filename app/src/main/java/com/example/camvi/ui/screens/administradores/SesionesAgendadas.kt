@@ -31,7 +31,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.camvi.R
-import com.example.camvi.model.administradores.SesionesSinCamarografosData
 import com.example.camvi.model.globales.CamviFunctions
 import com.example.camvi.model.globales.Session
 import com.example.camvi.model.globales.SessionStatus
@@ -87,7 +86,7 @@ fun SesionesAgendadasScreen(
             Spacer(Modifier.height(32.dp))
 
             LazyColumn(Modifier.fillMaxSize()) {
-                items(sessions) { session ->
+                items(sessions.value) { session ->
                     SessionsListItem(
                         session = SessionsListInfo(
                             id = session.id,
