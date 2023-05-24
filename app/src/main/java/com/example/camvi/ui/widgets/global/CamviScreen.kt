@@ -84,6 +84,12 @@ sealed class AdministradoresScreen(
         null
     )
 
+    object CrearCamarografo: AdministradoresScreen(
+        "Camarografos",
+        "Crear camarografo admin",
+        null
+    )
+
 
 }
 
@@ -129,5 +135,6 @@ sealed class ClientesScreen(
 
     object VerMasCitaCliente:
             ClientesScreen("VerMasCitaCliente", "VerMasCita",null)
+
 }
 
