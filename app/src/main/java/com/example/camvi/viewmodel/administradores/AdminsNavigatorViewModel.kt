@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 
 class AdminsNavigatorViewModel : ViewModel() {
-    private lateinit var navController: NavController = NavController()
+    private lateinit var navController: NavController
 
     fun setNavController(navController: NavController) {
         this.navController = navController
