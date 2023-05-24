@@ -120,17 +120,17 @@ class CamviFunctions {
             return unassignedSessionCount
         }
 
-        fun fnListaCitasClientes(idUsuario: Int): ArrayList<CitasClienteData>{
+        fun fnListaCitasClientes(idUsuario: Int): ArrayList<CitasClienteData> {
             val listaCitas = ArrayList<CitasClienteData>()
 
-            try{
-                val statement = connectSql.dbConn()?.
-                prepareStatement("SELECT * FROM fnCitasCliente(?)")
-                statement?.setInt(1,idUsuario)
+            try {
+                val statement =
+                    connectSql.dbConn()?.prepareStatement("SELECT * FROM fnCitasCliente(?)")
+                statement?.setInt(1, idUsuario)
 
-                val resultSet= statement?.executeQuery()
+                val resultSet = statement?.executeQuery()
 
-                while (resultSet?.next() == true){
+                while (resultSet?.next() == true) {
                     listaCitas.add(
                         CitasClienteData(
                             resultSet.getInt("idSesion"),
@@ -141,10 +141,85 @@ class CamviFunctions {
                     )
                 }
 
-            }catch (ex: Exception){
+            } catch (ex: Exception) {
                 println(ex.message)
             }
             return listaCitas
+        }
+
+        fun getSessionsByStatus(status: SessionStatus): ArrayList<Session> {
+            val sessions = ArrayList<Session>()
+
+            try {
+                val statement =
+                    connectSql.dbConn()?.prepareStatement("SELECT * FROM fnSesionesFinalizadas(?)")
+                statement?.setString(1, status.Name)
+
+                val resultSet = statement?.executeQuery()
+
+                while (resultSet?.next() == true) {
+                    sessions.add(
+                        Session(
+                            id = resultSet.getInt("idSesion"),
+                            titulo = resultSet.getString("titulo"),
+                            detalles = resultSet.getString("detalles"),
+                            fotoGaleria = resultSet.getBytes("foto"),
+                            direccionEvento = resultSet.getString("direccionEvento"),
+                            fechaEvento = resultSet.getDate("fechaEvento").toString(),
+                            horaInicio = resultSet.getTime("horaInicio").toString(),
+                            horaFinalizacion = resultSet.getTime("horaFinalizacion").toString(),
+                            lugar = resultSet.getString("lugar"),
+                            confirmada = resultSet.getBoolean("confirmada"),
+                            cancelada = resultSet.getBoolean("cancelada"),
+                            idFotografo = resultSet.getInt("idFotografo"),
+                            idCliente = resultSet.getInt("idCliente"),
+                            fechaCreacion = resultSet.getDate("fechaDeCreacion").toString(),
+                            realizacion = resultSet.getString("realizacion").toString(),
+                        )
+                    )
+                }
+            } catch (ex: SQLException) {
+                // Handle the exception
+            }
+
+            return sessions
+        }
+
+        fun getSessionById(sessionId: Int): Session? {
+            var session: Session? = null
+
+            try {
+                val statement =
+                    connectSql.dbConn()?.prepareStatement("SELECT * FROM fnGetSessionById(?)")
+                statement?.setInt(1, sessionId)
+
+                val resultSet = statement?.executeQuery()
+
+                if (resultSet?.next() == true) {
+                    session = Session(
+                        id = resultSet.getInt("id"),
+                        titulo = resultSet.getString("titulo"),
+                        detalles = resultSet.getString("detalles"),
+                        fotoGaleria = resultSet.getBytes("fotoGaleria"),
+                        direccionEvento = resultSet.getString("direccionEvento"),
+                        fechaEvento = resultSet.getString("fechaEvento"),
+                        horaInicio = resultSet.getString("horaInicio"),
+                        horaFinalizacion = resultSet.getString("horaFinalizacion"),
+                        lugar = resultSet.getString("lugar"),
+                        confirmada = resultSet.getBoolean("confirmada"),
+                        cancelada = resultSet.getBoolean("cancelada"),
+                        idFotografo = resultSet.getInt("idFotografo"),
+                        fechaCreacion = resultSet.getString("fechaCreacion"),
+                        realizacion = resultSet.getString("realizacion"),
+                        nombreCliente = resultSet.getString("clienteNombre"),
+                        nombreFotografo = resultSet.getString("fotografoNombre")
+                    )
+                }
+            } catch (ex: SQLException) {
+                // Handle the exception
+            }
+
+            return session
         }
 
 
