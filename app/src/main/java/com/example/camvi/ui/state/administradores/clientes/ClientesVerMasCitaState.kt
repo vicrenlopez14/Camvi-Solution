@@ -1,7 +1,6 @@
 package com.example.camvi.ui.state.administradores.clientes
 
 data class ClientesVerMasCitaState(
-
     val titulo: String = "",
     val detalle : String = "",
     val lugar: String = "",

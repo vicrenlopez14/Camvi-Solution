@@ -28,15 +28,26 @@ class ClientesVerMasCitaViewModel : ViewModel(){
     private val dui: String = ""
     private val fotografo: String = ""
 
+    init {
+        VerMasCitasCliente()
+    }
 
+
+    //revisar esta parte xd
     private fun VerMasCitasCliente(){
-        val detalles = CamviFunctions.fnCitasClienteDetalle(CitasClienteData.idSesion)
+        val detalles = CamviFunctions.fnCitasClienteDetalle(idSesion= CitasClienteData.idSesion)
 
         _uiState.value= _uiState.value.copy(
-            titulo= titulo,
-            detalle = detalle,
-            lugar = lugar,
-            fecha = fecha //continuamos aca
+            titulo = detalles.get(1).toString(),
+            detalle = detalles.get(2).toString(),
+            lugar = detalles.get(3).toString(),
+            fecha = detalles.get(4).toString(),
+            horaIni= detalles.get(5).toString(),
+            horaFinali = detalles.get(6).toString(),
+            nombre = detalles.get(7).toString(),
+            contacto = detalles.get(8).toString(),
+            dui = detalles.get(9).toString(),
+            fotografo = detalles.get(10).toString()
         )
     }
 

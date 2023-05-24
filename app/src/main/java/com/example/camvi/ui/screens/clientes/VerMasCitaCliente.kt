@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,11 +27,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.camvi.R
+import com.example.camvi.model.clientes.CitasClienteData
+import com.example.camvi.viewmodel.clientes.ClientesVerMasCitaViewModel
 
 @Composable
-@Preview
-fun VerMasCitaCliente(){
+//@Preview
+fun VerMasCitaCliente(
+    idSesion: Int,
+        verMasCitaClienteViewModel: ClientesVerMasCitaViewModel = viewModel()
+
+
+){
+     val clientesVerMasCitaState by verMasCitaClienteViewModel.uiState.collectAsState()
     Surface() {
          Row(
             horizontalArrangement = Arrangement.Start,
@@ -52,7 +63,7 @@ fun VerMasCitaCliente(){
          ) {
                 Spacer(modifier = Modifier.height(15.dp))
                 Text(
-                    text = "titulo", //aca va el titulo o sea variable
+                    text = clientesVerMasCitaState.titulo, //aca va el titulo o sea variable
                     fontFamily = FontFamily(Font(R.font.inter_semibold)),
                     fontSize= 18.sp,
                     color = Color.Black,
@@ -62,7 +73,7 @@ fun VerMasCitaCliente(){
                 )
                 Spacer(modifier = Modifier.height(5.dp))
                  Text(
-                        text = "Detalle", //aca va el titulo o sea variable
+                        text = clientesVerMasCitaState.detalle, //aca va el titulo o sea variable
                         fontFamily = FontFamily(Font(R.font.inter)),
                         fontSize= 14.sp,
                         color = Color.Black,
@@ -103,7 +114,7 @@ fun VerMasCitaCliente(){
 
                              )
                              Spacer(modifier = Modifier.width(30.dp))
-                             Text(text =  "Lugar", //aca va de nuevo la variable
+                             Text(text = clientesVerMasCitaState.lugar, //aca va de nuevo la variable
                                 fontFamily= FontFamily(Font(R.font.inter)),
                                  fontWeight = FontWeight.Bold,
                                  fontSize = 13.sp,
@@ -128,7 +139,7 @@ fun VerMasCitaCliente(){
                                     .weight(1f)
                              )
                              Spacer(modifier = Modifier.width(30.dp))
-                             Text(text = "Fecha", //aca va de nuevo la variable
+                             Text(text = clientesVerMasCitaState.fecha, //aca va de nuevo la variable
                                 fontFamily= FontFamily(Font(R.font.inter)),
                                  fontWeight = FontWeight.Bold,
                                  fontSize = 13.sp,
@@ -153,7 +164,7 @@ fun VerMasCitaCliente(){
                                     .weight(1f)
                              )
                              Spacer(modifier = Modifier.width(30.dp))
-                             Text(text = "Hora inicio", //aca va de nuevo la variable
+                             Text(text = clientesVerMasCitaState.horaIni, //aca va de nuevo la variable
                                 fontFamily= FontFamily(Font(R.font.inter)),
                                  fontWeight = FontWeight.Bold,
                                  fontSize = 13.sp,
@@ -178,7 +189,7 @@ fun VerMasCitaCliente(){
                                     .weight(1f)
                              )
                              Spacer(modifier = Modifier.width(30.dp))
-                             Text(text = "", //aca va de nuevo la variable
+                             Text(text = clientesVerMasCitaState.horaFinali, //aca va de nuevo la variable
                                 fontFamily= FontFamily(Font(R.font.inter)),
                                  fontWeight = FontWeight.Bold,
                                  fontSize = 13.sp,
@@ -212,13 +223,13 @@ fun VerMasCitaCliente(){
                           )
                          Spacer(modifier = Modifier.width(15.dp))
                          Text(
-                             text = "sesiones.nombre",
+                             text = "Nombre",
                              fontFamily= FontFamily(Font(R.font.inter)),
                              fontSize = 13.sp,
                              color = Color.Gray
                          )
                          Spacer(modifier = Modifier.width(30.dp))
-                         Text(text = "Instituto Tecnico Ricaldone", //aca va de nuevo la variable
+                         Text(text = clientesVerMasCitaState.nombre, //aca va de nuevo la variable
                             fontFamily= FontFamily(Font(R.font.inter)),
                              fontWeight = FontWeight.Bold,
                              fontSize = 13.sp,
@@ -239,7 +250,7 @@ fun VerMasCitaCliente(){
                              color = Color.Gray
                          )
                          Spacer(modifier = Modifier.width(30.dp))
-                         Text(text = "sesiones.contacto", //aca va de nuevo la variable
+                         Text(text = clientesVerMasCitaState.contacto, //aca va de nuevo la variable
                             fontFamily= FontFamily(Font(R.font.inter)),
                              fontWeight = FontWeight.Bold,
                              fontSize = 13.sp,
@@ -260,7 +271,7 @@ fun VerMasCitaCliente(){
                              color = Color.Gray
                          )
                          Spacer(modifier = Modifier.width(30.dp))
-                         Text(text = "sesiones.dui", //aca va de nuevo la variable
+                         Text(text = clientesVerMasCitaState.dui, //aca va de nuevo la variable
                             fontFamily= FontFamily(Font(R.font.inter)),
                              fontWeight = FontWeight.Bold,
                              fontSize = 13.sp,
@@ -290,7 +301,7 @@ fun VerMasCitaCliente(){
                               .size(25.dp)
                           )
                          Spacer(modifier = Modifier.width(30.dp))
-                         Text(text = "sesiones.contacto", //aca va de nuevo la variable
+                         Text(text = clientesVerMasCitaState.fotografo, //aca va de nuevo la variable
                             fontFamily= FontFamily(Font(R.font.inter)),
                              fontWeight = FontWeight.Bold,
                              fontSize = 13.sp,
