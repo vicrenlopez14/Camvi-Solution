@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.camvi.model.globales.SessionStatus
 import com.example.camvi.ui.screens.administradores.AdministradoresDashboard
 import com.example.camvi.ui.screens.administradores.CalificacionesScreen
 import com.example.camvi.ui.screens.administradores.CamarografosListScreen
@@ -13,6 +14,7 @@ import com.example.camvi.ui.screens.administradores.ConfirmacionesScreen
 import com.example.camvi.ui.screens.administradores.SesionesAgendadasScreen
 import com.example.camvi.ui.screens.administradores.SesionesSinCamarografos
 import com.example.camvi.ui.screens.global.AsignarCamarografoAdmin
+import com.example.camvi.ui.screens.global.DetalleMisCitas
 import com.example.camvi.ui.screens.global.PhotoUploadScreen
 import com.example.camvi.ui.widgets.global.AdministradoresScreen
 
@@ -30,8 +32,21 @@ fun AdministradoresNavGraph(navController: NavHostController) {
             CamarografosListScreen()
         }
 
-        composable(AdministradoresScreen.SesionesAdministradores.route) {
-            SesionesAgendadasScreen()
+        composable(
+            "${AdministradoresScreen.SesionesAdministradores.route}/{status}", arguments = listOf(
+                navArgument("status") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val status = when (backStackEntry.arguments?.getString("status")) {
+                SessionStatus.Pendiente.Name -> SessionStatus.Pendiente
+                SessionStatus.EnProgreso.Name -> SessionStatus.EnProgreso
+                SessionStatus.Finalizada.Name -> SessionStatus.Finalizada
+                else -> SessionStatus.Pendiente
+            }
+
+            SesionesAgendadasScreen(
+                status = status
+            )
         }
 
         composable(AdministradoresScreen.ConfirmacionesAdministradores.route) {
@@ -53,12 +68,16 @@ fun AdministradoresNavGraph(navController: NavHostController) {
             AsignarCamarografoAdmin(backStackEntry.arguments?.getString("sessionId") ?: "")
         }
 
-        composable(AdministradoresScreen.SesionesAgendadasAdministradores.route) {
-            SesionesAgendadasScreen()
-        }
 
         composable(AdministradoresScreen.SubirFotografiasAdministradores.route) {
             PhotoUploadScreen()
+        }
+
+        composable(
+            "${AdministradoresScreen.DetalleCitas.route}/{sessionId}",
+            arguments = listOf(navArgument("sessionId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            DetalleMisCitas(backStackEntry.arguments?.getInt("sessionId") ?: 0)
         }
     }
 }
