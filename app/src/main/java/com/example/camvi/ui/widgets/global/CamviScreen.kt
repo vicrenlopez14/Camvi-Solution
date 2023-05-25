@@ -1,6 +1,7 @@
 package com.example.camvi.ui.widgets.global
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -13,6 +14,8 @@ sealed class CamviScreen(
     object Bienvenida : CamviScreen("Bienvenida", "Bienvenida", Icons.Filled.Home)
     object InicioDeSesion : CamviScreen("InicioDeSesion", "InicioDeSesion", Icons.Filled.Home)
     object Registro : CamviScreen("Registro", "Registro", Icons.Filled.Home)
+
+    object CerrarSesion : CamviScreen("CerrarSesion", "Cerrar Sesión", Icons.Filled.Close)
 }
 
 sealed class AdministradoresScreen(

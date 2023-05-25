@@ -41,6 +41,53 @@ fun NavigationDrawerItems(
             drawerState = drawerState
         )
     }
+
+    AddItemCallback(
+        screen = CamviScreen.CerrarSesion,
+        currentDestination = destination,
+        onClick = {
+            navController.navigate(CamviScreen.Bienvenida.route, navOptions {
+                this.popUpTo(navController.graph.startDestinationId)
+                this.launchSingleTop = true
+            })
+        }
+    )
+
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AddItemCallback(
+    screen: CamviScreen,
+    currentDestination: NavDestination?,
+    onClick: () -> Unit,
+) {
+    val scope = rememberCoroutineScope()
+
+    NavigationDrawerItem(
+        icon = { Icon(screen.icon ?: Icons.Filled.Home, screen.title) },
+        label = {
+            Text(
+                text = screen.title ?: "Pantalla",
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        },
+        selected = currentDestination?.route == "SettingPage",
+        onClick = {
+            onClick()
+        },
+        colors = NavigationDrawerItemDefaults.colors(
+            unselectedContainerColor = MaterialTheme.colorScheme.secondary,
+            selectedContainerColor = MaterialTheme.colorScheme.background
+        ),
+        shape = MaterialTheme.shapes.small,
+        modifier = Modifier
+            .padding(NavigationDrawerItemDefaults.ItemPadding)
+            .height(70.dp)
+            .clip(RoundedCornerShape(16.dp))
+    )
+    Spacer(modifier = Modifier.height(10.dp))
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,7 +96,7 @@ fun AddItem(
     screen: CamviScreen,
     currentDestination: NavDestination?,
     navController: NavController,
-    drawerState: DrawerState
+    drawerState: DrawerState,
 ) {
     val scope = rememberCoroutineScope()
 
@@ -70,6 +117,7 @@ fun AddItem(
             scope.launch {
                 drawerState.close()
             }
+
         },
         colors = NavigationDrawerItemDefaults.colors(
             unselectedContainerColor = MaterialTheme.colorScheme.secondary,

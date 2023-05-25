@@ -57,47 +57,53 @@ fun SesionesAgendadasScreen(
         sessions.value = CamviFunctions.getSessionsByStatus(status)
     }
 
+
     Surface(
         Modifier
             .fillMaxSize()
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            Spacer(Modifier.height(16.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+        if (sessions.value.isEmpty()) {
+            Text("No hay sesiones agendadas", style = MaterialTheme.typography.headlineSmall)
+        }
+        if (sessions.value.isNotEmpty()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
             ) {
-                Text(
-                    status.NaturalName, style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Medium
-                )
+                Spacer(Modifier.height(16.dp))
 
-                StatusChip(status)
-            }
-
-            Spacer(Modifier.height(32.dp))
-
-            LazyColumn(Modifier.fillMaxSize()) {
-                items(sessions.value) { session ->
-                    SessionsListItem(
-                        session = SessionsListInfo(
-                            id = session.id,
-                            titulo = session.titulo,
-                            camarografo = session.nombreFotografo,
-                            cliente = session.nombreCliente,
-                            fechaEvento = session.fechaEvento,
-                            fotoGaleria = session.fotoGaleria,
-                        ),
-                        onClick = {
-
-                            navController.navigate("${AdministradoresScreen.DetalleCitas.route}/${session.id}")
-                        }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    Text(
+                        status.NaturalName, style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Medium
                     )
+
+                    StatusChip(status)
+                }
+
+                Spacer(Modifier.height(32.dp))
+
+                LazyColumn(Modifier.fillMaxSize()) {
+                    items(sessions.value) { session ->
+                        SessionsListItem(
+                            session = SessionsListInfo(
+                                id = session.id,
+                                titulo = session.titulo,
+                                camarografo = session.nombreFotografo,
+                                cliente = session.nombreCliente,
+                                fechaEvento = session.fechaEvento,
+                                fotoGaleria = session.fotoGaleria,
+                            ),
+                            onClick = {
+
+                                navController.navigate("${AdministradoresScreen.DetalleCitas.route}/${session.id}")
+                            }
+                        )
+                    }
                 }
             }
         }

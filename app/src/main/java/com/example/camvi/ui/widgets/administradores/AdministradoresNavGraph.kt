@@ -35,7 +35,7 @@ fun AdministradoresNavGraph(
         }
 
         composable(AdministradoresScreen.SesionesAdministradores.route) {
-            //SesionesAgendadasScreen()
+            SesionesAgendadasScreen(navController, SessionStatus.Pendiente)
         }
 
         composable(AdministradoresScreen.ConfirmacionesAdministradores.route) {
@@ -76,7 +76,7 @@ fun AdministradoresNavGraph(
         }
 
         composable(AdministradoresScreen.CrearCamarografo.route) {
-            CrearCamarografo()
+            CrearCamarografo(navController)
         }
     }
 }

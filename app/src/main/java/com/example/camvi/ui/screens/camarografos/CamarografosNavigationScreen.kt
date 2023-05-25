@@ -19,8 +19,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.camvi.ui.widgets.administradores.AdministradoresNavGraph
 import com.example.camvi.ui.widgets.administradores.DrawerContenido
+import com.example.camvi.ui.widgets.global.CamarografosNavGraph
 import com.example.camvi.ui.widgets.global.CamarografosScreen
 import kotlinx.coroutines.launch
 
@@ -73,7 +73,7 @@ fun CamarografosNavigationScreen() {
                     .padding(it)
                     .fillMaxSize()
             ) {
-                AdministradoresNavGraph(navController = navController)
+                CamarografosNavGraph(navController = navController)
             }
         }
     }
