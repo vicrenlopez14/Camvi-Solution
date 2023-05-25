@@ -45,21 +45,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.R
 import com.example.camvi.model.globales.Periodo
 import com.example.camvi.ui.widgets.global.AdministradoresScreen
 import com.example.camvi.viewmodel.administradores.AdminsDashboardViewModel
-import com.example.camvi.viewmodel.administradores.AdminsNavigatorViewModel
 import kotlinx.coroutines.delay
 
 @Preview
 @Composable
 fun AdministradoresDashboardPreview() {
-    AdministradoresDashboard()
+    AdministradoresDashboard(rememberNavController())
 }
 
 @Composable
-fun AdministradoresDashboard() {
+fun AdministradoresDashboard(navController: NavController) {
     Surface(Modifier.fillMaxSize()) {
         Column(
             Modifier
@@ -73,7 +74,9 @@ fun AdministradoresDashboard() {
             Spacer(Modifier.height(16.dp))
             StatisticsList()
             Spacer(Modifier.height(16.dp))
-            SatisfactionCarrousel()
+            SatisfactionCarrousel {
+                navController.navigate(it)
+            }
         }
     }
 }
@@ -111,7 +114,7 @@ fun Header() {
 @Composable
 fun SatisfactionCarrousel(
     adminsDashboardViewModel: AdminsDashboardViewModel = viewModel(),
-    navigationViewModel: AdminsNavigatorViewModel = viewModel()
+    navigateTo: (String) -> Unit
 ) {
     val adminsDashboardUiState by adminsDashboardViewModel.uiState.collectAsState()
 
@@ -133,8 +136,7 @@ fun SatisfactionCarrousel(
             text = "Se agendaron ${adminsDashboardUiState.newSesions} sesiones más.",
             color = colorResource(id = R.color.GreenSuccess),
             modifier = Modifier.clickable {
-                val navController = navigationViewModel.getNavController()
-                navController.navigate("${AdministradoresScreen.SesionesSinCamarografosAdministradores}/{id}")
+                navigateTo("${AdministradoresScreen.SesionesSinCamarografosAdministradores}/{id}")
             }
         )
     }
@@ -143,7 +145,7 @@ fun SatisfactionCarrousel(
 @Composable
 fun WarningSesiones(
     adminsDashboardViewModel: AdminsDashboardViewModel = viewModel(),
-    navigationViewModel: AdminsNavigatorViewModel = viewModel(),
+    navigateTo: (String) -> Unit = {}
 ) {
     val adminsDashboardUiState by adminsDashboardViewModel.uiState.collectAsState()
 
@@ -200,9 +202,7 @@ fun WarningSesiones(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .clickable {
-                            val navController = navigationViewModel.getNavController()
-
-                            navController.navigate(AdministradoresScreen.SesionesSinCamarografosAdministradores.route)
+                            navigateTo(AdministradoresScreen.SesionesSinCamarografosAdministradores.route)
                         }
                 )
             }

@@ -1,20 +1,12 @@
 package com.example.camvi.ui.screens.administradores
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -27,22 +19,28 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.model.administradores.SesionesSinCamarografosData
 import com.example.camvi.model.globales.CamviViews
-import com.example.camvi.ui.screens.ui.theme.CamviTheme
 import com.example.camvi.ui.widgets.administradores.ItemListaSesionesSinCamarografos
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-fun SesionesSinCamarografos(){
+fun SesionesSinCamarografosPreview() {
+    SesionesSinCamarografos(navController = rememberNavController())
+}
+
+@Composable
+fun SesionesSinCamarografos(navController: NavController) {
 
     val items = remember { mutableStateOf(emptyList<SesionesSinCamarografosData>()) }
 
-    LaunchedEffect(true){
+    LaunchedEffect(true) {
         try {
             var result = CamviViews.vwSesionesSinFotografos()
             items.value = result
-        }catch (e:Exception){
+        } catch (e: Exception) {
             println(e)
         }
     }
@@ -51,7 +49,8 @@ fun SesionesSinCamarografos(){
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
         modifier = Modifier
-            .fillMaxSize()) {
+            .fillMaxSize()
+    ) {
 
         Text(
             text = "Sesiones sin camarógrafos asignados",
@@ -62,7 +61,8 @@ fun SesionesSinCamarografos(){
 
         Text(
             text = "Verifica que sesiones fotográficas no cuentan con un camarógrafo asignado",
-            modifier = Modifier.padding(start = 30.dp) )
+            modifier = Modifier.padding(start = 30.dp)
+        )
 
         Divider(
             color = Color.LightGray,
@@ -72,8 +72,9 @@ fun SesionesSinCamarografos(){
         )
 
         LazyColumn(
-            Modifier.fillMaxWidth()){
-            items(items.value.size){index ->
+            Modifier.fillMaxWidth()
+        ) {
+            items(items.value.size) { index ->
                 ItemListaSesionesSinCamarografos(items.value[index])
             }
         }

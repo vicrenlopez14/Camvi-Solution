@@ -1,14 +1,14 @@
 package com.example.camvi.ui.screens.clientes
 
-import android.content.ClipData.Item
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -32,13 +32,14 @@ import com.example.camvi.ui.widgets.clientes.ItemCamarografos
 @Composable
 fun CamarografoScreen() {
 
-    val items = remember{ mutableStateOf(emptyList<CamarografoDisponibleData>()) }
+    val items = remember { mutableStateOf(emptyList<CamarografoDisponibleData>()) }
 
-    LaunchedEffect(true){
+    LaunchedEffect(true) {
         try {
-            val result = CamviViews.vwNombresCamarografosDesocupados()
+            // TODO: Cambiar el idUsuario por el id del usuario que está logueado
+            val result = CamviViews.vwNombresCamarografosDesocupados(1)
             items.value = result
-        }catch (e:Exception){
+        } catch (e: Exception) {
             println(e)
         }
     }
@@ -48,7 +49,8 @@ fun CamarografoScreen() {
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.Start) {
+        horizontalAlignment = Alignment.Start
+    ) {
 
         Text(
             text = "Asigna un camarógrafo",
@@ -58,7 +60,8 @@ fun CamarografoScreen() {
             color = Color.Black,
             modifier = Modifier
                 .padding(start = 30.dp, top = 20.dp)
-                .fillMaxWidth())
+                .fillMaxWidth()
+        )
 
         Text(
             text = "Camarógrafos disponibles.",
@@ -67,18 +70,21 @@ fun CamarografoScreen() {
             color = Color.Black,
             modifier = Modifier
                 .padding(start = 30.dp)
-                .fillMaxWidth())
+                .fillMaxWidth()
+        )
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 6.dp)) {
+                .padding(top = 6.dp)
+        ) {
 
             LazyColumn(
                 modifier = Modifier.padding(start = 5.dp),
-                contentPadding = PaddingValues(bottom = 16.dp))
+                contentPadding = PaddingValues(bottom = 16.dp)
+            )
             {
-                items(items.value.size){ index ->
+                items(items.value.size) { index ->
                     ItemCamarografos(items.value[index])
                 }
             }

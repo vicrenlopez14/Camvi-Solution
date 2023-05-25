@@ -29,7 +29,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.R
 import com.example.camvi.model.globales.CamviFunctions
 import com.example.camvi.model.globales.Session
@@ -38,23 +39,19 @@ import com.example.camvi.model.globales.SessionsListInfo
 import com.example.camvi.ui.widgets.global.AdministradoresScreen
 import com.example.camvi.ui.widgets.global.CamviButton
 import com.example.camvi.ui.widgets.global.StatusChip
-import com.example.camvi.viewmodel.administradores.AdminsNavigatorViewModel
 
 @Preview
 @Composable
 fun SesionesAgendadasScreenPreview() {
-    SesionesAgendadasScreen(SessionStatus.EnProgreso)
+    SesionesAgendadasScreen(navController = rememberNavController(), SessionStatus.EnProgreso)
 }
 
 @Composable
 fun SesionesAgendadasScreen(
-    status: SessionStatus,
-    adminsNavigationViewModel: AdminsNavigatorViewModel = viewModel()
+    navController: NavController,
+    status: SessionStatus
 ) {
-
-
     val sessions = remember { mutableStateOf(emptyList<Session>()) }
-
 
     LaunchedEffect(key1 = sessions) {
         sessions.value = CamviFunctions.getSessionsByStatus(status)
@@ -97,9 +94,8 @@ fun SesionesAgendadasScreen(
                             fotoGaleria = session.fotoGaleria,
                         ),
                         onClick = {
-                            val navController = adminsNavigationViewModel.getNavController()
 
-                            //navController.navigate("${AdministradoresScreen.DetalleCitas.route}/${session.id}")
+                            navController.navigate("${AdministradoresScreen.DetalleCitas.route}/${session.id}")
                         }
                     )
                 }

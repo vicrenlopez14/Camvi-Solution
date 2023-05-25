@@ -1,13 +1,11 @@
-    package com.example.camvi.model.globales
+package com.example.camvi.model.globales
 
 import com.example.camvi.model.administradores.CamarografoItemData
 import com.example.camvi.model.administradores.SesionesSinCamarografosData
 import com.example.camvi.model.clientes.CamarografoDisponibleData
-import com.example.camvi.model.clientes.CitasClienteData
-import java.sql.SQLException
 
 
-    class CamviViews {
+class CamviViews {
     companion object {
         private var connectSql = ConnectSql()
 
@@ -25,7 +23,7 @@ import java.sql.SQLException
                 while (resultSet?.next() == true) {
                     listaCamarografos.add(
                         CamarografoItemData(
-                             resultSet.getString("Nombre")
+                            resultSet.getString("Nombre")
                         )
                     )
                 }
@@ -40,7 +38,8 @@ import java.sql.SQLException
             var resultado: Pair<Int, String> = Pair(0, "")
 
             try {
-                val statement = connectSql.dbConn()?.prepareStatement("SELECT SesionesEnCurso, Mensaje FROM vwEstadisticaSesionesEnCurso")
+                val statement = connectSql.dbConn()
+                    ?.prepareStatement("SELECT SesionesEnCurso, Mensaje FROM vwEstadisticaSesionesEnCurso")
                 val resultSet = statement?.executeQuery()
 
                 if (resultSet?.next() == true) {
@@ -55,32 +54,35 @@ import java.sql.SQLException
             return resultado
         }
 
-        fun vwNombresCamarografosDesocupados(idUsuario:Int): ArrayList<CamarografoDisponibleData>{
+        fun vwNombresCamarografosDesocupados(idUsuario: Int): ArrayList<CamarografoDisponibleData> {
             val ListaCamarografosDisponibles = ArrayList<CamarografoDisponibleData>()
 
             try {
-                val statement = connectSql.dbConn()?.prepareStatement("SELECT * FROM vwNombresCamarografosDesocupados")
-                    statement?.setInt(1,idUsuario)
+                val statement = connectSql.dbConn()
+                    ?.prepareStatement("SELECT * FROM vwNombresCamarografosDesocupados")
+                statement?.setInt(1, idUsuario)
 
                 val resultSet = statement?.executeQuery()
 
-                while (resultSet?.next() == true){
+                while (resultSet?.next() == true) {
                     ListaCamarografosDisponibles.add(CamarografoDisponibleData(resultSet.getString("Nombre")))
                 }
-            }catch (ex:Exception){
+            } catch (ex: Exception) {
                 print(ex.message)
             }
             return ListaCamarografosDisponibles
         }
-        fun vwSesionesSinFotografos(): ArrayList<SesionesSinCamarografosData>{
+
+        fun vwSesionesSinFotografos(): ArrayList<SesionesSinCamarografosData> {
             val ListaSesionesSinCamarografos = ArrayList<SesionesSinCamarografosData>()
 
             try {
-                val statement = connectSql.dbConn()?.prepareStatement("SELECT * FROM  vwSesionesSinFotografo")
+                val statement =
+                    connectSql.dbConn()?.prepareStatement("SELECT * FROM  vwSesionesSinFotografo")
 
                 val resultSet = statement?.executeQuery()
 
-                while (resultSet?.next() == true){
+                while (resultSet?.next() == true) {
                     val titulo = resultSet.getString("titulo")
                     val direccionEvento = resultSet.getString("direccionEvento")
                     val fechaEvento = resultSet.getString("fechaEvento")
@@ -89,11 +91,19 @@ import java.sql.SQLException
                     val lugar = resultSet.getString("lugar")
                     val confirmada = resultSet.getString("confirmada")
 
-                    val sesion = SesionesSinCamarografosData(titulo, direccionEvento, fechaEvento, horaInicio, horaFinalizacion, lugar, confirmada)
+                    val sesion = SesionesSinCamarografosData(
+                        titulo,
+                        direccionEvento,
+                        fechaEvento,
+                        horaInicio,
+                        horaFinalizacion,
+                        lugar,
+                        confirmada
+                    )
 
                     ListaSesionesSinCamarografos.add(sesion)
                 }
-            }catch (ex:Exception){
+            } catch (ex: Exception) {
                 print(ex.message)
             }
             return ListaSesionesSinCamarografos

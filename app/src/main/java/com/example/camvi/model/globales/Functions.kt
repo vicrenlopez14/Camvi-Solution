@@ -1,14 +1,38 @@
 package com.example.camvi.model.globales
 
 import com.example.camvi.model.administradores.Sesiones
-import com.example.camvi.model.clientes.CitasClienteData
+import com.example.camvi.model.clientes.CitasClienteDetalleData
 import com.example.camvi.ui.state.administradores.clientes.VerMasCamarografoState
-import com.example.camvi.ui.state.administradores.clientes.ClientesVerMasCitaState
 import java.sql.SQLException
 
 class CamviFunctions {
     companion object {
         private var connectSql = ConnectSql()
+
+        fun getUserByEmail(email: String): UserBasicInformation? {
+            val query = "SELECT * FROM fnGetUserByEmail(?)"
+
+            try {
+                val statement = connectSql.dbConn()?.prepareStatement(query)
+                statement?.setString(1, email)
+
+                val resultSet = statement?.executeQuery()
+
+                if (resultSet?.next() == true) {
+                    return UserBasicInformation(
+                        id = resultSet.getInt("idUsuario"),
+                        name = resultSet.getString("nombre"),
+                        email = resultSet.getString("correo"),
+                        password = resultSet.getString("pass"),
+                    )
+                }
+            } catch (e: SQLException) {
+                // Handle any exceptions
+            }
+
+            return null
+        }
+
 
         fun fnIniciarSesion(correo: String, pass: String): Int {
             var tipoUsuario: Int = 0
@@ -248,21 +272,22 @@ class CamviFunctions {
                             fotografo = resultSet.getString("Nombre del fotografo") ///aca me quede antes de pasar a fase 3
                     )
                 }
-            }catch (ex : Exception){
+            } catch (ex: Exception) {
                 println(ex.message)
             }
             return detalleData
         }
 
-        fun fnVerMasCamarografo(idCamarografo:Int): ArrayList<VerMasCamarografoState>{
+        fun fnVerMasCamarografo(idCamarografo: Int): ArrayList<VerMasCamarografoState> {
             val VerMasCamarografo = ArrayList<VerMasCamarografoState>()
             try {
-                val statement = connectSql.dbConn()?.prepareStatement("SELECT * from fnVerMasCamarografo(?)")
-                statement?.setInt(1,idCamarografo)
+                val statement =
+                    connectSql.dbConn()?.prepareStatement("SELECT * from fnVerMasCamarografo(?)")
+                statement?.setInt(1, idCamarografo)
 
                 val resultSet = statement?.executeQuery()
 
-                while (resultSet?.next() == true){
+                while (resultSet?.next() == true) {
                     VerMasCamarografo.add(
                         VerMasCamarografoState(
                             resultSet.getString("nombre"),
@@ -274,7 +299,7 @@ class CamviFunctions {
                         )
                     )
                 }
-            }catch (ex: Exception){
+            } catch (ex: Exception) {
                 println(ex.message)
             }
             return VerMasCamarografo

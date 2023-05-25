@@ -21,6 +21,7 @@ sealed class AdministradoresScreen(
     icon: ImageVector?
 ) :
     CamviScreen(route, title, icon) {
+
     object InicioAdministradores :
         AdministradoresScreen(
             "AdministradoresScreen",
@@ -84,6 +85,18 @@ sealed class AdministradoresScreen(
         null
     )
 
+    object CrearCamarografo : AdministradoresScreen(
+        "CrearCamarografo",
+        "Crear camarógrafo",
+        null
+    )
+
+    object DetalleCitas : AdministradoresScreen(
+        "DetalleCitas",
+        "Detalle citas",
+        null
+    )
+
 
 }
 
@@ -109,6 +122,13 @@ sealed class CamarografosScreen(
             "Notificaciones",
             Icons.Filled.Done
         )
+
+    object CrearCamarografo :
+        CamarografosScreen(
+            "Crear camarógrafo",
+            "Crear camarógrafo",
+            Icons.Filled.Done
+        )
 }
 
 sealed class ClientesScreen(
@@ -127,7 +147,7 @@ sealed class ClientesScreen(
     object CalificanosClientes :
         ClientesScreen("CalificanosClientes", "Calificanos", Icons.Filled.Done)
 
-    object VerMasCitaCliente:
-            ClientesScreen("VerMasCitaCliente", "VerMasCita",null)
+    object VerMasCitaCliente :
+        ClientesScreen("VerMasCitaCliente", "VerMasCita", null)
 }
 

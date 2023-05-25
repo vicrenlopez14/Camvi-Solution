@@ -20,19 +20,25 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.model.administradores.CamarografoItemData
 import com.example.camvi.model.globales.CamviViews
 import com.example.camvi.ui.widgets.administradores.ItemListaCamarografos
 import com.example.camvi.ui.widgets.global.AdministradoresScreen
-import com.example.camvi.viewmodel.administradores.AdminsNavigatorViewModel
 
+
+@Preview
+@Composable
+fun CamarografosListScreenPreview() {
+    CamarografosListScreen(rememberNavController())
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-@Preview(showBackground = true)
+
 fun CamarografosListScreen(
-    navigationViewModel: AdminsNavigatorViewModel= viewModel()
+    navController: NavController
 ) {
     val items = remember { mutableStateOf(emptyList<CamarografoItemData>()) }
 
@@ -68,8 +74,7 @@ fun CamarografosListScreen(
 
         Button(
             onClick = {
-                      val navController = navigationViewModel.getNavController()
-                    navController.navigate(AdministradoresScreen.CrearCamarografo.route)
+                navController.navigate(AdministradoresScreen.CrearCamarografo.route)
             },
             modifier = Modifier
                 .padding(start = 30.dp, top = 15.dp)
@@ -90,7 +95,7 @@ fun CamarografosListScreen(
                 .fillMaxWidth()
         ) {
             items(items.value.size) { index ->
-               ItemListaCamarografos(items.value[index])
+                ItemListaCamarografos(items.value[index])
             }
         }
     }
