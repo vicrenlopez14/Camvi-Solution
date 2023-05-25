@@ -83,6 +83,7 @@ class CamviViews {
                 val resultSet = statement?.executeQuery()
 
                 while (resultSet?.next() == true) {
+                    val idSesion = resultSet.getInt("idSesion")
                     val titulo = resultSet.getString("titulo")
                     val direccionEvento = resultSet.getString("direccionEvento")
                     val fechaEvento = resultSet.getString("fechaEvento")
@@ -92,6 +93,7 @@ class CamviViews {
                     val confirmada = resultSet.getString("confirmada")
 
                     val sesion = SesionesSinCamarografosData(
+                        idSesion,
                         titulo,
                         direccionEvento,
                         fechaEvento,

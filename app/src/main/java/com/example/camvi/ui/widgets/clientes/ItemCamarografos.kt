@@ -20,10 +20,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.camvi.R
-import com.example.camvi.model.administradores.CamarografoItemData
 import com.example.camvi.model.clientes.CamarografoDisponibleData
 
 //@Preview(showBackground = true)
@@ -53,7 +51,7 @@ fun ItemCamarografos(camarografoDisponibleData: CamarografoDisponibleData){
                 Modifier
                     .fillMaxWidth()) {
                 Text(
-                    text = camarografoDisponibleData.nombre,
+                    text = camarografoDisponibleData.nombre ?: "",
                     Modifier
                         .padding(bottom = 5.dp))
 

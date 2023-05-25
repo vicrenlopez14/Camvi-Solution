@@ -157,12 +157,10 @@ fun VerMasFotografoScreen(idCamarografo:Int,
 
             Text(
                 fontFamily = FontFamily(Font(R.font.inter_boldd)),
-                text = verMasCamarografoState.acercaDe)
+                text = "Sobre mi")
 
             Text(
-                text = "Con más de cinco años de experiencia. Desde muy " +
-                        "pequeño me apasiona el arte de la fotografía, por lo que me " +
-                        "gradué en la licenciatura de comunicaciones.")
+                text = verMasCamarografoState.acercaDe)
         }
     }
 }

@@ -16,27 +16,33 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.camvi.R
 import com.example.camvi.model.administradores.SesionesSinCamarografosData
 
 @Composable
 //@Preview(showBackground = true)
-fun ItemListaSesionesSinCamarografos(sesionesSinCamarografosData: SesionesSinCamarografosData){
+fun ItemListaSesionesSinCamarografos(
+    sesionesSinCamarografosData: SesionesSinCamarografosData,
+    onNavigateTo: (String) -> Unit
+) {
 
-    Card(colors = CardDefaults.cardColors
-        (containerColor = colorResource(id = R.color.YellowLight)),
-        modifier = Modifier.padding(30.dp)) {
+    Card(
+        colors = CardDefaults.cardColors
+            (containerColor = colorResource(id = R.color.YellowLight)),
+        modifier = Modifier.padding(30.dp)
+    ) {
 
         Column(
-            Modifier.fillMaxWidth()) {
+            Modifier.fillMaxWidth()
+        ) {
             Image(
                 painter = painterResource(id = R.drawable.boda),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(194.dp))
+                    .height(194.dp)
+            )
             Text(
                 modifier = Modifier
                     .padding(start = 15.dp, top = 10.dp),
@@ -51,14 +57,18 @@ fun ItemListaSesionesSinCamarografos(sesionesSinCamarografosData: SesionesSinCam
             )
 
             Button(
-                onClick = {  }, //Pasaria a la pantalla AsignarCamarografoAdmin
+                onClick = {
+//                    onNavigateTo(sesionesSinCamarografosData.id)
+                }, //Pasaria a la pantalla AsignarCamarografoAdmin
                 colors = ButtonDefaults.buttonColors
                     (containerColor = colorResource(id = R.color.White)),
-                modifier = Modifier.padding(start = 15.dp, bottom = 10.dp, top = 6.dp)) {
+                modifier = Modifier.padding(start = 15.dp, bottom = 10.dp, top = 6.dp)
+            ) {
 
                 Text(
                     text = "Asignar camarógrafo",
-                    color = colorResource(id = R.color.black))
+                    color = colorResource(id = R.color.black)
+                )
             }
         }
     }

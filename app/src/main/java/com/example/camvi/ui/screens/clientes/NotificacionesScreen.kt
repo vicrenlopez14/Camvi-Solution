@@ -10,15 +10,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Preview
 @Composable
 fun NotificacionesScreenClientePreview() {
-
+    NotificacionesScreenCliente(rememberNavController())
 }
 
 @Composable
-fun NotificacionesScreenCliente() {
+fun NotificacionesScreenCliente(navController: NavController) {
     Surface(Modifier.fillMaxSize()) {
         Row {
             Column {
