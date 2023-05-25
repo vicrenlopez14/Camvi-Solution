@@ -10,7 +10,6 @@ import com.example.camvi.ui.screens.administradores.AdministradoresDashboard
 import com.example.camvi.ui.screens.administradores.CalificacionesScreen
 import com.example.camvi.ui.screens.administradores.CamarografosListScreen
 import com.example.camvi.ui.screens.administradores.ConfirmacionesScreen
-import com.example.camvi.ui.screens.administradores.CrearCamarografo
 import com.example.camvi.ui.screens.administradores.SesionesAgendadasScreen
 import com.example.camvi.ui.screens.administradores.SesionesSinCamarografos
 import com.example.camvi.ui.screens.global.AsignarCamarografoAdmin
@@ -60,10 +59,6 @@ fun AdministradoresNavGraph(navController: NavHostController) {
 
         composable(AdministradoresScreen.SubirFotografiasAdministradores.route) {
             PhotoUploadScreen()
-        }
-
-        composable(AdministradoresScreen.CrearCamarografo.route){
-            CrearCamarografo()
         }
     }
 }

@@ -59,21 +59,7 @@ fun SessionCard(
                     .fillMaxWidth()
 
             ) {
-                Surface(
-                    color = colorResource(id = status.ColorResource),
-                    contentColor = MaterialTheme.colorScheme.onError,
-                    shape = RoundedCornerShape(32.dp)
-                ) {
-                    Text(
-                        status.Name,
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(
-                            vertical = 8.dp,
-                            horizontal = 24.dp
-                        ),
-                    )
-                }
+                StatusChip(status)
 
                 Text(
                     municipality,
