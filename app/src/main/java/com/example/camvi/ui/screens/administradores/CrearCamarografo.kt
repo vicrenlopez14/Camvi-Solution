@@ -26,7 +26,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,14 +40,22 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.R
 import com.example.camvi.model.globales.CamviProcedures
+import com.example.camvi.ui.widgets.global.AdministradoresScreen
 
+
+@Preview
+@Composable
+fun CrearCamarografoPreview() {
+    CrearCamarografo(navController = rememberNavController())
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-@Preview
-fun CrearCamarografo(){
+fun CrearCamarografo(navController: NavController) {
 
     val nombre = remember {
         mutableStateOf("")
@@ -72,22 +79,22 @@ fun CrearCamarografo(){
 
     val context = LocalContext.current
 
-    Surface(){
+    Surface() {
         Row(
-                        horizontalArrangement = Arrangement.Start,
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth()
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
         ) {
         }
-        LazyColumn(){
-            item { 
+        LazyColumn() {
+            item {
                 Column(
-                     modifier = Modifier
-                         .fillMaxSize()
-                         .padding(horizontal = 20.dp, vertical = 30.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 20.dp, vertical = 30.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                     Image(
+                    Image(
                         painter = painterResource(id = R.drawable.persona),
                         contentDescription = "",
                         modifier = Modifier
@@ -108,82 +115,86 @@ fun CrearCamarografo(){
                     OutlinedTextField(
                         value = nombre.value,
                         onValueChange = {
-                            nombre.value= it
+                            nombre.value = it
                         },
                         label = { Text("Nombre") },
                         modifier = Modifier.fillMaxWidth(0.95f)
                     )
                     Spacer(modifier = Modifier.height(10.dp))
                     OutlinedTextField(
-                    value = contacto.value,
-                    onValueChange = {
-                        contacto.value = it
-                    },
-                    label = { Text("Contacto") },
-                    modifier = Modifier.fillMaxWidth(0.95f)
-                )
+                        value = contacto.value,
+                        onValueChange = {
+                            contacto.value = it
+                        },
+                        label = { Text("Contacto") },
+                        modifier = Modifier.fillMaxWidth(0.95f)
+                    )
 
-                Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
-                OutlinedTextField(
-                    value = dui.value,
-                    onValueChange = {
-                        dui.value = it
-                    },
-                    label = { Text("DUI") },
-                    modifier = Modifier.fillMaxWidth(0.95f)
-                )
+                    OutlinedTextField(
+                        value = dui.value,
+                        onValueChange = {
+                            dui.value = it
+                        },
+                        label = { Text("DUI") },
+                        modifier = Modifier.fillMaxWidth(0.95f)
+                    )
 
-                Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
-                OutlinedTextField(
-                    value = correo.value,
-                    onValueChange = {
-                        correo.value = it
-                    },
-                    label = { Text("Correo") },
-                    modifier = Modifier.fillMaxWidth(0.95f)
-                )
+                    OutlinedTextField(
+                        value = correo.value,
+                        onValueChange = {
+                            correo.value = it
+                        },
+                        label = { Text("Correo") },
+                        modifier = Modifier.fillMaxWidth(0.95f)
+                    )
 
-                Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
-                OutlinedTextField(
-                    value = contrasena.value,
-                    onValueChange = {
-                        contrasena.value = it
-                    },
-                    label = { Text("Contraseña") },
-                    modifier = Modifier.fillMaxWidth(0.95f)
-                )
+                    OutlinedTextField(
+                        value = contrasena.value,
+                        onValueChange = {
+                            contrasena.value = it
+                        },
+                        label = { Text("Contraseña") },
+                        modifier = Modifier.fillMaxWidth(0.95f)
+                    )
 
-                Spacer(modifier = Modifier.height(40.dp))
-                Button(onClick = {
-                                 CrearCamarografos(
-                                     nombre.value,
-                                     contacto.value,
-                                     dui.value,
-                                     correo.value,
-                                     contrasena.value,
-                                     context
-                                 )
-                },
+                    Spacer(modifier = Modifier.height(40.dp))
+                    Button(
+                        onClick = {
+                            CrearCamarografos(
+                                nombre = nombre.value,
+                                contacto = contacto.value,
+                                dui = dui.value,
+                                correo = correo.value,
+                                contrasena = contrasena.value,
+                                context = context,
+                                onSuccessNavigateTo = {
+                                    navController.navigate(it)
+                                }
+                            )
+                        },
                         shape = RoundedCornerShape(15.dp),
                         border = BorderStroke(width = 1.dp, color = Color(0xFFF3DE8A)),
                         colors = ButtonDefaults.outlinedButtonColors(
                             containerColor = Color.White
                         ),
-                            modifier = Modifier
-                                .width(250.dp)
-                                .height(48.dp)
-                )
-                {
-                    Text(
-                    text = "Crear camarógrafo",
-                    color = Color.Black,
-                    fontSize = 16.sp,
-                    fontFamily = FontFamily(Font(R.font.inter_semibold))
+                        modifier = Modifier
+                            .width(250.dp)
+                            .height(48.dp)
                     )
-                }
+                    {
+                        Text(
+                            text = "Crear camarógrafo",
+                            color = Color.Black,
+                            fontSize = 16.sp,
+                            fontFamily = FontFamily(Font(R.font.inter_semibold))
+                        )
+                    }
 
                 }
             }
@@ -193,17 +204,18 @@ fun CrearCamarografo(){
 }
 
 //validacion de correo electronico
-fun ValidarCorreo(correo : String): Boolean = Patterns.EMAIL_ADDRESS.matcher(correo).matches();
-fun ValidarContrasenia(contrasena: String) : Boolean = contrasena.length >= 6;
+fun ValidarCorreo(correo: String): Boolean = Patterns.EMAIL_ADDRESS.matcher(correo).matches();
+fun ValidarContrasenia(contrasena: String): Boolean = contrasena.length >= 6;
 
 fun CrearCamarografos(
     nombre: String,
     contacto: String,
     dui: String,
     correo: String,
-    contrasena:String,
-    context: Context
-){
+    contrasena: String,
+    context: Context,
+    onSuccessNavigateTo: (String) -> Unit
+) {
 
     if (nombre.isEmpty() || contacto.isEmpty() || dui.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
         Toast.makeText(
@@ -211,30 +223,30 @@ fun CrearCamarografos(
             "Por favor, rellene todos los campos o ingrese una dirección de correo válida",
             Toast.LENGTH_SHORT
         ).show()
-    }
-    else if(ValidarCorreo(correo) == false && ValidarContrasenia(contrasena)== false)
-    {
+    } else if (ValidarCorreo(correo) == false && ValidarContrasenia(contrasena) == false) {
         Toast.makeText(
             context,
             "Por favor, verifique la dirección de correo o escoja una contraseña de al menos 6 digitos",
             Toast.LENGTH_SHORT
         ).show()
-    }
-    else
-    {
-            val result = CamviProcedures.spRegistrarCamarografo(
-                nombre,
-                contacto,
-                dui,
-                correo,
-                contrasena
-            )
-        if (result == 1){
-            Toast.makeText(context,"Camarógrafo creado con exito", Toast.LENGTH_LONG).show()
+    } else {
+        val result = CamviProcedures.spRegistrarCamarografo(
+            nombre,
+            contacto,
+            dui,
+            correo,
+            contrasena
+        )
+        if (result == 1) {
+            Toast.makeText(context, "Camarógrafo creado con exito", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(
+                context,
+                "Hubo un error a la hora de crear el camarógrafo",
+                Toast.LENGTH_LONG
+            ).show()
         }
-        else{
-            Toast.makeText(context,"Hubo un error a la hora de crear el camarógrafo", Toast.LENGTH_LONG).show()
-        }
+        onSuccessNavigateTo(AdministradoresScreen.CamarografosAdministradores.route)
     }
 
 }

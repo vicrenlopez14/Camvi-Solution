@@ -38,6 +38,7 @@ fun DrawerContenido(
             Spacer(modifier = Modifier.height(32.dp))
             NavigationDrawerItems(navController, drawerState, items)
             Spacer(modifier = Modifier.weight(1f))
+
         }
     }
 }
