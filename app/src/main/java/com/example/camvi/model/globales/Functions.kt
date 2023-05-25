@@ -1,6 +1,7 @@
 package com.example.camvi.model.globales
 
 import com.example.camvi.model.administradores.Sesiones
+import com.example.camvi.model.camarografos.CamarografosSesionesData
 import com.example.camvi.model.clientes.CitasClienteData
 import com.example.camvi.model.clientes.CitasClienteDetalleData
 import com.example.camvi.ui.state.administradores.clientes.VerMasCamarografoState
@@ -304,6 +305,36 @@ class CamviFunctions {
                 println(ex.message)
             }
             return VerMasCamarografo
+        }
+
+        fun fnSesionesLista(idUsuario: Int) : ArrayList<CamarografosSesionesData>{
+            val listaSesiones = ArrayList<CamarografosSesionesData>()
+
+            try {
+                val statement =
+                        connectSql.dbConn()?.prepareStatement("SELECT * FROM fnSesionesCamarografos(?)")
+                statement?.setInt(1, idUsuario)
+
+                val resultSet=statement?.executeQuery()
+
+                while (resultSet?.next()== true){
+                    listaSesiones.add(
+                        CamarografosSesionesData(
+                            idSesion = resultSet.getInt("idSesion"),
+                            titulo = resultSet.getString("titulo"),
+                            //nombreFotografo= resultSet.getString("nombre"),
+                            //fechaEvento = resultSet.getString("fechaEvento")
+
+                        )
+                    )
+                }
+
+            }
+            catch (ex: Exception){
+
+            }
+            return listaSesiones
+
         }
 
     }

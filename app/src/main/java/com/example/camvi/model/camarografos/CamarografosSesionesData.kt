@@ -1,7 +1,7 @@
-package com.example.camvi.model.clientes
+package com.example.camvi.model.camarografos
 
-data class CitasClienteDetalleData(
-   val idSesion: Int? = null,
+data class CamarografosSesionesData(
+    val idSesion: Int? = null,
     val titulo: String? = null,
     val detalle : String? = null,
     val lugar: String? = null,
@@ -15,7 +15,7 @@ data class CitasClienteDetalleData(
 )
 
 data class CitasData(
-    val idSesion: Int? = null,
+    val id: Int? = null,
     val camarografo: String? = null,
     val cliente: String? = null,
     val titulo: String? = null,
