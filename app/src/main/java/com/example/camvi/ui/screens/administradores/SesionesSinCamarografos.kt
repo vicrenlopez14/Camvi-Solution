@@ -75,7 +75,9 @@ fun SesionesSinCamarografos(navController: NavController) {
             Modifier.fillMaxWidth()
         ) {
             items(items.value.size) { index ->
-                ItemListaSesionesSinCamarografos(items.value[index])
+                ItemListaSesionesSinCamarografos(items.value[index], onNavigateTo = {
+                    navController.navigate(it)
+                })
             }
         }
     }

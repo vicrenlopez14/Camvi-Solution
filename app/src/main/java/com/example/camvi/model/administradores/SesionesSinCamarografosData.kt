@@ -1,11 +1,8 @@
 package com.example.camvi.model.administradores
 
-import java.time.LocalDate
-import java.time.LocalTime
-
 data class SesionesSinCamarografosData(
 
-    //val idSesion: Int,
+    val idSesion: Int? = 0,
     val titulo: String,
     val direccionEvento: String,
     val fechaEvento: String,
