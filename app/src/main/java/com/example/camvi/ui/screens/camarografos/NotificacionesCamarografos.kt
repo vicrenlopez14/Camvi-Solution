@@ -7,11 +7,11 @@ import androidx.navigation.compose.rememberNavController
 
 @Preview
 @Composable
-fun SesionesCamarografosPreview() {
-    SesionesCamarografos(rememberNavController())
+fun NotificacionesCamarografosPreview() {
+    NotificacionesCamarografos(rememberNavController())
 }
 
 @Composable
-fun SesionesCamarografos(navController: NavController) {
+fun NotificacionesCamarografos(navController: NavController) {
 
 }
