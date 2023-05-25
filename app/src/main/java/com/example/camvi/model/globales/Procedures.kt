@@ -187,35 +187,31 @@ class CamviProcedures {
         }
         fun spAgendarCita(
             titulo: String,
-            detalles: String,
-            idFotoGaleria: Int,
-            direccion: Int,
-            fechaEvento: String,
+            fecha: String,
             horaInicio: String,
-            horaFin: String,
+            horaFinal: String,
             lugar: String,
-            confirmada: Boolean,
-            cancela: Boolean,
-            idFotografo: Int,
-            idCliente: Int
+            nombreCamarografo:String,
+            reservador: String,
+            dui: String,
+            telefono: String
+
         ): Int {
             var exitoso: Int = 0
 
             try{
                 val statement =
-                    connectSql.dbConn()?.prepareCall("{call spAgendarCita ?,?,?,?,?,?,?,?,?,?,?,?}")
+                    connectSql.dbConn()?.prepareCall("{call spAgendarCita ?,?,?,?,?,?,?,?,?,?}")
                 statement?.setString(1, titulo)
-                statement?.setString(2, detalles)
-                statement?.setInt(3, idFotoGaleria)
-                statement?.setInt(4, direccion)
-                statement?.setString(5, fechaEvento)
-                statement?.setString(6, horaInicio)
-                statement?.setString(7, horaFin)
+                statement?.setString(2, fecha)
+                statement?.setString(3, horaInicio)
+                statement?.setString(4, horaFinal)
+                statement?.setString(5, lugar)
+                statement?.setString(6, nombreCamarografo)
+                statement?.setString(7, reservador)
                 statement?.setString(8,lugar)
-                statement?.setBoolean(9, confirmada)
-                statement?.setBoolean(10, cancela)
-                statement?.setInt(11, idFotografo)
-                statement?.setInt(12, idCliente)
+                statement?.setString(9, dui)
+                statement?.setString(10, telefono)
 
                 val resultSet = statement?.executeQuery()
                 while(resultSet?.next() == true)
