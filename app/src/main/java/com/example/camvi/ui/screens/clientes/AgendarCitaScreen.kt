@@ -366,6 +366,7 @@ fun AgendarCita() {
     }
 }
 
+fun ValidarDui(dui: String): Boolean = dui.length == 10;
 fun AgendarCita(
     titulo:String,
     fecha:String,
@@ -378,21 +379,34 @@ fun AgendarCita(
     telefono: String,
     context: Context
 ){
-    val result = CamviProcedures.spAgendarCita(
-        titulo,
-        fecha,
-        horaInicio,
-        horaFin,
-        lugar,
-        camarografo,
-        reservador,
-        dui,
-        telefono,
-    )
-    if(result == 1 ){
-        Toast.makeText(context,"Cita agendada con éxito", Toast.LENGTH_LONG).show()
+    if(titulo.isEmpty() || fecha.isEmpty() || horaInicio.isEmpty() || horaFin.isEmpty() ||
+        lugar.isEmpty() || camarografo.isEmpty() || reservador.isEmpty() || dui.isEmpty() || telefono.isEmpty())
+    {
+        Toast.makeText(context, "Por favor llena todos los campos", Toast.LENGTH_LONG).show()
+    }
+    else if(ValidarDui(dui) == false)
+    {
+        Toast.makeText(context, "Ingresa el dui correctamente", Toast.LENGTH_LONG).show()
     }
     else{
-        Toast.makeText(context,"Hubo un error a la hora de agendar tú cita", Toast.LENGTH_LONG).show()
+
+        val result = CamviProcedures.spAgendarCita(
+            titulo,
+            fecha,
+            horaInicio,
+            horaFin,
+            lugar,
+            camarografo,
+            reservador,
+            dui,
+            telefono,
+        )
+        if(result == 1 ){
+            Toast.makeText(context,"Cita agendada con éxito", Toast.LENGTH_LONG).show()
+        }
+        else{
+            Toast.makeText(context,"Hubo un error a la hora de agendar tú cita", Toast.LENGTH_LONG).show()
+        }
     }
 }
+

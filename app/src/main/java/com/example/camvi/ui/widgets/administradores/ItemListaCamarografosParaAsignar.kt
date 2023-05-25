@@ -26,12 +26,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.camvi.R
 import com.example.camvi.model.clientes.CamarografoDisponibleData
+import com.example.camvi.viewmodel.clientes.ClientesNavigatorViewModel
 
 //@Preview(showBackground = true)
 @Composable
 
 fun ItemListaCamarografosParaAsignar(
-    camarografoDisponibleData: CamarografoDisponibleData){
+    camarografoDisponibleData: CamarografoDisponibleData,
+    clientesNavigatorViewModel: ClientesNavigatorViewModel){
+
     Card(
         Modifier.padding(30.dp),
         colors = CardDefaults.cardColors
@@ -56,12 +59,12 @@ fun ItemListaCamarografosParaAsignar(
                 Modifier
                     .fillMaxWidth()) {
                 Text(
-                    text = camarografoDisponibleData.nombre,
+                    text = camarografoDisponibleData.nombre?: "",
                     Modifier
                         .padding(bottom = 5.dp))
 
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { },
                     colors = ButtonDefaults.textButtonColors(
                         contentColor = colorResource(id = R.color.DarkYellow)
                     ),
