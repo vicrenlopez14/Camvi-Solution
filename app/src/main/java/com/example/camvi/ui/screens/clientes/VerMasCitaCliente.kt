@@ -23,7 +23,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -34,12 +33,9 @@ import com.example.camvi.model.globales.CamviFunctions
 
 @Preview
 @Composable
-fun VerMasCitaClientePreview() {
-    VerMasCitaCliente(
-        navController = rememberNavController(),
-        idSesion = 1
-    )
-}
+//@Preview
+fun VerMasCitaCliente(navController: NavHostController, idSesion: Int){
+    var detalle: CitasClienteDetalleData= CitasClienteDetalleData()
 
 @Composable
 fun VerMasCitaCliente(navController: NavController, idSesion: Int) {

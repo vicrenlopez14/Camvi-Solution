@@ -27,11 +27,11 @@ fun ClientesNavGraph(navController: NavHostController) {
 
         }
 
-        composable(
-            "${ClientesScreen.VerMasCitaCliente.route}/{idSesion}",
-            arguments = listOf(navArgument("idSesion") { type = NavType.IntType })
-        ) { backStackEntry ->
-            VerMasCitaCliente(navController, backStackEntry.arguments?.getInt("idSesion") ?: 0)
+        composable("${ClientesScreen.VerMasCitaCliente.route}/{idSesion}",
+        arguments = listOf(navArgument("idSesion"){ type = NavType.IntType})
+        ){ backStackEntry ->
+            VerMasCitaCliente(navController,backStackEntry.arguments?.getInt("idSesion") ?: 0)
+
         }
     }
 }
