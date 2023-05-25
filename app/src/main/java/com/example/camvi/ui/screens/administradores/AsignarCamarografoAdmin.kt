@@ -9,6 +9,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,18 +21,29 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.camvi.R
+import com.example.camvi.model.clientes.CamarografoDisponibleData
+import com.example.camvi.model.globales.CamviViews
 import com.example.camvi.ui.widgets.administradores.ItemListaCamarografosParaAsignar
+import com.example.camvi.viewmodel.clientes.ClientesNavigatorViewModel
 
 
-@Preview
+//@Preview
 @Composable
-fun AsignarCamarografoAdminPreview() {
-    AsignarCamarografoAdmin(sessionId = "")
-}
+fun AsignarCamarografoAdmin(
+    ClientesNavigationModel:ClientesNavigatorViewModel = viewModel()) {
 
-@Composable
-fun AsignarCamarografoAdmin(sessionId: String) {
+    val items = remember { mutableStateOf(emptyList<CamarografoDisponibleData>()) }
+
+    LaunchedEffect(true){
+        try {
+            val result = CamviViews.vwNombresCamarografosDesocupados(3)
+            items.value = result
+        }catch (e:Exception){
+            println(e)
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -65,7 +79,9 @@ fun AsignarCamarografoAdmin(sessionId: String) {
             Modifier
                 .fillMaxWidth()
         ) {
-            item { ItemListaCamarografosParaAsignar() }
+            items(items.value.size){index ->
+                ItemListaCamarografosParaAsignar(items.value[index])
+            }
         }
     }
 }
