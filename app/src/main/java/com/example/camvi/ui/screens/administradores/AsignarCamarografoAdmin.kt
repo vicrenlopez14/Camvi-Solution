@@ -18,7 +18,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -32,15 +31,17 @@ import com.example.camvi.viewmodel.clientes.ClientesNavigatorViewModel
 //@Preview
 @Composable
 fun AsignarCamarografoAdmin(
-    ClientesNavigationModel:ClientesNavigatorViewModel = viewModel()) {
+    sessionId: Int,
+    ClientesNavigationModel: ClientesNavigatorViewModel = viewModel()
+) {
 
     val items = remember { mutableStateOf(emptyList<CamarografoDisponibleData>()) }
 
-    LaunchedEffect(true){
+    LaunchedEffect(true) {
         try {
             val result = CamviViews.vwNombresCamarografosDesocupados(3)
             items.value = result
-        }catch (e:Exception){
+        } catch (e: Exception) {
             println(e)
         }
     }
@@ -79,7 +80,7 @@ fun AsignarCamarografoAdmin(
             Modifier
                 .fillMaxWidth()
         ) {
-            items(items.value.size){index ->
+            items(items.value.size) { index ->
                 ItemListaCamarografosParaAsignar(items.value[index])
             }
         }

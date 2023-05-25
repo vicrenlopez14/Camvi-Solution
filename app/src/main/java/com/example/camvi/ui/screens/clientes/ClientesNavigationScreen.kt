@@ -20,7 +20,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.camvi.ui.widgets.administradores.DrawerContenido
-import com.example.camvi.ui.widgets.administradores.AdministradoresNavGraph
+import com.example.camvi.ui.widgets.global.ClientesNavGraph
 import com.example.camvi.ui.widgets.global.ClientesScreen
 import kotlinx.coroutines.launch
 
@@ -72,7 +72,7 @@ fun ClientesNavigationScreen() {
                     .padding(it)
                     .fillMaxSize()
             ) {
-                AdministradoresNavGraph(navController = navControllerClientes)
+                ClientesNavGraph(navController = navControllerClientes)
             }
         }
     }

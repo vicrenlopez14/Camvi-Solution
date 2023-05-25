@@ -21,30 +21,29 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.camvi.R
 import com.example.camvi.model.clientes.CamarografoDisponibleData
-import com.example.camvi.viewmodel.clientes.ClientesNavigatorViewModel
 
 //@Preview(showBackground = true)
 @Composable
 
 fun ItemListaCamarografosParaAsignar(
-    camarografoDisponibleData: CamarografoDisponibleData,
-    clientesNavigatorViewModel: ClientesNavigatorViewModel){
+    camarografoDisponibleData: CamarografoDisponibleData
+) {
 
     Card(
         Modifier.padding(30.dp),
         colors = CardDefaults.cardColors
-            (containerColor = colorResource(id = R.color.YellowLight)))
+            (containerColor = colorResource(id = R.color.YellowLight))
+    )
     {
         Row(
             Modifier
                 .fillMaxWidth()
                 .padding(10.dp),
-            verticalAlignment = Alignment.CenterVertically)
+            verticalAlignment = Alignment.CenterVertically
+        )
         {
 
             Image(
@@ -53,28 +52,35 @@ fun ItemListaCamarografosParaAsignar(
                     .clip(RoundedCornerShape(10.dp))
                     .padding(10.dp),
                 painter = painterResource(id = R.drawable.man),
-                contentDescription =  null)
+                contentDescription = null
+            )
 
             Column(
                 Modifier
-                    .fillMaxWidth()) {
+                    .fillMaxWidth()
+            ) {
                 Text(
-                    text = camarografoDisponibleData.nombre?: "",
+                    text = camarografoDisponibleData.nombre ?: "",
                     Modifier
-                        .padding(bottom = 5.dp))
+                        .padding(bottom = 5.dp)
+                )
 
                 Button(
                     onClick = { },
                     colors = ButtonDefaults.textButtonColors(
                         contentColor = colorResource(id = R.color.DarkYellow)
                     ),
-                    border = BorderStroke(width = 1.5.dp, color = colorResource(id = R.color.DarkYellow)),
+                    border = BorderStroke(
+                        width = 1.5.dp,
+                        color = colorResource(id = R.color.DarkYellow)
+                    ),
                     shape = RoundedCornerShape(20.dp)
                 ) {
 
                     Text(
                         fontFamily = FontFamily(Font(R.font.inter)),
-                        text = "Asignar")
+                        text = "Asignar"
+                    )
                 }
             }
         }

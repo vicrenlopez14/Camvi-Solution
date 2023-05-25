@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -31,11 +32,13 @@ import com.example.camvi.R
 import com.example.camvi.model.clientes.CitasClienteDetalleData
 import com.example.camvi.model.globales.CamviFunctions
 
-@Preview
+
 @Composable
-//@Preview
-fun VerMasCitaCliente(navController: NavHostController, idSesion: Int){
-    var detalle: CitasClienteDetalleData= CitasClienteDetalleData()
+@Preview
+fun VerMasCitaCliente() {
+    VerMasCitaCliente(rememberNavController(), 1)
+}
+
 
 @Composable
 fun VerMasCitaCliente(navController: NavController, idSesion: Int) {
