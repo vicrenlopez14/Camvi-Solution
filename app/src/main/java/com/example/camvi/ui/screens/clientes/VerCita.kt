@@ -33,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.camvi.R
 import com.example.camvi.model.clientes.CitasClienteData
 import com.example.camvi.model.clientes.CitasClienteDetalleData
@@ -48,8 +49,9 @@ import com.example.camvi.viewmodel.clientes.ClientesNavigatorViewModel
 //@Preview
 @Composable
 fun VerCitasCliente(
-    idUsuario: Int,
-    ClientesNavigationViewModel: ClientesNavigatorViewModel= viewModel()
+    navController: NavController,
+    idUsuario: Int
+
 ) {
         val items = remember { mutableStateOf(emptyList<CitasClienteDetalleData>())}
 
@@ -91,7 +93,6 @@ fun VerCitasCliente(
                             fecha = items.fecha
                         ),
                         onClick = {
-                            val navController = ClientesNavigationViewModel.getNavController()
                             navController.navigate("${ClientesScreen.VerMasCitaCliente.route}/ ${items.idSesion}")
                         }
                     )

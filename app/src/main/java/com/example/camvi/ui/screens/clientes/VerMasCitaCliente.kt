@@ -15,8 +15,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,19 +23,16 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.example.camvi.R
-import com.example.camvi.model.clientes.CitasClienteData
 import com.example.camvi.model.clientes.CitasClienteDetalleData
 import com.example.camvi.model.globales.CamviFunctions
-import com.example.camvi.viewmodel.clientes.ClientesVerMasCitaViewModel
 
 @Composable
 //@Preview
-fun VerMasCitaCliente(idSesion: Int){
+fun VerMasCitaCliente(navController: NavHostController, idSesion: Int){
     var detalle: CitasClienteDetalleData= CitasClienteDetalleData()
 
     LaunchedEffect(key1 = idSesion) {
