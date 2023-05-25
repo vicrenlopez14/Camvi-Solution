@@ -1,6 +1,7 @@
 package com.example.camvi.model.globales
 
 import com.example.camvi.model.administradores.Sesiones
+import com.example.camvi.model.clientes.CitasClienteData
 import com.example.camvi.model.clientes.CitasClienteDetalleData
 import com.example.camvi.ui.state.administradores.clientes.VerMasCamarografoState
 import java.sql.SQLException
