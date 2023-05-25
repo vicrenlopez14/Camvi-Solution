@@ -6,7 +6,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.camvi.model.clientes.CitasClienteData
 import com.example.camvi.ui.screens.clientes.ClientesDashboard
 import com.example.camvi.ui.screens.clientes.VerMasCitaCliente
 
@@ -29,7 +28,8 @@ fun ClientesNavGraph(navController: NavHostController) {
         composable("${ClientesScreen.VerMasCitaCliente.route}/{idSesion}",
         arguments = listOf(navArgument("idSesion"){ type = NavType.IntType})
         ){ backStackEntry ->
-            VerMasCitaCliente(backStackEntry.arguments?.getInt("idSesion") ?:0)
+            VerMasCitaCliente(navController,backStackEntry.arguments?.getInt("idSesion") ?: 0)
+
         }
     }
 }
