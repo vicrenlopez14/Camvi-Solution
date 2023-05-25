@@ -26,20 +26,23 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.R
 import com.example.camvi.model.globales.SessionStatus
 import com.example.camvi.ui.widgets.global.CamviButton
+import com.example.camvi.ui.widgets.global.ClientesScreen
 import com.example.camvi.ui.widgets.global.SessionCard
 
 @Preview
 @Composable
 fun ClientesDashboardPreview() {
-    ClientesDashboard()
+    ClientesDashboard(rememberNavController())
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ClientesDashboard() {
+fun ClientesDashboard(navController: NavController) {
     Surface(
         Modifier
             .fillMaxSize()
@@ -69,7 +72,10 @@ fun ClientesDashboard() {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Tus sesiones", style = MaterialTheme.typography.headlineMedium)
-                TextButton(onClick = { /*TODO*/ }) {
+                TextButton(onClick = {
+                    navController.navigate(ClientesScreen.SesionesClientes.route)
+
+                }) {
                     Text("Ver todas")
                 }
             }
@@ -77,7 +83,6 @@ fun ClientesDashboard() {
             Spacer(Modifier.height(16.dp))
 
             // Card
-
             HorizontalPager(pageCount = 5) {
                 SessionCard(
                     status = SessionStatus.EnProgreso,

@@ -152,5 +152,6 @@ sealed class ClientesScreen(
 
     object VerMasCitaCliente :
         ClientesScreen("VerMasCitaCliente", "VerMasCita", null)
+
 }
 

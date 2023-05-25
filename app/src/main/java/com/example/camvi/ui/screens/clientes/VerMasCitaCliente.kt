@@ -15,8 +15,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,290 +26,313 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.R
-import com.example.camvi.model.clientes.CitasClienteData
 import com.example.camvi.model.clientes.CitasClienteDetalleData
 import com.example.camvi.model.globales.CamviFunctions
-import com.example.camvi.viewmodel.clientes.ClientesVerMasCitaViewModel
+
+@Preview
+@Composable
+fun VerMasCitaClientePreview() {
+    VerMasCitaCliente(
+        navController = rememberNavController(),
+        idSesion = 1
+    )
+}
 
 @Composable
-//@Preview
-fun VerMasCitaCliente(idSesion: Int){
-    var detalle: CitasClienteDetalleData= CitasClienteDetalleData()
+fun VerMasCitaCliente(navController: NavController, idSesion: Int) {
+    var detalle: CitasClienteDetalleData = CitasClienteDetalleData()
 
     LaunchedEffect(key1 = idSesion) {
         detalle = CamviFunctions.fnCitasClienteDetalle(idSesion) ?: CitasClienteDetalleData()
     }
 
     Surface() {
-         Row(
+        Row(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
-            ){
-                Image(
+        ) {
+            Image(
                 painter = painterResource(id = R.drawable.arrowl),
                 contentDescription = null,
                 modifier = Modifier
                     .size(width = 100.dp, height = 40.dp)
                     .padding(top = 18.dp)
                     .padding(end = 60.dp)
-                  )
-            }
-         Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 20.dp, vertical = 30.dp)
-         ) {
-                Spacer(modifier = Modifier.height(15.dp))
-                Text(
-                    text = detalle.titulo?: "", //aca va el titulo o sea variable
-                    fontFamily = FontFamily(Font(R.font.inter_semibold)),
-                    fontSize= 18.sp,
-                    color = Color.Black,
-                    modifier = Modifier
-                        .padding(bottom = 5.dp)
-                        .padding(end = 25.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                 Text(
-                        text = detalle.detalle?:"", //aca va el titulo o sea variable
-                        fontFamily = FontFamily(Font(R.font.inter)),
-                        fontSize= 14.sp,
-                        color = Color.Black,
-                        modifier = Modifier
-                            .padding(bottom = 5.dp)
-                            .padding(end = 25.dp)
-                 )
-                 Spacer(modifier = Modifier.height(5.dp))
-
-                //InformacionEvento(sesiones: Sesiones)
-                Column(
-                     modifier = Modifier
-                        .fillMaxWidth()
-                    ) {
-                        Text(
-                            text = "Evento",
-                            fontFamily = FontFamily(Font(R.font.inter_semibold)),
-                            fontSize= 16.sp,
-                            color = Color.Black,
-                            textAlign= TextAlign.Start,
-                            modifier = Modifier.padding(end = 280.dp),
-                        )
-                        Spacer(modifier = Modifier.height(20.dp))
-                         Row {
-                              Image(painter = painterResource(id = R.drawable.casa),
-                                  contentDescription = null,
-                              modifier = Modifier
-                                  .size(25.dp)
-                              )
-                             Spacer(modifier = Modifier.width(15.dp))
-                             Text(
-                                 text = "Lugar",
-                                 fontFamily= FontFamily(Font(R.font.inter)),
-                                 fontSize = 13.sp,
-                                 color = Color.Gray,
-                                modifier = Modifier
-                                    .weight(1f)
-
-                             )
-                             Spacer(modifier = Modifier.width(30.dp))
-                             Text(text = detalle.lugar?:"", //aca va de nuevo la variable
-                                fontFamily= FontFamily(Font(R.font.inter)),
-                                 fontWeight = FontWeight.Bold,
-                                 fontSize = 13.sp,
-                                 modifier = Modifier
-                                    .weight(1f)
-                             )
-                         }
-                        Spacer(modifier = Modifier.height(20.dp))
-                         Row {
-                              Image(painter = painterResource(id = R.drawable.calendar),
-                                  contentDescription = null,
-                              modifier = Modifier
-                                  .size(25.dp)
-                              )
-                             Spacer(modifier = Modifier.width(15.dp))
-                             Text(
-                                 text = "Fecha",
-                                 fontFamily= FontFamily(Font(R.font.inter)),
-                                 fontSize = 13.sp,
-                                 color = Color.Gray,
-                                 modifier = Modifier
-                                    .weight(1f)
-                             )
-                             Spacer(modifier = Modifier.width(30.dp))
-                             Text(text = detalle.fecha?:"", //aca va de nuevo la variable
-                                fontFamily= FontFamily(Font(R.font.inter)),
-                                 fontWeight = FontWeight.Bold,
-                                 fontSize = 13.sp,
-                                 modifier = Modifier
-                                    .weight(1f)
-                             )
-                         }
-                         Spacer(modifier = Modifier.height(20.dp))
-                         Row {
-                              Image(painter = painterResource(id = R.drawable.reloj),
-                                  contentDescription = null,
-                              modifier = Modifier
-                                  .size(25.dp)
-                              )
-                             Spacer(modifier = Modifier.width(15.dp))
-                             Text(
-                                 text = "Hora inicio",
-                                 fontFamily= FontFamily(Font(R.font.inter)),
-                                 fontSize = 13.sp,
-                                 color = Color.Gray,
-                                 modifier = Modifier
-                                    .weight(1f)
-                             )
-                             Spacer(modifier = Modifier.width(30.dp))
-                             Text(text = detalle.horaIni?:"", //aca va de nuevo la variable
-                                fontFamily= FontFamily(Font(R.font.inter)),
-                                 fontWeight = FontWeight.Bold,
-                                 fontSize = 13.sp,
-                                 modifier = Modifier
-                                    .weight(1f)
-                             )
-                         }
-                         Spacer(modifier = Modifier.height(20.dp))
-                         Row {
-                              Image(painter = painterResource(id = R.drawable.reloj),
-                                  contentDescription = null,
-                              modifier = Modifier
-                                  .size(25.dp)
-                              )
-                             Spacer(modifier = Modifier.width(15.dp))
-                             Text(
-                                 text = "Hora finalización",
-                                 fontFamily= FontFamily(Font(R.font.inter)),
-                                 fontSize = 13.sp,
-                                 color = Color.Gray,
-                                 modifier = Modifier
-                                    .weight(1f)
-                             )
-                             Spacer(modifier = Modifier.width(30.dp))
-                             Text(text = detalle.horaFinali?:"", //aca va de nuevo la variable
-                                fontFamily= FontFamily(Font(R.font.inter)),
-                                 fontWeight = FontWeight.Bold,
-                                 fontSize = 13.sp,
-                                 modifier = Modifier
-                                    .weight(1f)
-                             )
-                         }
-
-
+            )
         }
-                Spacer(modifier = Modifier.height(60.dp))
-                //InformacionCliente()
-                Column(
-                     modifier = Modifier
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 20.dp, vertical = 30.dp)
+        ) {
+            Spacer(modifier = Modifier.height(15.dp))
+            Text(
+                text = detalle.titulo ?: "", //aca va el titulo o sea variable
+                fontFamily = FontFamily(Font(R.font.inter_semibold)),
+                fontSize = 18.sp,
+                color = Color.Black,
+                modifier = Modifier
+                    .padding(bottom = 5.dp)
+                    .padding(end = 25.dp)
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+            Text(
+                text = detalle.detalle ?: "", //aca va el titulo o sea variable
+                fontFamily = FontFamily(Font(R.font.inter)),
+                fontSize = 14.sp,
+                color = Color.Black,
+                modifier = Modifier
+                    .padding(bottom = 5.dp)
+                    .padding(end = 25.dp)
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+
+            //InformacionEvento(sesiones: Sesiones)
+            Column(
+                modifier = Modifier
                     .fillMaxWidth()
-                    ) {
-                    Text(
-                        text = "Cliente",
-                        fontFamily = FontFamily(Font(R.font.inter_semibold)),
-                        fontSize= 16.sp,
-                        color = Color.Black,
-                        textAlign= TextAlign.Start,
-                        modifier = Modifier.padding(end = 280.dp),
+            ) {
+                Text(
+                    text = "Evento",
+                    fontFamily = FontFamily(Font(R.font.inter_semibold)),
+                    fontSize = 16.sp,
+                    color = Color.Black,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(end = 280.dp),
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                Row {
+                    Image(
+                        painter = painterResource(id = R.drawable.casa),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(25.dp)
                     )
-                    Spacer(modifier = Modifier.height(20.dp))
-                    Row {
-                          Image(painter = painterResource(id = R.drawable.personicon),
-                              contentDescription = null,
-                          modifier = Modifier
-                              .size(25.dp)
-                          )
-                         Spacer(modifier = Modifier.width(15.dp))
-                         Text(
-                             text = "Nombre",
-                             fontFamily= FontFamily(Font(R.font.inter)),
-                             fontSize = 13.sp,
-                             color = Color.Gray
-                         )
-                         Spacer(modifier = Modifier.width(30.dp))
-                         Text(text = detalle.nombre?:"", //aca va de nuevo la variable
-                            fontFamily= FontFamily(Font(R.font.inter)),
-                             fontWeight = FontWeight.Bold,
-                             fontSize = 13.sp,
-                         )
-                    }
-                     Spacer(modifier = Modifier.height(20.dp))
-                     Row {
-                          Image(painter = painterResource(id = R.drawable.celular),
-                              contentDescription = null,
-                          modifier = Modifier
-                              .size(25.dp)
-                          )
-                         Spacer(modifier = Modifier.width(15.dp))
-                         Text(
-                             text = "Contacto",
-                             fontFamily= FontFamily(Font(R.font.inter)),
-                             fontSize = 13.sp,
-                             color = Color.Gray
-                         )
-                         Spacer(modifier = Modifier.width(30.dp))
-                         Text(text = detalle.contacto?:"", //aca va de nuevo la variable
-                            fontFamily= FontFamily(Font(R.font.inter)),
-                             fontWeight = FontWeight.Bold,
-                             fontSize = 13.sp,
-                         )
-                     }
-                     Spacer(modifier = Modifier.height(20.dp))
-                     Row {
-                          Image(painter = painterResource(id = R.drawable.dui),
-                              contentDescription = null,
-                          modifier = Modifier
-                              .size(25.dp)
-                          )
-                         Spacer(modifier = Modifier.width(15.dp))
-                         Text(
-                             text = "DUI",
-                             fontFamily= FontFamily(Font(R.font.inter)),
-                             fontSize = 13.sp,
-                             color = Color.Gray
-                         )
-                         Spacer(modifier = Modifier.width(30.dp))
-                         Text(text = detalle.dui?:"", //aca va de nuevo la variable
-                            fontFamily= FontFamily(Font(R.font.inter)),
-                             fontWeight = FontWeight.Bold,
-                             fontSize = 13.sp,
-                         )
-                     }
+                    Spacer(modifier = Modifier.width(15.dp))
+                    Text(
+                        text = "Lugar",
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontSize = 13.sp,
+                        color = Color.Gray,
+                        modifier = Modifier
+                            .weight(1f)
+
+                    )
+                    Spacer(modifier = Modifier.width(30.dp))
+                    Text(
+                        text = detalle.lugar ?: "", //aca va de nuevo la variable
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp,
+                        modifier = Modifier
+                            .weight(1f)
+                    )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Row {
+                    Image(
+                        painter = painterResource(id = R.drawable.calendar),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(25.dp)
+                    )
+                    Spacer(modifier = Modifier.width(15.dp))
+                    Text(
+                        text = "Fecha",
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontSize = 13.sp,
+                        color = Color.Gray,
+                        modifier = Modifier
+                            .weight(1f)
+                    )
+                    Spacer(modifier = Modifier.width(30.dp))
+                    Text(
+                        text = detalle.fecha ?: "", //aca va de nuevo la variable
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp,
+                        modifier = Modifier
+                            .weight(1f)
+                    )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Row {
+                    Image(
+                        painter = painterResource(id = R.drawable.reloj),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(25.dp)
+                    )
+                    Spacer(modifier = Modifier.width(15.dp))
+                    Text(
+                        text = "Hora inicio",
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontSize = 13.sp,
+                        color = Color.Gray,
+                        modifier = Modifier
+                            .weight(1f)
+                    )
+                    Spacer(modifier = Modifier.width(30.dp))
+                    Text(
+                        text = detalle.horaIni ?: "", //aca va de nuevo la variable
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp,
+                        modifier = Modifier
+                            .weight(1f)
+                    )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Row {
+                    Image(
+                        painter = painterResource(id = R.drawable.reloj),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(25.dp)
+                    )
+                    Spacer(modifier = Modifier.width(15.dp))
+                    Text(
+                        text = "Hora finalización",
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontSize = 13.sp,
+                        color = Color.Gray,
+                        modifier = Modifier
+                            .weight(1f)
+                    )
+                    Spacer(modifier = Modifier.width(30.dp))
+                    Text(
+                        text = detalle.horaFinali ?: "", //aca va de nuevo la variable
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp,
+                        modifier = Modifier
+                            .weight(1f)
+                    )
                 }
 
-             Spacer(modifier = Modifier.height(60.dp))
-             Column(
-                 modifier = Modifier
+
+            }
+            Spacer(modifier = Modifier.height(60.dp))
+            //InformacionCliente()
+            Column(
+                modifier = Modifier
                     .fillMaxWidth()
-             ) {
-                      Text(
-                                text = "Fotógrafo",
-                                fontFamily = FontFamily(Font(R.font.inter_semibold)),
-                                fontSize= 16.sp,
-                                color = Color.Black,
-                                textAlign= TextAlign.Start,
-                                modifier = Modifier
-                                    .padding(end = 260.dp)
-                      )
-                 Spacer(modifier = Modifier.height(20.dp))
-                 Row(){
-                    Image(painter = painterResource(id = R.drawable.camara),
-                              contentDescription = null,
-                          modifier = Modifier
-                              .size(25.dp)
-                          )
-                         Spacer(modifier = Modifier.width(30.dp))
-                         Text(text = detalle.fotografo?:"", //aca va de nuevo la variable
-                            fontFamily= FontFamily(Font(R.font.inter)),
-                             fontWeight = FontWeight.Bold,
-                             fontSize = 13.sp,
-                         )
+            ) {
+                Text(
+                    text = "Cliente",
+                    fontFamily = FontFamily(Font(R.font.inter_semibold)),
+                    fontSize = 16.sp,
+                    color = Color.Black,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(end = 280.dp),
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                Row {
+                    Image(
+                        painter = painterResource(id = R.drawable.personicon),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(25.dp)
+                    )
+                    Spacer(modifier = Modifier.width(15.dp))
+                    Text(
+                        text = "Nombre",
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontSize = 13.sp,
+                        color = Color.Gray
+                    )
+                    Spacer(modifier = Modifier.width(30.dp))
+                    Text(
+                        text = detalle.nombre ?: "", //aca va de nuevo la variable
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp,
+                    )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Row {
+                    Image(
+                        painter = painterResource(id = R.drawable.celular),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(25.dp)
+                    )
+                    Spacer(modifier = Modifier.width(15.dp))
+                    Text(
+                        text = "Contacto",
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontSize = 13.sp,
+                        color = Color.Gray
+                    )
+                    Spacer(modifier = Modifier.width(30.dp))
+                    Text(
+                        text = detalle.contacto ?: "", //aca va de nuevo la variable
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp,
+                    )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Row {
+                    Image(
+                        painter = painterResource(id = R.drawable.dui),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(25.dp)
+                    )
+                    Spacer(modifier = Modifier.width(15.dp))
+                    Text(
+                        text = "DUI",
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontSize = 13.sp,
+                        color = Color.Gray
+                    )
+                    Spacer(modifier = Modifier.width(30.dp))
+                    Text(
+                        text = detalle.dui ?: "", //aca va de nuevo la variable
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp,
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(60.dp))
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = "Fotógrafo",
+                    fontFamily = FontFamily(Font(R.font.inter_semibold)),
+                    fontSize = 16.sp,
+                    color = Color.Black,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier
+                        .padding(end = 260.dp)
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                Row() {
+                    Image(
+                        painter = painterResource(id = R.drawable.camara),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(25.dp)
+                    )
+                    Spacer(modifier = Modifier.width(30.dp))
+                    Text(
+                        text = detalle.fotografo ?: "", //aca va de nuevo la variable
+                        fontFamily = FontFamily(Font(R.font.inter)),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp,
+                    )
 
                 }
-             }
-         }
+            }
+        }
     }
 }
