@@ -52,9 +52,9 @@ fun AdministradoresNavGraph(
 
         composable(
             "${AdministradoresScreen.AsignarCamarografoAdministradores.route}/{sessionId}",
-            arguments = listOf(navArgument("sessionId") { type = NavType.StringType })
+            arguments = listOf(navArgument("sessionId") { type = NavType.IntType })
         ) { backStackEntry ->
-            AsignarCamarografoAdmin(backStackEntry.arguments?.getString("sessionId") ?: "")
+            AsignarCamarografoAdmin(backStackEntry.arguments?.getInt("sessionId") ?: 0)
         }
 
         composable(

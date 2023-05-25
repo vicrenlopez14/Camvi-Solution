@@ -32,6 +32,7 @@ import com.example.camvi.viewmodel.clientes.ClientesNavigatorViewModel
 //@Preview
 @Composable
 fun AsignarCamarografoAdmin(
+    idSesion:Int,
     ClientesNavigationModel:ClientesNavigatorViewModel = viewModel()) {
 
     val items = remember { mutableStateOf(emptyList<CamarografoDisponibleData>()) }
