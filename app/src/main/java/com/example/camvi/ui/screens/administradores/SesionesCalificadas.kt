@@ -26,7 +26,6 @@ import com.example.camvi.model.globales.Periodo
 
 
 @Composable
-@Preview
 fun SesionesCalificadas(){
 
     Surface() {
