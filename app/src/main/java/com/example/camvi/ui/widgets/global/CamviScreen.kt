@@ -84,11 +84,7 @@ sealed class AdministradoresScreen(
         null
     )
 
-    object DetalleCitas : AdministradoresScreen(
-        "DetalleCitas",
-        "Detalle citas",
-        null
-    )
+
 }
 
 sealed class CamarografosScreen(
