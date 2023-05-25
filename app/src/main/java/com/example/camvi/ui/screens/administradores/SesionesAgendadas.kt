@@ -99,7 +99,7 @@ fun SesionesAgendadasScreen(
                         onClick = {
                             val navController = adminsNavigationViewModel.getNavController()
 
-                            navController.navigate("${AdministradoresScreen.DetalleCitas.route}/${session.id}")
+                            //navController.navigate("${AdministradoresScreen.DetalleCitas.route}/${session.id}")
                         }
                     )
                 }

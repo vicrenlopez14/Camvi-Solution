@@ -122,8 +122,8 @@ class CamviFunctions {
             return unassignedSessionCount
         }
 
-        fun fnListaCitasClientes(idUsuario: Int): ArrayList<CitasClienteData> {
-            val listaCitas = ArrayList<CitasClienteData>()
+        fun fnListaCitasClientes(idUsuario: Int): ArrayList<CitasClienteDetalleData> {
+            val listaCitas = ArrayList<CitasClienteDetalleData>()
 
             try {
                 val statement =
@@ -134,11 +134,11 @@ class CamviFunctions {
 
                 while (resultSet?.next() == true) {
                     listaCitas.add(
-                        CitasClienteData(
-                            resultSet.getInt("idSesion"),
-                            resultSet.getString("titulo"),
-                            resultSet.getString("nombre"),
-                            resultSet.getString("fechaEvento")
+                        CitasClienteDetalleData(
+                            idSesion = resultSet.getInt("idSesion"),
+                            titulo = resultSet.getString("titulo"),
+                           nombre= resultSet.getString("nombre"),
+                            fecha = resultSet.getString("fechaEvento"),
                         )
                     )
                 }
@@ -225,8 +225,9 @@ class CamviFunctions {
         }
 
 
-        fun fnCitasClienteDetalle(idSesion: Int): ArrayList <ClientesVerMasCitaState>{
-            val listasCitaDetalle = ArrayList<ClientesVerMasCitaState>()
+        fun fnCitasClienteDetalle(idSesion: Int): CitasClienteDetalleData? {
+            var detalleData: CitasClienteDetalleData? = null
+
             try{
                 val statement = connectSql.dbConn()?.prepareStatement("SELECT * FROM fnSesionesClientesDetalle(?)")
                 statement?.setInt(1,idSesion)
@@ -234,25 +235,23 @@ class CamviFunctions {
                 val resultSet = statement?.executeQuery()
 
                 while (resultSet?.next() == true){
-                    listasCitaDetalle.add(
-                        ClientesVerMasCitaState(
-                            resultSet.getString("titulo"),
-                            resultSet.getString("detalle"),
-                            resultSet.getString("lugar"),
-                            resultSet.getString("fechaEvento"),
-                            resultSet.getString("horaInicio"),
-                            resultSet.getString("horaFinalizacion"),
-                            resultSet.getString("nombre"),
-                            resultSet.getString("contacto"),
-                            resultSet.getString("dui"),
-                            resultSet.getString("Nombre del fotografo") ///aca me quede antes de pasar a fase 3
-                        )
+                    detalleData= CitasClienteDetalleData(
+                            titulo = resultSet.getString("titulo"),
+                            detalle = resultSet.getString("detalle"),
+                            lugar = resultSet.getString("lugar"),
+                            fecha = resultSet.getString("fechaEvento"),
+                            horaIni = resultSet.getString("horaInicio"),
+                            horaFinali = resultSet.getString("horaFinalizacion"),
+                            nombre = resultSet.getString("nombre"),
+                            contacto = resultSet.getString("contacto"),
+                            dui= resultSet.getString("dui"),
+                            fotografo = resultSet.getString("Nombre del fotografo") ///aca me quede antes de pasar a fase 3
                     )
                 }
             }catch (ex : Exception){
                 println(ex.message)
             }
-            return listasCitaDetalle
+            return detalleData
         }
 
         fun fnVerMasCamarografo(idCamarografo:Int): ArrayList<VerMasCamarografoState>{
