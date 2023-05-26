@@ -138,6 +138,12 @@ sealed class CamarografosScreen(
         "Sesiones detalle",
         null
     )
+
+    object DetalleCalificacion: CamarografosScreen(
+        "Detalle calificacion",
+        "Detalle calificacion",
+        null
+    )
 }
 
 sealed class ClientesScreen(

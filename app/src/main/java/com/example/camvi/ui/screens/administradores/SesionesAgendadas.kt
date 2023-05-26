@@ -99,7 +99,6 @@ fun SesionesAgendadasScreen(
                                 fotoGaleria = session.fotoGaleria,
                             ),
                             onClick = {
-
                                 navController.navigate("${AdministradoresScreen.DetalleCitas.route}/${session.id}")
                             }
                         )

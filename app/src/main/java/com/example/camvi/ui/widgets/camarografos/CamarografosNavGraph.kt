@@ -6,6 +6,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.camvi.ui.screens.administradores.DetalleSesionCalificada
+import com.example.camvi.ui.screens.administradores.SesionesCalificadas
 import com.example.camvi.ui.screens.camarografos.CamarografosSesionesDetalle
 import com.example.camvi.ui.screens.camarografos.NotificacionesCamarografos
 import com.example.camvi.ui.screens.camarografos.SesionesCamarografos
@@ -32,6 +34,10 @@ fun CamarografosNavGraph(navController: NavHostController) {
         ) { backStackEntry ->
             CamarografosSesionesDetalle(navController, backStackEntry.arguments?.getInt("idSesion") ?: 0)
 
+        }
+
+        composable(CamarografosScreen.DetalleCalificacion.route){
+            DetalleSesionCalificada()
         }
     }
 }

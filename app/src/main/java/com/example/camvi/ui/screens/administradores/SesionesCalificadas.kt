@@ -26,14 +26,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.R
 import com.example.camvi.model.clientes.CitasClienteDetalleData
 import com.example.camvi.model.globales.Periodo
+import com.example.camvi.ui.widgets.global.CamarografosScreen
 import com.example.camvi.ui.widgets.global.CamviButton
 
 @Preview
 @Composable
-fun SesionesCalificadas(){
+fun SesionesCalificadasPreview(){
+    SesionesCalificadas(navController = rememberNavController())
+}
+@Composable
+fun SesionesCalificadas(navController: NavController){
 
     Surface() {
             Column (
@@ -76,10 +83,10 @@ fun SesionesCalificadas(){
                         )
                     }
                     LazyColumn( modifier = Modifier
-                    .padding(top = 20.dp, start = 10.dp)
-                    .fillMaxSize()){
+                        .padding(top = 20.dp, start = 10.dp)
+                        .fillMaxSize()){
                 item {
-                    sesionesCalificadasItem()
+                    sesionesCalificadasItem(navController)
                 }
             }
                 }
@@ -119,7 +126,7 @@ fun PeriodoTiempo(
 
 
 @Composable
-fun sesionesCalificadasItem(){
+fun sesionesCalificadasItem(navController: NavController){
     Surface() {
         Box(
         Modifier.fillMaxHeight(0.6f)
@@ -173,7 +180,7 @@ fun sesionesCalificadasItem(){
                     text = "Ver más",
                     modifier = Modifier.align(Alignment.Center),
                     onClick = {
-                        //onClick()
+                        navController.navigate("${CamarografosScreen.DetalleCalificacion.route}")
                     }
                 )
             }
