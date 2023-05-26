@@ -26,10 +26,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.camvi.R
 import com.example.camvi.model.camarografos.CamarografosSesionesData
 import com.example.camvi.model.globales.CamviFunctions
 import com.example.camvi.ui.widgets.global.CamarografosScreen
+
+@Composable
+fun CamarografosSesionesDetallePre() {
+    CamarografosSesionesDetalle(rememberNavController(), 1)
+}
 
 @Composable
 fun CamarografosSesionesDetalle(navController: NavController, idSesion: Int){
