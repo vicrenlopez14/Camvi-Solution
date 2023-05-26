@@ -164,17 +164,6 @@ fun CalificarSesion(navController: NavController) {
                                     RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser ->
                                         val num: Int = ratingBar.rating.toInt()
 
-                                        /*when(ratingBar.rating.toInt())
-                                      {
-                                          1 -> Toast.makeText(context,"usted ha puntuado: 0.2", Toast.LENGTH_LONG).show()
-                                                  .toString();
-                                          2 -> puntualidadFotografo.value = 0.4.toString()
-                                          3 -> puntualidadFotografo.value = 0.6.toString()
-                                          4 -> puntualidadFotografo.value = 0.8.toString()
-                                          else-> puntualidadFotografo.value = 1.toString()
-
-                                      }*/
-
                                     }
                                 }
 
