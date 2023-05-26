@@ -86,8 +86,8 @@ fun VerCitasCliente(
                         CitasClienteDetalleData = CitasData(
                             idSesion = items.idSesion,
                             titulo = items.titulo,
-                            nombre = items.nombre,
-                            fecha = items.fecha
+                            camarografo = items.nombre,
+                            fechaEvento = items.fecha
                         ),
                         onClick = {
                             navController.navigate("${ClientesScreen.VerMasCitaCliente.route}/ ${items.idSesion}")
@@ -131,7 +131,7 @@ fun ItemCita(
                 )
                 Spacer(modifier = Modifier.width(15.dp))
                 Text(
-                    text = CitasClienteDetalleData.nombre ?: "", //variable de nombre del fotografo
+                    text = CitasClienteDetalleData.camarografo ?: "", //variable de nombre del fotografo
                     fontFamily = FontFamily(Font(R.font.inter)),
                     fontSize = 13.sp,
                     color = Color.Black,
@@ -172,7 +172,7 @@ fun ItemCita(
                 )
                 Spacer(modifier = Modifier.width(15.dp))
                 Text(
-                    text = CitasClienteDetalleData.fecha ?: "", //variable de fecha de la sesion
+                    text = CitasClienteDetalleData.fechaEvento ?: "", //variable de fecha de la sesion
                     fontFamily = FontFamily(Font(R.font.inter)),
                     fontSize = 13.sp,
                     color = Color.Black,

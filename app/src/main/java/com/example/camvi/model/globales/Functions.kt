@@ -1,6 +1,7 @@
 package com.example.camvi.model.globales
 
 import com.example.camvi.model.administradores.Sesiones
+import com.example.camvi.model.administradores.SesionesSinCamarografosData
 import com.example.camvi.model.camarografos.CamarografosSesionesData
 import com.example.camvi.model.clientes.CitasClienteData
 import com.example.camvi.model.clientes.CitasClienteDetalleData
@@ -307,7 +308,7 @@ class CamviFunctions {
             return VerMasCamarografo
         }
 
-        fun fnSesionesLista(idUsuario: Int) : ArrayList<CamarografosSesionesData>{
+        fun fnSesionesCamarografoLista(idUsuario: Int) : ArrayList<CamarografosSesionesData>{
             val listaSesiones = ArrayList<CamarografosSesionesData>()
 
             try {
@@ -322,20 +323,70 @@ class CamviFunctions {
                         CamarografosSesionesData(
                             idSesion = resultSet.getInt("idSesion"),
                             titulo = resultSet.getString("titulo"),
-                            //nombreFotografo= resultSet.getString("nombre"),
-                            //fechaEvento = resultSet.getString("fechaEvento")
-
+                            detalle = resultSet.getString("detalles"),
+                            fotoGaleria = resultSet.getBytes("foto"),
+                            direccionEvento = resultSet.getString("direccionEvento"),
+                            fechaEvento = resultSet.getString("fechaEvento"),
+                            horaInicio = resultSet.getString("horaInicio"),
+                            horaFinalizacion = resultSet.getString("horaFinalizacion"),
+                            lugar = resultSet.getString("lugar"),
+                            confirmada = resultSet.getBoolean("confirmada"),
+                            cancelada = resultSet.getBoolean("cancelada"),
+                            nombre = resultSet.getString("nombre"),
+                            contacto= resultSet.getString("contacto"),
+                            dui= resultSet.getString("dui"),
+                            fotografo = resultSet.getString("Nombre del fotografo")
                         )
                     )
                 }
 
             }
             catch (ex: Exception){
-
+                println(ex.message)
             }
             return listaSesiones
 
         }
+
+        fun fnSesionesCamarografoDetalle(idSesion: Int): CamarografosSesionesData?{
+            var sesionesDetalle: CamarografosSesionesData? = null
+
+            try {
+                val statement =
+                    connectSql.dbConn()?.prepareStatement("SELECT * FROM fnSesionesCamarografosDetalle(?)")
+                statement?.setInt(1, idSesion)
+
+                val resulSet = statement?.executeQuery()
+
+                while (resulSet?.next()== true){
+                    sesionesDetalle = CamarografosSesionesData(
+                            idSesion = resulSet.getInt("idSesion"),
+                            titulo = resulSet.getString("titulo"),
+                            detalle = resulSet.getString("detalles"),
+                            fotoGaleria = resulSet.getBytes("foto"),
+                            direccionEvento = resulSet.getString("direccionEvento"),
+                            fechaEvento = resulSet.getString("fechaEvento"),
+                            horaInicio = resulSet.getString("horaInicio"),
+                            horaFinalizacion = resulSet.getString("horaFinalizacion"),
+                            lugar = resulSet.getString("lugar"),
+                            confirmada = resulSet.getBoolean("confirmada"),
+                            cancelada = resulSet.getBoolean("cancelada"),
+                            nombre = resulSet.getString("nombre"),
+                            contacto= resulSet.getString("contacto"),
+                            dui= resulSet.getString("dui"),
+                            fotografo = resulSet.getString("Nombre del fotografo")
+                    )
+
+                }
+
+            }
+            catch (ex: Exception){
+                println(ex.message)
+
+            }
+            return  sesionesDetalle
+        }
+
 
     }
 }

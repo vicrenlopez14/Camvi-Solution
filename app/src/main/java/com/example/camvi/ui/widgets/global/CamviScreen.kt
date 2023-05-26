@@ -132,6 +132,12 @@ sealed class CamarografosScreen(
             "Crear camarógrafo",
             Icons.Filled.Done
         )
+
+    object CamarografosSesionesDetalle : CamarografosScreen(
+        "Sesiones detalle",
+        "Sesiones detalle",
+        null
+    )
 }
 
 sealed class ClientesScreen(
